@@ -13,7 +13,7 @@
 		<key>CFBundleInfoDictionaryVersion</key>
 		<string>6.0</string>
 		<key>CFBundleName</key>
-		<string>freelance_app</string>
+		<string>Bots Jobs Connect</string>
 		<key>CFBundlePackageType</key>
 		<string>APPL</string>
 		<key>CFBundleShortVersionString</key>
@@ -49,5 +49,11 @@
 		<true/>
 		<key>UIStatusBarHidden</key>
 		<false/>
+		<key>NSCameraUsageDescription</key>
+		<string>This app needs camera access to allow you to take profile photos and record video resumes.</string>
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>This app needs access to your photo library to upload profile photos and CV documents.</string>
+		<key>NSMicrophoneUsageDescription</key>
+		<string>This app needs microphone access to record audio for your video resume.</string>
 	</dict>
 </plist>

@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ADMIN_USER_MANUAL</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#botsjobsconnect-administrator-user-manual"
+id="toc-botsjobsconnect-administrator-user-manual">BotsJobsConnect
+Administrator User Manual</a>
+<ul>
+<li><a href="#welcome-administrator"
+id="toc-welcome-administrator">Welcome, Administrator!</a></li>
+<li><a href="#getting-started" id="toc-getting-started">Getting
+Started</a></li>
+<li><a href="#user-management" id="toc-user-management">User
+Management</a></li>
+<li><a href="#company-verification-kyc"
+id="toc-company-verification-kyc">Company Verification (KYC)</a></li>
+<li><a href="#job-management" id="toc-job-management">Job
+Management</a></li>
+<li><a href="#notification-management"
+id="toc-notification-management">Notification Management</a></li>
+<li><a href="#analytics-reports" id="toc-analytics-reports">Analytics
+&amp; Reports</a></li>
+<li><a href="#security-compliance" id="toc-security-compliance">Security
+&amp; Compliance</a></li>
+<li><a href="#troubleshooting"
+id="toc-troubleshooting">Troubleshooting</a></li>
+<li><a href="#advanced-features" id="toc-advanced-features">Advanced
+Features</a></li>
+<li><a href="#quick-reference" id="toc-quick-reference">Quick
+Reference</a></li>
+<li><a href="#contact-support" id="toc-contact-support">Contact &amp;
+Support</a></li>
+<li><a href="#important-reminders"
+id="toc-important-reminders">Important Reminders</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="botsjobsconnect-administrator-user-manual">BotsJobsConnect
+Administrator User Manual</h1>
+<h2 id="welcome-administrator">Welcome, Administrator!</h2>
+<p>This guide is designed for <strong>Administrators</strong> managing
+the BotsJobsConnect platform. Learn how to manage users, approve
+companies, oversee jobs, and maintain platform security.</p>
+<hr />
+<h2 id="getting-started">Getting Started</h2>
+<h3 id="admin-account">Admin Account</h3>
+<p><strong>Default Admin Account:</strong> - <strong>Email:</strong>
+<code>ricardodiane365@gmail.com</code> - <strong>Access:</strong> Full
+administrative privileges</p>
+<h3 id="logging-in-as-admin">Logging In as Admin</h3>
+<p><strong>Method 1: Admin Login Button</strong> 1. Open the app 2. On
+the Welcome Screen, tap <strong>“Admin Login”</strong> at the bottom 3.
+Enter your admin email and password 4. Access the Admin Dashboard</p>
+<p><strong>Method 2: Quick Access</strong> - Tap the BotsJobsConnect
+logo <strong>5 times quickly</strong> on the Welcome Screen - Admin
+login screen will appear</p>
+<h3 id="admin-dashboard">Admin Dashboard</h3>
+<p>After logging in, you’ll see:</p>
+<ul>
+<li><strong>User Management</strong> - View and manage all users</li>
+<li><strong>Company Approvals</strong> - Review and approve company
+verifications</li>
+<li><strong>Job Management</strong> - Oversee all job postings</li>
+<li><strong>Notifications</strong> - Send platform-wide messages</li>
+<li><strong>Analytics</strong> - View platform statistics</li>
+<li><strong>Settings</strong> - Configure platform settings</li>
+</ul>
+<hr />
+<h2 id="user-management">User Management</h2>
+<h3 id="viewing-users">Viewing Users</h3>
+<ol type="1">
+<li>Go to <strong>Admin Panel → User Management</strong></li>
+<li><strong>Filter by:</strong>
+<ul>
+<li>User Type (Job Seeker, Employer, Trainer)</li>
+<li>Account Status (Active, Suspended, Pending)</li>
+<li>Verification Status</li>
+<li>Registration Date</li>
+</ul></li>
+</ol>
+<h3 id="user-actions">User Actions</h3>
+<p><strong>For Each User, You Can:</strong></p>
+<ul>
+<li><strong>View Profile</strong> - See complete user information</li>
+<li><strong>Edit Profile</strong> - Update user details (if needed)</li>
+<li><strong>Suspend Account</strong> - Temporarily disable account</li>
+<li><strong>Delete Account</strong> - Permanently remove account</li>
+<li><strong>Change Role</strong> - Modify user role/permissions</li>
+<li><strong>View Activity</strong> - See user’s platform activity</li>
+</ul>
+<h3 id="granting-admin-access">Granting Admin Access</h3>
+<p>To make a user an administrator:</p>
+<ol type="1">
+<li>Go to <strong>User Management</strong></li>
+<li>Select the user</li>
+<li>Tap <strong>“Grant Admin Access”</strong></li>
+<li>Confirm the action</li>
+<li>User will receive notification</li>
+</ol>
+<p><strong>Note:</strong> Only existing admins can grant admin
+access.</p>
+<h3 id="user-statistics">User Statistics</h3>
+<p>View platform-wide statistics: - Total registered users - Active
+users (last 30 days) - New registrations (this month) - User type
+distribution - Verification rates</p>
+<hr />
+<h2 id="company-verification-kyc">Company Verification (KYC)</h2>
+<h3 id="reviewing-company-submissions">Reviewing Company
+Submissions</h3>
+<ol type="1">
+<li>Go to <strong>Admin Panel → Company Approvals</strong></li>
+<li>See all pending verifications</li>
+<li><strong>For each company, view:</strong>
+<ul>
+<li>Company name and details</li>
+<li>Submitted documents</li>
+<li>Submission date</li>
+<li>Previous rejection reasons (if any)</li>
+</ul></li>
+</ol>
+<h3 id="required-documents-checklist">Required Documents Checklist</h3>
+<p>Verify these documents are present:</p>
+<ul>
+<li>✅ <strong>CIPA Certificate</strong> - Valid incorporation
+certificate</li>
+<li>✅ <strong>CIPA Extract</strong> - Recent extract (within 6
+months)</li>
+<li>✅ <strong>BURS TIN Evidence</strong> - Tax registration proof</li>
+<li>✅ <strong>Proof of Business Address</strong> - Valid address
+document</li>
+</ul>
+<h3 id="approving-a-company">Approving a Company</h3>
+<ol type="1">
+<li><strong>Review Documents:</strong>
+<ul>
+<li>Check document validity</li>
+<li>Verify information matches</li>
+<li>Ensure all required docs present</li>
+</ul></li>
+<li><strong>Approve:</strong>
+<ul>
+<li>Tap <strong>“Approve”</strong> button</li>
+<li>Add approval notes (optional)</li>
+<li>Confirm approval</li>
+<li>Company receives notification</li>
+</ul></li>
+<li><strong>Result:</strong>
+<ul>
+<li>Company status changes to “Approved”</li>
+<li>Company can now post jobs</li>
+<li>Notification sent to company</li>
+</ul></li>
+</ol>
+<h3 id="rejecting-a-company">Rejecting a Company</h3>
+<ol type="1">
+<li><strong>Review Issues:</strong>
+<ul>
+<li>Identify missing/invalid documents</li>
+<li>Note discrepancies</li>
+<li>Document rejection reason</li>
+</ul></li>
+<li><strong>Reject:</strong>
+<ul>
+<li>Tap <strong>“Reject”</strong> button</li>
+<li><strong>Enter Rejection Reason</strong> (required):
+<ul>
+<li>Missing documents</li>
+<li>Invalid documents</li>
+<li>Information mismatch</li>
+<li>Other (specify)</li>
+</ul></li>
+<li>Confirm rejection</li>
+<li>Company receives notification with reason</li>
+</ul></li>
+<li><strong>Result:</strong>
+<ul>
+<li>Company status changes to “Rejected”</li>
+<li>Company can resubmit after fixing issues</li>
+<li>Rejection reason visible to company</li>
+</ul></li>
+</ol>
+<h3 id="verification-best-practices">Verification Best Practices</h3>
+<ol type="1">
+<li><strong>Review Thoroughly:</strong>
+<ul>
+<li>Check all documents carefully</li>
+<li>Verify document authenticity</li>
+<li>Ensure information consistency</li>
+</ul></li>
+<li><strong>Respond Promptly:</strong>
+<ul>
+<li>Review within 1-3 business days</li>
+<li>Don’t leave companies waiting</li>
+<li>Provide clear feedback</li>
+</ul></li>
+<li><strong>Be Consistent:</strong>
+<ul>
+<li>Apply same standards to all companies</li>
+<li>Document rejection reasons clearly</li>
+<li>Follow verification guidelines</li>
+</ul></li>
+<li><strong>Communicate:</strong>
+<ul>
+<li>Provide helpful rejection reasons</li>
+<li>Guide companies on corrections</li>
+<li>Answer verification questions</li>
+</ul></li>
+</ol>
+<hr />
+<h2 id="job-management">Job Management</h2>
+<h3 id="viewing-all-jobs">Viewing All Jobs</h3>
+<ol type="1">
+<li>Go to <strong>Admin Panel → Job Management</strong></li>
+<li>See all job postings with:
+<ul>
+<li>Job title and company</li>
+<li>Posting date</li>
+<li>Status (Active, Closed, Pending)</li>
+<li>Number of applications</li>
+</ul></li>
+</ol>
+<h3 id="job-actions">Job Actions</h3>
+<p><strong>For Each Job, You Can:</strong></p>
+<ul>
+<li><strong>View Details</strong> - See complete job posting</li>
+<li><strong>Edit Job</strong> - Modify job details (if needed)</li>
+<li><strong>Feature Job</strong> - Highlight on homepage</li>
+<li><strong>Close Job</strong> - Stop accepting applications</li>
+<li><strong>Delete Job</strong> - Remove inappropriate postings</li>
+<li><strong>View Applications</strong> - See all applicants</li>
+</ul>
+<h3 id="job-moderation">Job Moderation</h3>
+<p><strong>Remove Jobs If:</strong> - ❌ Spam or fraudulent content - ❌
+Discriminatory language - ❌ Misleading information - ❌ Violates
+platform policies - ❌ Posted by unverified company</p>
+<p><strong>Process:</strong> 1. Review job posting 2. Identify violation
+3. Delete job (with reason) 4. Notify company (if needed) 5. Log action
+for audit</p>
+<h3 id="job-statistics">Job Statistics</h3>
+<p>View platform-wide job statistics: - Total jobs posted - Active jobs
+- Jobs by category - Average applications per job - Most popular job
+categories</p>
+<hr />
+<h2 id="notification-management">Notification Management</h2>
+<h3 id="sending-platform-notifications">Sending Platform
+Notifications</h3>
+<ol type="1">
+<li>Go to <strong>Admin Panel → Notifications</strong></li>
+<li>Tap <strong>“Send Notification”</strong></li>
+<li><strong>Select Recipients:</strong>
+<ul>
+<li>All Users</li>
+<li>Job Seekers Only</li>
+<li>Employers Only</li>
+<li>Trainers Only</li>
+<li>Specific Users (by email/ID)</li>
+</ul></li>
+<li><strong>Compose Message:</strong>
+<ul>
+<li>Title (required)</li>
+<li>Message body</li>
+<li>Action button (optional)</li>
+<li>Link/URL (optional)</li>
+</ul></li>
+<li><strong>Schedule:</strong>
+<ul>
+<li>Send immediately</li>
+<li>Schedule for later</li>
+<li>Set expiration date</li>
+</ul></li>
+<li><strong>Review and Send</strong></li>
+</ol>
+<h3 id="notification-types">Notification Types</h3>
+<p><strong>Announcements:</strong> - Platform updates - New features -
+Maintenance notices - Policy changes</p>
+<p><strong>Promotions:</strong> - Special offers - Events - Contests -
+Partnerships</p>
+<p><strong>Alerts:</strong> - Security notices - Important reminders -
+Deadline warnings</p>
+<h3 id="notification-best-practices">Notification Best Practices</h3>
+<ol type="1">
+<li><strong>Be Clear:</strong> Use simple, direct language</li>
+<li><strong>Be Relevant:</strong> Only send to appropriate users</li>
+<li><strong>Don’t Spam:</strong> Limit notification frequency</li>
+<li><strong>Include Actions:</strong> Add buttons for user actions</li>
+<li><strong>Track Engagement:</strong> Monitor open rates</li>
+</ol>
+<hr />
+<h2 id="analytics-reports">Analytics &amp; Reports</h2>
+<h3 id="platform-analytics">Platform Analytics</h3>
+<p>View comprehensive platform statistics:</p>
+<p><strong>User Metrics:</strong> - Total users - Active users (DAU/MAU)
+- New registrations - User growth trends - User type distribution</p>
+<p><strong>Job Metrics:</strong> - Total jobs posted - Active jobs -
+Applications received - Job categories breakdown - Average time to
+fill</p>
+<p><strong>Company Metrics:</strong> - Verified companies - Pending
+verifications - Rejection rates - Company activity</p>
+<p><strong>Engagement Metrics:</strong> - App usage statistics - Feature
+usage - Search queries - Popular categories</p>
+<h3 id="generating-reports">Generating Reports</h3>
+<ol type="1">
+<li>Go to <strong>Admin Panel → Analytics</strong></li>
+<li>Select <strong>Report Type:</strong>
+<ul>
+<li>User Report</li>
+<li>Job Report</li>
+<li>Company Report</li>
+<li>Engagement Report</li>
+</ul></li>
+<li><strong>Set Date Range</strong></li>
+<li><strong>Generate Report</strong></li>
+<li><strong>Export</strong> (PDF, CSV, Excel)</li>
+</ol>
+<hr />
+<h2 id="security-compliance">Security &amp; Compliance</h2>
+<h3 id="security-best-practices">Security Best Practices</h3>
+<ol type="1">
+<li><strong>Never Share Credentials:</strong>
+<ul>
+<li>Keep admin password secure</li>
+<li>Don’t share with unauthorized users</li>
+<li>Use strong, unique passwords</li>
+</ul></li>
+<li><strong>Log Out:</strong>
+<ul>
+<li>Always log out when done</li>
+<li>Don’t leave admin panel open</li>
+<li>Use on secure devices only</li>
+</ul></li>
+<li><strong>Review Activity:</strong>
+<ul>
+<li>Check audit logs regularly</li>
+<li>Monitor suspicious activity</li>
+<li>Review admin actions</li>
+</ul></li>
+<li><strong>Update Regularly:</strong>
+<ul>
+<li>Change password periodically</li>
+<li>Keep app updated</li>
+<li>Follow security updates</li>
+</ul></li>
+</ol>
+<h3 id="audit-logs">Audit Logs</h3>
+<p><strong>Tracked Actions:</strong> - User account changes - Company
+approvals/rejections - Job deletions - Admin access grants -
+Notification sends - Settings changes</p>
+<p><strong>View Logs:</strong> 1. Go to <strong>Admin Panel → Audit
+Logs</strong> 2. Filter by: - Date range - Action type - Admin user -
+Affected user/company 3. Review and export</p>
+<h3 id="data-privacy">Data Privacy</h3>
+<p><strong>GDPR Compliance:</strong> - User data protection - Right to
+deletion - Data export requests - Privacy policy enforcement</p>
+<p><strong>Handle User Requests:</strong> - Data export requests -
+Account deletion requests - Privacy inquiries - Consent management</p>
+<hr />
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="cannot-access-admin-panel">Cannot Access Admin Panel</h3>
+<p><strong>Possible Issues:</strong> - Account not granted admin access
+- Incorrect credentials - App cache issues</p>
+<p><strong>Solutions:</strong> - Verify admin status in database - Check
+email/password - Clear app cache - Contact development team</p>
+<h3 id="company-documents-not-loading">Company Documents Not
+Loading</h3>
+<p><strong>Possible Issues:</strong> - Firebase Storage issues - Large
+file sizes - Network problems</p>
+<p><strong>Solutions:</strong> - Check Firebase Storage status - Wait
+for large files to load - Check internet connection - Try refreshing</p>
+<h3 id="notifications-not-sending">Notifications Not Sending</h3>
+<p><strong>Possible Issues:</strong> - FCM configuration issues -
+Invalid user tokens - Cloud Functions errors</p>
+<p><strong>Solutions:</strong> - Check Firebase Cloud Messaging - Verify
+FCM tokens - Review Cloud Functions logs - Test with small group
+first</p>
+<h3 id="user-management-errors">User Management Errors</h3>
+<p><strong>Possible Issues:</strong> - Firestore permission errors -
+Database connection issues - Invalid user data</p>
+<p><strong>Solutions:</strong> - Check Firestore rules - Verify database
+connection - Review user data structure - Contact development team</p>
+<hr />
+<h2 id="advanced-features">Advanced Features</h2>
+<h3 id="bulk-operations">Bulk Operations</h3>
+<p><strong>Bulk Actions Available:</strong> - Approve multiple companies
+- Send notifications to groups - Export user lists - Batch job
+management</p>
+<h3 id="api-access">API Access</h3>
+<p><strong>For Developers:</strong> - Admin API endpoints - Webhook
+configurations - Integration guides - API documentation</p>
+<h3 id="custom-reports">Custom Reports</h3>
+<p><strong>Create Custom Reports:</strong> - Define report parameters -
+Schedule automatic reports - Export in various formats - Share with
+team</p>
+<hr />
+<h2 id="quick-reference">Quick Reference</h2>
+<h3 id="admin-panel-navigation">Admin Panel Navigation</h3>
+<ul>
+<li>👥 <strong>Users</strong> - User Management</li>
+<li>🏢 <strong>Companies</strong> - Company Approvals</li>
+<li>💼 <strong>Jobs</strong> - Job Management</li>
+<li>🔔 <strong>Notifications</strong> - Send Messages</li>
+<li>📊 <strong>Analytics</strong> - View Statistics</li>
+<li>⚙️ <strong>Settings</strong> - Platform Configuration</li>
+<li>📝 <strong>Logs</strong> - Audit Logs</li>
+</ul>
+<h3 id="keyboard-shortcuts-web">Keyboard Shortcuts (Web)</h3>
+<ul>
+<li><code>Ctrl + U</code> - User Management</li>
+<li><code>Ctrl + C</code> - Company Approvals</li>
+<li><code>Ctrl + J</code> - Job Management</li>
+<li><code>Ctrl + N</code> - Send Notification</li>
+<li><code>Ctrl + A</code> - Analytics</li>
+<li><code>Ctrl + L</code> - Audit Logs</li>
+</ul>
+<h3 id="common-tasks">Common Tasks</h3>
+<p><strong>Approve Company:</strong> 1. Companies → Pending 2. Review
+documents 3. Approve/Reject</p>
+<p><strong>Delete Inappropriate Job:</strong> 1. Jobs → Find job 2. View
+details 3. Delete (with reason)</p>
+<p><strong>Send Announcement:</strong> 1. Notifications → New 2. Select
+recipients 3. Compose and send</p>
+<hr />
+<h2 id="contact-support">Contact &amp; Support</h2>
+<p>For technical issues or questions:</p>
+<ul>
+<li><strong>Email:</strong> support@botsjobsconnect.com</li>
+<li><strong>Development Team:</strong> dev@botsjobsconnect.com</li>
+<li><strong>Documentation:</strong> See <code>/docs</code> folder</li>
+<li><strong>Issue Tracker:</strong> GitHub Issues</li>
+</ul>
+<hr />
+<h2 id="important-reminders">Important Reminders</h2>
+<p>⚠️ <strong>Always:</strong> - Review documents carefully before
+approval - Provide clear rejection reasons - Log important actions -
+Keep credentials secure - Follow platform policies</p>
+<p>❌ <strong>Never:</strong> - Share admin credentials - Approve
+without reviewing documents - Delete data without reason - Ignore
+security alerts - Bypass verification process</p>
+<hr />
+<p><em>BotsJobsConnect Administrator Manual</em></p>
+<p><em>Version 1.0.0 | December 2024</em> <em>Last Updated: December
+2024</em></p>
+</body>
+</html>

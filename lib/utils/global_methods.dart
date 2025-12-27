@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'layout.dart';
-import 'txt.dart';
+import 'package:freelance_app/utils/app_theme.dart';
 
 class GlobalMethod {
   static void showErrorDialog({
@@ -15,46 +13,30 @@ class GlobalMethod {
     showDialog(
       context: context,
       builder: (context) {
+        final theme = Theme.of(context);
         return AlertDialog(
-            elevation: layout.elevation,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(layout.radius),
+          elevation: AppTheme.elevationLow,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(AppTheme.radiusL),
+          ),
+          icon: Icon(icon, color: iconColor, size: 28),
+          title: Text(
+            title,
+            style: theme.textTheme.titleLarge,
+          ),
+          content: Text(
+            body,
+            style: theme.textTheme.bodyMedium,
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                if (Navigator.canPop(context)) Navigator.pop(context);
+              },
+              child: Text(buttonText),
             ),
-            backgroundColor: Colors.white,
-            title: Row(children: [
-              Padding(
-                padding: const EdgeInsets.all(layout.padding / 2),
-                child: Icon(
-                  icon,
-                  size: layout.iconLarge,
-                  color: iconColor,
-                ),
-              ),
-              Flexible(
-                child: Padding(
-                  padding: const EdgeInsets.all(layout.padding),
-                  child: Text(
-                    title,
-                    style: txt.titleDark,
-                  ),
-                ),
-              ),
-            ]),
-            content: Text(
-              body,
-              style: txt.body2Dark,
-            ),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.canPop(context) ? Navigator.pop(context) : null;
-                },
-                child: Text(
-                  buttonText,
-                  style: txt.dialogOptions,
-                ),
-              ),
-            ]);
+          ],
+        );
       },
     );
   }
@@ -66,41 +48,27 @@ class GlobalMethodTwo {
     showDialog(
         context: ctx,
         builder: (context) {
+          final theme = Theme.of(context);
+          final colorScheme = theme.colorScheme;
           return AlertDialog(
-            title: Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Icon(
-                    Icons.logout,
-                    color: Colors.grey,
-                    size: 35,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: const Text(
-                    'Error Occurred ',
-                  ),
-                ),
-              ],
+            icon: Icon(
+              Icons.error_outline,
+              color: colorScheme.error,
+            ),
+            title: Text(
+              'Error occurred',
+              style: theme.textTheme.titleLarge,
             ),
             content: Text(
-              '$error',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontStyle: FontStyle.italic),
+              error,
+              style: theme.textTheme.bodyMedium,
             ),
             actions: [
               TextButton(
                 onPressed: () {
-                  Navigator.canPop(context) ? Navigator.pop(context) : null;
+                  if (Navigator.canPop(context)) Navigator.pop(context);
                 },
-                child: Text(
-                  'OK',
-                  style: TextStyle(color: Colors.red),
-                ),
+                child: const Text('OK'),
               ),
             ],
           );

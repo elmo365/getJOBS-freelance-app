@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMIN_GUIDE_COMPLETE</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+            background: #f5f5f5;
+        }
+        h1, h2, h3, h4 {
+            color: #1f4788;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        h1 { font-size: 24px; }
+        h2 { font-size: 20px; border-bottom: 2px solid #1f4788; padding-bottom: 5px; }
+        h3 { font-size: 16px; }
+        h4 { font-size: 14px; }
+        p { text-align: justify; margin: 10px 0; }
+        ul, ol { margin: 10px 0; padding-left: 30px; }
+        li { margin: 5px 0; }
+        table { 
+            border-collapse: collapse; 
+            width: 100%; 
+            margin: 15px 0;
+            background: white;
+        }
+        th, td { 
+            border: 1px solid #ddd; 
+            padding: 10px; 
+            text-align: left;
+        }
+        th { 
+            background-color: #1f4788; 
+            color: white; 
+            font-weight: bold;
+        }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        code { 
+            background: #f4f4f4; 
+            padding: 2px 6px; 
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        blockquote {
+            border-left: 4px solid #1f4788;
+            padding-left: 15px;
+            margin: 15px 0;
+            color: #555;
+            background: #f0f0f0;
+            padding: 10px 15px;
+        }
+        .page-break { page-break-after: always; }
+        @page { margin: 20mm; }
+    </style>
+</head>
+<body>
+<h1 id="admin-complete-guide">Admin Complete Guide</h1>
+<p>This guide covers all admin features in the getJOBS Freelance App, including Role-Based Access Control (RBAC), user management, content approval, and system monitoring.</p>
+<hr />
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#admin-roles--permissions">Admin Roles &amp; Permissions</a></li>
+<li><a href="#rbac-management">RBAC Management</a></li>
+<li><a href="#user-suspension">User Suspension</a></li>
+<li><a href="#content-approval">Content Approval</a></li>
+<li><a href="#analytics--reporting">Analytics &amp; Reporting</a></li>
+<li><a href="#system-settings">System Settings</a></li>
+<li><a href="#audit-logging">Audit Logging</a></li>
+</ol>
+<hr />
+<h2 id="admin-roles-permissions">Admin Roles &amp; Permissions</h2>
+<h3 id="available-roles">Available Roles</h3>
+<h4 id="1-super-admin">1. <strong>Super Admin</strong></h4>
+<ul>
+<li><strong>Description</strong>: Full system access - manages all features and admins</li>
+<li><strong>Permissions</strong>:</li>
+<li><code>manage_admins</code> - Create, update, and remove admin users</li>
+<li><code>manage_roles</code> - Assign and modify admin roles</li>
+<li><code>approve_content</code> - Approve/reject jobs, companies, gigs</li>
+<li><code>manage_finances</code> - Handle payments and transactions</li>
+<li><code>view_analytics</code> - Access analytics dashboard</li>
+<li><code>manage_users</code> - Suspend, warn, or remove users</li>
+<li><code>manage_disputes</code> - Resolve user disputes</li>
+<li><code>system_settings</code> - Configure platform settings</li>
+<li><strong>Use Case</strong>: Primary administrator with complete control</li>
+</ul>
+<h4 id="2-moderator">2. <strong>Moderator</strong></h4>
+<ul>
+<li><strong>Description</strong>: Content moderation - approves jobs, companies, and user content</li>
+<li><strong>Permissions</strong>:</li>
+<li><code>approve_jobs</code> - Review and approve/reject job postings</li>
+<li><code>approve_companies</code> - Review and approve company profiles</li>
+<li><code>approve_gigs</code> - Review and approve freelance gigs</li>
+<li><code>manage_disputes</code> - Resolve user disputes</li>
+<li><code>issue_warnings</code> - Issue warnings to users for violations</li>
+<li><code>suspend_users</code> - Temporarily suspend user accounts</li>
+<li><strong>Use Case</strong>: Content quality control and user behavior management</li>
+</ul>
+<h4 id="3-analyst">3. <strong>Analyst</strong></h4>
+<ul>
+<li><strong>Description</strong>: Analytics and reporting - generates reports and insights</li>
+<li><strong>Permissions</strong>:</li>
+<li><code>view_analytics</code> - Access analytics dashboard</li>
+<li><code>generate_reports</code> - Create custom reports</li>
+<li><code>view_metrics</code> - View platform metrics</li>
+<li><code>export_data</code> - Export data for analysis</li>
+<li><strong>Use Case</strong>: Data analysis and business intelligence</li>
+</ul>
+<h4 id="4-financial">4. <strong>Financial</strong></h4>
+<ul>
+<li><strong>Description</strong>: Finance management - handles payments and transactions</li>
+<li><strong>Permissions</strong>:</li>
+<li><code>view_transactions</code> - View all transactions</li>
+<li><code>process_refunds</code> - Process refund requests</li>
+<li><code>view_wallet</code> - View user wallets and balances</li>
+<li><code>generate_financial_reports</code> - Create financial reports</li>
+<li><strong>Use Case</strong>: Payment processing and financial management</li>
+</ul>
+<h4 id="5-support">5. <strong>Support</strong></h4>
+<ul>
+<li><strong>Description</strong>: Customer support - manages tickets and user inquiries</li>
+<li><strong>Permissions</strong>:</li>
+<li><code>manage_disputes</code> - Handle user disputes</li>
+<li><code>contact_users</code> - Contact users directly</li>
+<li><code>view_tickets</code> - Access support tickets</li>
+<li><code>resolve_issues</code> - Mark issues as resolved</li>
+<li><strong>Use Case</strong>: Customer support and user assistance</li>
+</ul>
+<hr />
+<h2 id="rbac-management">RBAC Management</h2>
+<h3 id="accessing-rbac-settings">Accessing RBAC Settings</h3>
+<ol>
+<li>Open the app as a Super Admin</li>
+<li>Navigate to <strong>Admin Panel</strong> (usually in admin drawer)</li>
+<li>Select <strong>Admin Roles &amp; Access Control</strong></li>
+</ol>
+<h3 id="current-implementation">Current Implementation</h3>
+<p><strong>File</strong>: <a href="lib/screens/admin/admin_rbac_screen.dart">lib/screens/admin/admin_rbac_screen.dart</a></p>
+<p>The RBAC screen has two tabs:</p>
+<h4 id="tab-1-role-definitions">Tab 1: Role Definitions</h4>
+<p>Shows all available roles with their descriptions and associated permissions.</p>
+<pre><code class="language-dart">// Role definitions in admin_rbac_screen.dart
+final Map&lt;String, String&gt; _roleDescriptions = {
+  'superAdmin': 'Full system access - manages all features and admins',
+  'moderator': 'Content moderation - approves jobs, companies, and user content',
+  'analyst': 'Analytics and reporting - generates reports and insights',
+  'financial': 'Finance management - handles payments and transactions',
+  'support': 'Customer support - manages tickets and user inquiries',
+};
+
+final Map&lt;String, List&lt;String&gt;&gt; _rolePermissions = {
+  'superAdmin': [
+    'manage_admins',
+    'manage_roles',
+    'approve_content',
+    'manage_finances',
+    'view_analytics',
+    'manage_users',
+    'manage_disputes',
+    'system_settings',
+  ],
+  // ... other roles
+};
+</code></pre>
+<h4 id="tab-2-admin-users">Tab 2: Admin Users</h4>
+<p>Shows all current admin users and allows modification of their roles.</p>
+<h3 id="assigning-roles-to-new-admins">Assigning Roles to New Admins</h3>
+<p><strong>Email-Based User Lookup</strong>:</p>
+<ol>
+<li>Click <strong>"Add Admin"</strong> button</li>
+<li>Enter the <strong>user's email address</strong></li>
+<li>Click <strong>"Find User"</strong> to verify the user exists</li>
+<li>If found, select a <strong>role</strong> for the user</li>
+<li>Click <strong>"Add Admin"</strong> to confirm</li>
+</ol>
+<p><strong>Implementation</strong>:</p>
+<pre><code class="language-dart">// Email lookup implementation
+Future&lt;void&gt; _lookupUserByEmail(String email) async {
+  // Query users collection by email
+  final userQuery = await _firestore
+      .collection('users')
+      .where('email', isEqualTo: email.trim().toLowerCase())
+      .limit(1)
+      .get();
+
+  if (userQuery.docs.isEmpty) {
+    // User not found
+    return;
+  }
+
+  // Extract user ID and name
+  final userData = userQuery.docs.first;
+  final userId = userData.id;
+  final userName = userData.data()['name'] ?? 'Unknown';
+
+  setState(() {
+    _lookedUpNewAdminId = userId;
+    _lookedUpNewAdminName = userName;
+  });
+}
+
+// Assign role
+Future&lt;void&gt; _assignRole(String userId, String newRole) async {
+  // Create admin_roles document
+  await _firestore.collection('admin_roles').doc(userId).set({
+    'role': newRole,
+    'permissions': _rolePermissions[newRole] ?? [],
+    'assignedAt': FieldValue.serverTimestamp(),
+    'updatedAt': FieldValue.serverTimestamp(),
+  });
+
+  // Update user document
+  await _firestore.collection('users').doc(userId).update({
+    'isAdmin': true,
+    'adminRole': newRole,
+  });
+
+  // Log audit event
+  await _firestore.collection('admin_audit_logs').add({
+    'timestamp': FieldValue.serverTimestamp(),
+    'action': 'assign_admin_role',
+    'targetUserId': userId,
+    'adminId': _getCurrentAdminId(),
+    'role': newRole,
+    'type': 'role_management',
+  });
+}
+</code></pre>
+<h3 id="database-structure">Database Structure</h3>
+<p><strong>admin_roles collection</strong>:</p>
+<pre><code class="language-json">{
+  &quot;userId&quot;: &quot;user123&quot;,
+  &quot;role&quot;: &quot;moderator&quot;,
+  &quot;permissions&quot;: [&quot;approve_jobs&quot;, &quot;approve_companies&quot;, ...],
+  &quot;assignedAt&quot;: &quot;2024-01-15T10:30:00Z&quot;,
+  &quot;updatedAt&quot;: &quot;2024-01-15T10:30:00Z&quot;
+}
+</code></pre>
+<p><strong>users document updates</strong>:</p>
+<pre><code class="language-json">{
+  &quot;isAdmin&quot;: true,
+  &quot;adminRole&quot;: &quot;moderator&quot;
+}
+</code></pre>
+<h3 id="changing-admin-roles">Changing Admin Roles</h3>
+<ol>
+<li>In the <strong>Admin Users</strong> tab, click on an admin</li>
+<li>Select a new role from the available options</li>
+<li>The role updates immediately in Firestore</li>
+</ol>
+<h3 id="removing-admin-access">Removing Admin Access</h3>
+<ol>
+<li>In the <strong>Admin Users</strong> tab, click on an admin</li>
+<li>Click <strong>"Remove Admin Access"</strong></li>
+<li>The admin role and permissions are revoked</li>
+</ol>
+<hr />
+<h2 id="user-suspension">User Suspension</h2>
+<h3 id="purpose">Purpose</h3>
+<p>Temporarily or permanently suspend users who violate platform policies.</p>
+<h3 id="accessing-user-suspension">Accessing User Suspension</h3>
+<ol>
+<li>Open Admin Panel</li>
+<li>Navigate to <strong>User Suspension</strong></li>
+<li>Two tabs available:</li>
+<li><strong>Active Suspensions</strong>: Current and active suspensions</li>
+<li><strong>Suspension History</strong>: All past suspensions</li>
+</ol>
+<h3 id="current-implementation_1">Current Implementation</h3>
+<p><strong>File</strong>: <a href="lib/screens/admin/admin_user_suspension_screen.dart">lib/screens/admin/admin_user_suspension_screen.dart</a></p>
+<h3 id="creating-a-user-suspension">Creating a User Suspension</h3>
+<p><strong>Step 1: Email-Based User Lookup</strong></p>
+<pre><code class="language-dart">Future&lt;void&gt; _lookupUserByEmail(String email) async {
+  if (email.trim().isEmpty) {
+    showSnackBar('Please enter a user email');
+    return;
+  }
+
+  try {
+    setState(() =&gt; _isLookingUpUser = true);
+
+    // Query users by email
+    final userQuery = await FirebaseFirestore.instance
+        .collection('users')
+        .where('email', isEqualTo: email.trim().toLowerCase())
+        .limit(1)
+        .get();
+
+    if (userQuery.docs.isEmpty) {
+      setState(() =&gt; _isLookingUpUser = false);
+      showSnackBar('User with email &quot;$email&quot; not found');
+      return;
+    }
+
+    // Extract user information
+    final userData = userQuery.docs.first;
+    final userId = userData.id;
+    final userName = userData.data()['name'] ?? 'Unknown';
+
+    setState(() {
+      _lookedUpUserId = userId;
+      _lookedUpUserName = userName;
+      _isLookingUpUser = false;
+    });
+
+    showSnackBar('Found: $userName');
+  } catch (e) {
+    setState(() =&gt; _isLookingUpUser = false);
+    showSnackBar('Error looking up user: $e');
+  }
+}
+</code></pre>
+<p><strong>Step 2: Enter Suspension Details</strong></p>
+<p>In the suspension dialog:
+1. <strong>User Email</strong>: Enter the user's email
+2. Click <strong>"Find User"</strong> to verify
+3. <strong>Reason</strong>: Enter reason for suspension (e.g., "Posting inappropriate content")
+4. <strong>Duration</strong>: Choose:
+   - <strong>Temporary</strong>: Select end date
+   - <strong>Permanent</strong>: Toggle permanent flag
+5. Click <strong>"Suspend User"</strong></p>
+<p><strong>Step 3: Create Suspension Record</strong></p>
+<pre><code class="language-dart">Future&lt;void&gt; _createSuspension() async {
+  // Validate inputs
+  if (_userEmailController.text.isEmpty) {
+    showSnackBar('Please enter a user email');
+    return;
+  }
+
+  if (_lookedUpUserId == null) {
+    showSnackBar('Please click &quot;Find User&quot; first');
+    return;
+  }
+
+  if (_reasonController.text.isEmpty) {
+    showSnackBar('Please enter a reason');
+    return;
+  }
+
+  if (!_isPermanent &amp;&amp; _suspensionEndDate == null) {
+    showSnackBar('Please select an end date or mark as permanent');
+    return;
+  }
+
+  try {
+    final userId = _lookedUpUserId!;
+
+    // Create suspension record
+    await FirebaseFirestore.instance
+        .collection('user_suspensions')
+        .add({
+          'userId': userId,
+          'userEmail': _userEmailController.text.trim().toLowerCase(),
+          'userName': _lookedUpUserName,
+          'reason': _reasonController.text.trim(),
+          'suspendedAt': FieldValue.serverTimestamp(),
+          'suspendedUntil': _isPermanent 
+              ? null 
+              : Timestamp.fromDate(_suspensionEndDate!),
+          'isPermanent': _isPermanent,
+          'adminEmail': FirebaseAuth.instance.currentUser?.email,
+          'status': 'active',
+          'createdAt': FieldValue.serverTimestamp(),
+        });
+
+    // Update user document
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(userId)
+        .update({
+          'isSuspended': true,
+          'suspensionReason': _reasonController.text.trim(),
+          'suspendedUntil': _isPermanent 
+              ? null 
+              : Timestamp.fromDate(_suspensionEndDate!),
+        });
+
+    // Log audit event
+    await FirebaseFirestore.instance
+        .collection('admin_audit_logs')
+        .add({
+          'action': 'suspend',
+          'adminEmail': FirebaseAuth.instance.currentUser?.email,
+          'targetType': 'user',
+          'targetId': userId,
+          'targetEmail': _userEmailController.text.trim().toLowerCase(),
+          'reason': _reasonController.text.trim(),
+          'timestamp': FieldValue.serverTimestamp(),
+          'changes': {
+            'isSuspended': {'before': false, 'after': true},
+            'suspendedUntil': {
+              'before': null,
+              'after': _isPermanent ? 'permanent' : _suspensionEndDate
+            }
+          },
+        });
+
+    // Show success message
+    showSnackBar('User suspended successfully');
+
+    // Reload suspensions list
+    _loadSuspensions();
+    Navigator.pop(context);
+  } catch (e) {
+    showSnackBar('Failed to suspend user: $e');
+  }
+}
+</code></pre>
+<h3 id="database-structure_1">Database Structure</h3>
+<p><strong>user_suspensions collection</strong>:</p>
+<pre><code class="language-json">{
+  &quot;userId&quot;: &quot;user456&quot;,
+  &quot;userEmail&quot;: &quot;violator@example.com&quot;,
+  &quot;userName&quot;: &quot;John Doe&quot;,
+  &quot;reason&quot;: &quot;Posting inappropriate content&quot;,
+  &quot;suspendedAt&quot;: &quot;2024-01-15T10:30:00Z&quot;,
+  &quot;suspendedUntil&quot;: &quot;2024-02-15T10:30:00Z&quot;,
+  &quot;isPermanent&quot;: false,
+  &quot;adminEmail&quot;: &quot;admin@example.com&quot;,
+  &quot;status&quot;: &quot;active&quot;,
+  &quot;createdAt&quot;: &quot;2024-01-15T10:30:00Z&quot;
+}
+</code></pre>
+<p><strong>users document updates</strong>:</p>
+<pre><code class="language-json">{
+  &quot;isSuspended&quot;: true,
+  &quot;suspensionReason&quot;: &quot;Posting inappropriate content&quot;,
+  &quot;suspendedUntil&quot;: &quot;2024-02-15T10:30:00Z&quot;
+}
+</code></pre>
+<h3 id="lifting-a-suspension">Lifting a Suspension</h3>
+<p><strong>Step 1</strong>: Navigate to <strong>Active Suspensions</strong> tab</p>
+<p><strong>Step 2</strong>: Find the suspension record</p>
+<p><strong>Step 3</strong>: Click <strong>"Lift Suspension"</strong></p>
+<p><strong>Implementation</strong>:</p>
+<pre><code class="language-dart">Future&lt;void&gt; _liftSuspension(String suspensionId, String userId) async {
+  try {
+    // Update suspension status to lifted
+    await FirebaseFirestore.instance
+        .collection('user_suspensions')
+        .doc(suspensionId)
+        .update({
+          'status': 'lifted',
+          'liftedAt': FieldValue.serverTimestamp(),
+        });
+
+    // Update user document
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(userId)
+        .update({
+          'isSuspended': false,
+          'suspensionReason': null,
+          'suspendedUntil': null,
+        });
+
+    // Log audit event
+    await FirebaseFirestore.instance
+        .collection('admin_audit_logs')
+        .add({
+          'action': 'lift_suspension',
+          'adminEmail': FirebaseAuth.instance.currentUser?.email,
+          'targetType': 'user',
+          'targetId': userId,
+          'timestamp': FieldValue.serverTimestamp(),
+          'changes': {
+            'isSuspended': {'before': true, 'after': false},
+          },
+        });
+
+    showSnackBar('Suspension lifted successfully');
+    _loadSuspensions();
+  } catch (e) {
+    showSnackBar('Failed to lift suspension: $e');
+  }
+}
+</code></pre>
+<h3 id="suspension-workflow">Suspension Workflow</h3>
+<p><strong>Suspended Users</strong>:
+- Cannot log in
+- Cannot post jobs or gigs
+- Cannot apply for positions
+- Cannot access chat
+- Can view their suspension details in app</p>
+<p><strong>Permission Check</strong>:
+Moderators with <code>suspend_users</code> permission can create suspensions.</p>
+<hr />
+<h2 id="content-approval">Content Approval</h2>
+<h3 id="types-of-content-requiring-approval">Types of Content Requiring Approval</h3>
+<ol>
+<li><strong>Job Postings</strong>: New jobs posted by employers</li>
+<li><strong>Company Profiles</strong>: New company registrations</li>
+<li><strong>Freelancer Gigs</strong>: New gig listings by freelancers</li>
+<li><strong>Profile Changes</strong>: Major profile updates (education, experience, etc.)</li>
+</ol>
+<h3 id="approval-workflow">Approval Workflow</h3>
+<p><strong>Status Flow</strong>:</p>
+<pre><code>Pending → Approved (Live) 
+  ↓
+Rejected (With Reason)
+</code></pre>
+<h3 id="accessing-content-approval">Accessing Content Approval</h3>
+<ol>
+<li>Open Admin Panel</li>
+<li>Select <strong>Content Approval</strong></li>
+<li>Available tabs:</li>
+<li><strong>Jobs</strong> - Job postings</li>
+<li><strong>Companies</strong> - Company profiles</li>
+<li><strong>Gigs</strong> - Freelancer gigs</li>
+<li><strong>Profiles</strong> - Profile updates</li>
+</ol>
+<h3 id="approving-content">Approving Content</h3>
+<p><strong>Step 1</strong>: View pending content in respective tab</p>
+<p><strong>Step 2</strong>: Click on content item</p>
+<p><strong>Step 3</strong>: Review details (title, description, images, etc.)</p>
+<p><strong>Step 4</strong>: Choose action:
+- <strong>Approve</strong>: Content goes live
+- <strong>Reject</strong>: Must provide rejection reason</p>
+<h3 id="rejection-reasons">Rejection Reasons</h3>
+<p>Common reasons for rejection:</p>
+<p><strong>For Jobs</strong>:
+- Incomplete job description
+- Inappropriate content
+- Suspicious requirements
+- Salary/budget not specified</p>
+<p><strong>For Companies</strong>:
+- Unverified company information
+- Missing business details
+- Inappropriate company name
+- Red flags for fraud</p>
+<p><strong>For Gigs</strong>:
+- Unclear service description
+- Pricing issues
+- Suspicious content
+- Quality concerns</p>
+<hr />
+<h2 id="finance-management">Finance Management</h2>
+<h3 id="purpose_1">Purpose</h3>
+<p>Manage platform monetization settings, fees, and financial transactions.</p>
+<h3 id="accessing-finance-settings">Accessing Finance Settings</h3>
+<ol>
+<li>Open Admin Panel</li>
+<li>Navigate to <strong>Finance &amp; Monetization</strong></li>
+<li>Two tabs available:</li>
+<li><strong>Settings</strong> - Fee configuration</li>
+<li><strong>Transactions</strong> - Payment history</li>
+</ol>
+<h3 id="monetization-settings">Monetization Settings</h3>
+<p><strong>File</strong>: <a href="lib/screens/admin/admin_finance_screen.dart">lib/screens/admin/admin_finance_screen.dart</a></p>
+<h3 id="configurable-fees">Configurable Fees</h3>
+<pre><code class="language-dart">// Finance settings model
+class MonetizationSettingsModel {
+  bool isIndividualMonetizationEnabled;      // Allow individuals to post jobs
+  bool isCompanyMonetizationEnabled;          // Allow companies to post jobs
+  double companyJobPostFee;                   // Fee for company job posting
+  double individualJobPostFee;                // Fee for individual job posting
+  double applicationFee;                      // Fee per job application
+  double bluePageListingFee;                  // Premium listing fee
+  double globalDiscountPercentage;            // Platform-wide discount
+  String bankDetails;                         // Platform bank account
+}
+</code></pre>
+<h3 id="fee-configuration-steps">Fee Configuration Steps</h3>
+<p><strong>Step 1</strong>: Open Finance &amp; Monetization screen</p>
+<p><strong>Step 2</strong>: Navigate to Settings tab</p>
+<p><strong>Step 3</strong>: Update fees:
+- <strong>Company Job Post Fee</strong>: Cost for companies to post jobs (₱)
+- <strong>Individual Job Post Fee</strong>: Cost for individuals to post jobs (₱)
+- <strong>Application Fee</strong>: Cost per application submission (₱)
+- <strong>Blue Page Listing Fee</strong>: Premium featured listing cost (₱)
+- <strong>Global Discount %</strong>: Platform-wide discount percentage (0-100)
+- <strong>Bank Details</strong>: Platform's bank account information</p>
+<p><strong>Step 4</strong>: Toggle monetization by user type:
+- Enable/disable individual monetization
+- Enable/disable company monetization</p>
+<p><strong>Step 5</strong>: Save settings</p>
+<p><strong>Code Example</strong>:</p>
+<pre><code class="language-dart">Future&lt;void&gt; _saveSettings() async {
+  final settings = MonetizationSettingsModel(
+    isIndividualMonetizationEnabled: _isIndividualMonetizationEnabled,
+    isCompanyMonetizationEnabled: _isCompanyMonetizationEnabled,
+    companyJobPostFee: double.tryParse(_companyJobCostController.text) ?? 50.0,
+    individualJobPostFee: double.tryParse(_individualJobCostController.text) ?? 5.0,
+    applicationFee: double.tryParse(_appCostController.text) ?? 1.0,
+    bluePageListingFee: double.tryParse(_bluePageCostController.text) ?? 100.0,
+    globalDiscountPercentage: double.tryParse(_discountController.text) ?? 0.0,
+    bankDetails: _bankController.text,
+  );
+
+  await _walletService.updateSettings(settings);
+  SnackbarHelper.showSuccess(context, 'Settings Saved!');
+}
+</code></pre>
+<h3 id="transaction-management">Transaction Management</h3>
+<p><strong>View Transactions</strong>:
+1. Open Finance screen
+2. Select Transactions tab
+3. See all platform transactions:
+   - Date and time
+   - Transaction type
+   - Amount
+   - User/Company
+   - Status</p>
+<p><strong>Filter Transactions</strong>:
+- By date range
+- By type (deposit, withdrawal, fee)
+- By status (completed, pending, failed)
+- By user</p>
+<h3 id="financial-reports">Financial Reports</h3>
+<p><strong>Available Reports</strong>:
+- Total revenue by time period
+- Fee collection by type
+- Transaction breakdown
+- Outstanding payments
+- Refund history</p>
+<hr />
+<h2 id="ratings-system">Ratings System</h2>
+<h3 id="purpose_2">Purpose</h3>
+<p>Manage user ratings and reviews across the platform.</p>
+<h3 id="accessing-ratings-moderation">Accessing Ratings Moderation</h3>
+<ol>
+<li>Open Admin Panel</li>
+<li>Navigate to <strong>Rating Moderation</strong></li>
+<li>View all ratings with filters:</li>
+<li>All Ratings</li>
+<li>Flagged Ratings</li>
+</ol>
+<h3 id="ratings-overview">Ratings Overview</h3>
+<p><strong>File</strong>: <a href="lib/screens/admin/admin_ratings_moderation_screen.dart">lib/screens/admin/admin_ratings_moderation_screen.dart</a></p>
+<h3 id="managing-ratings">Managing Ratings</h3>
+<p><strong>View Rating Details</strong>:
+1. Open Ratings Moderation screen
+2. See all platform ratings
+3. Filter by status (all, flagged)
+4. Click on rating to view:
+   - Rater information
+   - Rating score (1-5 stars)
+   - Review text
+   - Recipient (trainee, freelancer, employer)
+   - Date posted
+   - Flag status and reason</p>
+<p><strong>Rating Moderation Actions</strong>:</p>
+<p><strong>Flag Suspicious Rating</strong>:
+1. Open rating
+2. Tap <strong>"Flag Rating"</strong>
+3. Select reason:
+   - Inappropriate language
+   - Fake/spam review
+   - Fraudulent claim
+   - Harassment
+   - Irrelevant content
+4. Add notes
+5. Tap <strong>"Confirm Flag"</strong></p>
+<p><strong>Remove Flagged Rating</strong>:
+1. Open flagged rating
+2. Review evidence
+3. If confirmed violation:
+   - Tap <strong>"Remove Rating"</strong>
+   - Provide removal reason
+   - Confirm deletion
+4. Rating removed from public view
+5. Audit log entry created</p>
+<p><strong>Code Structure</strong>:</p>
+<pre><code class="language-dart">// Rating moderation workflow
+class AdminRatingsModerationScreen extends StatefulWidget {
+  // Manage ratings with filtering and moderation actions
+
+  void _initializeStream() {
+    if (_filterStatus == 'flagged') {
+      _ratingsStream = FirebaseFirestore.instance
+          .collection('ratings')
+          .where('isFlagged', isEqualTo: true)
+          .orderBy('flaggedAt', descending: true)
+          .snapshots();
+    } else {
+      _ratingsStream = FirebaseFirestore.instance
+          .collection('ratings')
+          .orderBy('createdAt', descending: true)
+          .snapshots();
+    }
+  }
+}
+</code></pre>
+<h3 id="rating-quality-standards">Rating Quality Standards</h3>
+<p><strong>What to Flag</strong>:
+- ✅ Profanity or insults
+- ✅ Off-topic reviews
+- ✅ Spam or ads
+- ✅ Fake reviews
+- ✅ Harassment or threats
+- ✅ Competitors attacking competitors</p>
+<p><strong>What to Keep</strong>:
+- ✅ Honest negative reviews
+- ✅ Constructive criticism
+- ✅ Legitimate complaints
+- ✅ Detailed feedback</p>
+<hr />
+<h2 id="disputes-conflicts">Disputes &amp; Conflicts</h2>
+<h3 id="purpose_3">Purpose</h3>
+<p>Resolve disputes between users (job seekers, employers, trainers).</p>
+<h3 id="accessing-disputes">Accessing Disputes</h3>
+<ol>
+<li>Open Admin Panel</li>
+<li>Navigate to <strong>Disputes</strong></li>
+<li>Manage by status:</li>
+<li><strong>Open</strong> - New disputes</li>
+<li><strong>In Review</strong> - Being handled</li>
+<li><strong>Resolved</strong> - Closed</li>
+</ol>
+<h3 id="dispute-management">Dispute Management</h3>
+<p><strong>File</strong>: <a href="lib/screens/admin/admin_disputes_screen.dart">lib/screens/admin/admin_disputes_screen.dart</a></p>
+<h3 id="dispute-resolution-workflow">Dispute Resolution Workflow</h3>
+<p><strong>Step 1</strong>: Review Dispute Details
+1. Open Disputes screen
+2. Click on dispute
+3. Review:
+   - Dispute type
+   - Involved parties
+   - Timeline of events
+   - Messages between parties
+   - Evidence provided</p>
+<p><strong>Step 2</strong>: Investigate
+1. Check both parties' history
+2. Review transaction details
+3. Check previous disputes
+4. Assess credibility</p>
+<p><strong>Step 3</strong>: Take Action
+1. Assess evidence
+2. Choose resolution:
+   - <strong>Favor Complainant</strong> - Award to person who filed dispute
+   - <strong>Favor Respondent</strong> - Keep with original party
+   - <strong>Split Decision</strong> - Partial compensation
+   - <strong>Request More Info</strong> - Ask for clarification</p>
+<p><strong>Step 4</strong>: Communicate
+1. Add message to dispute thread
+2. Explain resolution
+3. Notify both parties
+4. Provide next steps</p>
+<p><strong>Step 5</strong>: Close Dispute
+1. After resolution applied
+2. Mark status as <strong>Resolved</strong>
+3. Dispute history preserved
+4. Audit log created</p>
+<h3 id="common-dispute-types">Common Dispute Types</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Typical Resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Non-payment</td>
+<td>Verify transaction, release funds</td>
+</tr>
+<tr>
+<td>Incomplete work</td>
+<td>Review deliverables, assess quality</td>
+</tr>
+<tr>
+<td>Miscommunication</td>
+<td>Clarify expectations, refund if needed</td>
+</tr>
+<tr>
+<td>Quality issues</td>
+<td>Evaluate against requirements</td>
+</tr>
+<tr>
+<td>Late delivery</td>
+<td>Check deadline, assess impact</td>
+</tr>
+<tr>
+<td>Fraud claim</td>
+<td>Investigate thoroughly</td>
+</tr>
+</tbody>
+</table>
+<h3 id="dispute-checklist">Dispute Checklist</h3>
+<p>Before resolving disputes, verify:
+- ✅ Both parties' communications reviewed
+- ✅ All evidence examined
+- ✅ Relevant dates and times verified
+- ✅ Contract/agreement reviewed
+- ✅ Party history checked
+- ✅ Similar cases reviewed
+- ✅ Decision clearly documented
+- ✅ Both parties notified</p>
+<hr />
+<h2 id="bulk-approval">Bulk Approval</h2>
+<h3 id="purpose_4">Purpose</h3>
+<p>Efficiently approve multiple pending items at once.</p>
+<h3 id="accessing-bulk-approval">Accessing Bulk Approval</h3>
+<ol>
+<li>Open Admin Panel</li>
+<li>Navigate to <strong>Bulk Approval</strong></li>
+<li>Select content type to approve</li>
+</ol>
+<h3 id="bulk-approval-process">Bulk Approval Process</h3>
+<p><strong>File</strong>: <a href="lib/screens/admin/admin_bulk_approval_screen.dart">lib/screens/admin/admin_bulk_approval_screen.dart</a></p>
+<p><strong>Step 1</strong>: Select Content Type
+- Jobs
+- Companies
+- Gigs
+- Profiles</p>
+<p><strong>Step 2</strong>: Review Items
+1. See all pending items of selected type
+2. Checkboxes to select multiple items
+3. Preview each item before approval
+4. Filter by:
+   - Submission date
+   - User/company
+   - Category</p>
+<p><strong>Step 3</strong>: Batch Operations
+1. Select multiple items with checkboxes
+2. Choose bulk action:
+   - <strong>Approve All</strong> - Approve selected items
+   - <strong>Reject All</strong> - Reject with reason
+   - <strong>Request Changes</strong> - Send back for revision
+3. Add notes (optional)</p>
+<p><strong>Step 4</strong>: Confirm
+1. Review selections
+2. Confirm action
+3. All items processed simultaneously
+4. Notifications sent to users
+5. Audit log created</p>
+<h3 id="approval-checklist">Approval Checklist</h3>
+<p>Before bulk approval, verify each item:
+- ✅ Content is complete
+- ✅ Information is accurate
+- ✅ No policy violations
+- ✅ No spam or duplicates
+- ✅ Appropriate category
+- ✅ Contact info valid
+- ✅ Images/media appropriate
+- ✅ Pricing reasonable</p>
+<hr />
+<h2 id="content-moderation">Content Moderation</h2>
+<h3 id="purpose_5">Purpose</h3>
+<p>Monitor and enforce content policies across the platform.</p>
+<h3 id="accessing-content-moderation">Accessing Content Moderation</h3>
+<ol>
+<li>Open Admin Panel</li>
+<li>Navigate to <strong>Content Moderation</strong></li>
+<li>Review reported and suspicious content</li>
+</ol>
+<h3 id="moderation-workflow">Moderation Workflow</h3>
+<p><strong>File</strong>: <a href="lib/screens/admin/admin_content_moderation_screen.dart">lib/screens/admin/admin_content_moderation_screen.dart</a></p>
+<p><strong>Types of Content Monitored</strong>:
+- Job descriptions
+- Company profiles
+- User profiles
+- Comments and reviews
+- Messages
+- Images and media</p>
+<h3 id="reviewing-reported-content">Reviewing Reported Content</h3>
+<p><strong>Step 1</strong>: Open Content Moderation</p>
+<p><strong>Step 2</strong>: Filter by:
+- Content type
+- Status (reported, reviewed, approved)
+- Report reason
+- Date range</p>
+<p><strong>Step 3</strong>: Review Content
+1. Click on reported item
+2. View:
+   - Original content
+   - Report reason
+   - Reporter details
+   - Content creator details
+3. Assess violation</p>
+<p><strong>Step 4</strong>: Make Decision
+1. <strong>Approve</strong> - Content is acceptable
+2. <strong>Remove</strong> - Content violates policy
+3. <strong>Warn Creator</strong> - Issue warning without removing
+4. <strong>Suspend Creator</strong> - Account action needed</p>
+<p><strong>Step 5</strong>: Communicate
+1. Add decision note
+2. Notify reporter
+3. Notify content creator
+4. Log action</p>
+<h3 id="policy-violations">Policy Violations</h3>
+<p><strong>Common Violations</strong>:
+- Profanity or harassment
+- Discriminatory language
+- Sexual content
+- Spam or advertising
+- Misleading information
+- Copyright infringement
+- Doxxing or privacy violation
+- Threat or violence</p>
+<h3 id="moderation-actions">Moderation Actions</h3>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Impact</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Approve</td>
+<td>None</td>
+<td>Content stays live</td>
+</tr>
+<tr>
+<td>Remove</td>
+<td>Content deleted</td>
+<td>User notified</td>
+</tr>
+<tr>
+<td>Warn</td>
+<td>None</td>
+<td>Warning logged</td>
+</tr>
+<tr>
+<td>Suspend</td>
+<td>Account disabled</td>
+<td>Temporary/permanent</td>
+</tr>
+<tr>
+<td>Ban</td>
+<td>Permanent removal</td>
+<td>Account deleted</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="system-monitoring-health">System Monitoring &amp; Health</h2>
+<h3 id="purpose_6">Purpose</h3>
+<p>Monitor platform health, performance, and system metrics.</p>
+<h3 id="accessing-monitoring-dashboard">Accessing Monitoring Dashboard</h3>
+<ol>
+<li>Open Admin Panel</li>
+<li>Navigate to <strong>Monitoring Dashboard</strong></li>
+<li>Real-time system status</li>
+</ol>
+<h3 id="dashboard-metrics">Dashboard Metrics</h3>
+<p><strong>File</strong>: <a href="lib/screens/admin/admin_monitoring_dashboard_screen.dart">lib/screens/admin/admin_monitoring_dashboard_screen.dart</a></p>
+<h3 id="key-metrics-to-monitor">Key Metrics to Monitor</h3>
+<p><strong>User Metrics</strong>:
+- Active users (daily/monthly)
+- New registrations
+- User growth rate
+- Engagement rate
+- Retention rate
+- Churn rate</p>
+<p><strong>Transaction Metrics</strong>:
+- Total transactions
+- Transaction volume
+- Failed transactions
+- Average transaction value
+- Payment success rate</p>
+<p><strong>Content Metrics</strong>:
+- Jobs posted
+- Jobs approved
+- Companies registered
+- Approval rate
+- Pending items count
+- Approval time average</p>
+<p><strong>Performance Metrics</strong>:
+- API response time
+- Error rates
+- System uptime
+- Database size
+- Storage usage
+- Backup status</p>
+<h3 id="alerts-thresholds">Alerts &amp; Thresholds</h3>
+<p><strong>Set up alerts for</strong>:
+- Error rate exceeds 2%
+- Response time &gt; 3 seconds
+- Failed payment rate &gt; 5%
+- System downtime
+- Unusual traffic spikes
+- Database issues</p>
+<h3 id="health-checks">Health Checks</h3>
+<p><strong>Daily Checks</strong>:
+- Review error logs
+- Check pending approvals
+- Verify backups completed
+- Monitor fraud reports
+- Check suspension queue</p>
+<p><strong>Weekly Checks</strong>:
+- Review analytics
+- Audit permission logs
+- Check system performance
+- Verify security
+- Review user reports</p>
+<p><strong>Monthly Checks</strong>:
+- Generate compliance reports
+- Audit all admin actions
+- Review platform growth
+- Analyze user feedback
+- Plan improvements</p>
+<h3 id="system-maintenance">System Maintenance</h3>
+<p><strong>Scheduled Maintenance</strong>:
+1. Announce downtime 48 hours prior
+2. Backup database
+3. Update system
+4. Run tests
+5. Restore service
+6. Verify functionality</p>
+<p><strong>Emergency Procedures</strong>:
+- Immediate rollback capability
+- Incident communication plan
+- Data recovery procedures
+- Support escalation
+- Post-incident review</p>
+<hr />
+<h2 id="analytics-reporting">Analytics &amp; Reporting</h2>
+<h3 id="dashboard-metrics_1">Dashboard Metrics</h3>
+<p><strong>Key Metrics</strong>:
+- Total registered users (by type)
+- Active users (daily/monthly)
+- Active jobs
+- Completed contracts
+- Total transactions
+- Platform revenue
+- User growth trends</p>
+<h3 id="available-reports">Available Reports</h3>
+<ol>
+<li><strong>User Report</strong>: Active, suspended, deleted users</li>
+<li><strong>Job Report</strong>: Posted, approved, completed jobs</li>
+<li><strong>Financial Report</strong>: Transactions, refunds, revenue</li>
+<li><strong>Dispute Report</strong>: Open, resolved disputes</li>
+<li><strong>Activity Report</strong>: User activities and login patterns</li>
+</ol>
+<h3 id="generating-custom-reports">Generating Custom Reports</h3>
+<ol>
+<li>Navigate to <strong>Analytics &amp; Reporting</strong></li>
+<li>Select report type</li>
+<li>Choose date range</li>
+<li>Select filters (user type, status, etc.)</li>
+<li>Click <strong>"Generate Report"</strong></li>
+<li>Option to export as CSV/PDF</li>
+</ol>
+<hr />
+<h2 id="system-settings">System Settings</h2>
+<h3 id="available-settings">Available Settings</h3>
+<p><strong>Platform Settings</strong>:
+- Platform name and description
+- Support email and phone
+- Commission rates
+- Payment methods</p>
+<p><strong>Notification Settings</strong>:
+- Email notifications enabled
+- Notification templates
+- Scheduling rules</p>
+<p><strong>Security Settings</strong>:
+- Password requirements
+- Login attempt limits
+- 2FA requirements
+- Session timeout</p>
+<p><strong>Feature Toggles</strong>:
+- Enable/disable user registration
+- Enable/disable job posting
+- Enable/disable gig creation
+- Maintenance mode</p>
+<hr />
+<h2 id="audit-logging">Audit Logging</h2>
+<h3 id="audit-log-collection">Audit Log Collection</h3>
+<p>All admin actions are automatically logged in Firestore:</p>
+<p><strong>Collection</strong>: <code>admin_audit_logs</code></p>
+<p><strong>Data Recorded</strong>:</p>
+<pre><code class="language-json">{
+  &quot;timestamp&quot;: &quot;2024-01-15T10:30:00Z&quot;,
+  &quot;action&quot;: &quot;approve_job&quot;,
+  &quot;adminId&quot;: &quot;admin123&quot;,
+  &quot;adminEmail&quot;: &quot;admin@example.com&quot;,
+  &quot;targetType&quot;: &quot;job&quot;,
+  &quot;targetId&quot;: &quot;job456&quot;,
+  &quot;targetEmail&quot;: &quot;employer@example.com&quot;,
+  &quot;reason&quot;: &quot;Approved&quot;,
+  &quot;type&quot;: &quot;content_approval&quot;,
+  &quot;changes&quot;: {
+    &quot;status&quot;: {&quot;before&quot;: &quot;pending&quot;, &quot;after&quot;: &quot;approved&quot;}
+  }
+}
+</code></pre>
+<h3 id="accessing-audit-logs">Accessing Audit Logs</h3>
+<ol>
+<li>Go to Admin Panel</li>
+<li>Select <strong>Audit Logs</strong></li>
+<li>Filter by:</li>
+<li>Date range</li>
+<li>Admin user</li>
+<li>Action type</li>
+<li>Target type</li>
+</ol>
+<h3 id="common-audit-actions">Common Audit Actions</h3>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>assign_admin_role</code></td>
+<td>role_management</td>
+<td>New admin role assigned</td>
+</tr>
+<tr>
+<td><code>remove_admin_role</code></td>
+<td>role_management</td>
+<td>Admin role removed</td>
+</tr>
+<tr>
+<td><code>approve_job</code></td>
+<td>content_approval</td>
+<td>Job approved</td>
+</tr>
+<tr>
+<td><code>reject_job</code></td>
+<td>content_approval</td>
+<td>Job rejected</td>
+</tr>
+<tr>
+<td><code>approve_company</code></td>
+<td>content_approval</td>
+<td>Company approved</td>
+</tr>
+<tr>
+<td><code>reject_company</code></td>
+<td>content_approval</td>
+<td>Company rejected</td>
+</tr>
+<tr>
+<td><code>suspend</code></td>
+<td>user_management</td>
+<td>User suspended</td>
+</tr>
+<tr>
+<td><code>lift_suspension</code></td>
+<td>user_management</td>
+<td>Suspension lifted</td>
+</tr>
+<tr>
+<td><code>warn_user</code></td>
+<td>user_management</td>
+<td>Warning issued</td>
+</tr>
+<tr>
+<td><code>change_setting</code></td>
+<td>system</td>
+<td>System setting changed</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="security-best-practices">Security Best Practices</h2>
+<h3 id="admin-account-security">Admin Account Security</h3>
+<ol>
+<li><strong>Use Strong Passwords</strong>: Minimum 12 characters with special characters</li>
+<li><strong>Enable 2FA</strong>: Use authenticator apps (not SMS when possible)</li>
+<li><strong>Unique Emails</strong>: Don't share admin email addresses</li>
+<li><strong>Regular Updates</strong>: Change passwords quarterly</li>
+<li><strong>Monitor Activity</strong>: Check audit logs regularly</li>
+</ol>
+<h3 id="permission-management">Permission Management</h3>
+<ol>
+<li><strong>Principle of Least Privilege</strong>: Assign minimum necessary permissions</li>
+<li><strong>Role Specificity</strong>: Use specific roles, avoid super admin unless needed</li>
+<li><strong>Regular Review</strong>: Audit admin permissions monthly</li>
+<li><strong>Offboarding</strong>: Remove admin access immediately upon departure</li>
+</ol>
+<h3 id="audit-trail-monitoring">Audit Trail Monitoring</h3>
+<ol>
+<li><strong>Weekly Reviews</strong>: Check audit logs for unusual activity</li>
+<li><strong>Alert Setup</strong>: Monitor for mass suspensions or deletions</li>
+<li><strong>Documentation</strong>: Keep records of major admin actions</li>
+<li><strong>Escalation</strong>: Report suspicious activity to management</li>
+</ol>
+<h3 id="common-security-patterns">Common Security Patterns</h3>
+<p><strong>Before Approving Any Content</strong>:
+- ✅ Verify user/company identity
+- ✅ Check for duplicate/spam accounts
+- ✅ Review content quality
+- ✅ Check for policy violations</p>
+<p><strong>Before Suspending A User</strong>:
+- ✅ Verify the violation
+- ✅ Check user history
+- ✅ Consider first warning
+- ✅ Document reason clearly</p>
+<p><strong>Before Adding New Admin</strong>:
+- ✅ Verify person's identity
+- ✅ Confirm employment/authorization
+- ✅ Start with limited permissions
+- ✅ Require strong password</p>
+<hr />
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="email-lookup-not-finding-users">Email Lookup Not Finding Users</h3>
+<p><strong>Problem</strong>: "User with email not found" message</p>
+<p><strong>Solutions</strong>:
+1. Verify email spelling (case-insensitive)
+2. Check user email in Firestore directly
+3. Ensure user account is created
+4. Check if email was updated in profile</p>
+<h3 id="suspension-not-taking-effect">Suspension Not Taking Effect</h3>
+<p><strong>Problem</strong>: Suspended user can still log in</p>
+<p><strong>Solutions</strong>:
+1. Verify <code>isSuspended</code> field is <code>true</code> in user document
+2. Check <code>suspendedUntil</code> date is in future
+3. Clear app cache and re-login
+4. Verify Firestore rules allow update</p>
+<h3 id="permission-errors">Permission Errors</h3>
+<p><strong>Problem</strong>: Can't access certain admin features</p>
+<p><strong>Solutions</strong>:
+1. Verify admin role has required permission
+2. Check admin_roles document exists
+3. Verify <code>isAdmin</code> is <code>true</code> in user document
+4. Clear cache and re-login as admin</p>
+<h3 id="audit-log-not-recording">Audit Log Not Recording</h3>
+<p><strong>Problem</strong>: Admin actions not appearing in audit logs</p>
+<p><strong>Solutions</strong>:
+1. Verify Firestore write permissions
+2. Check admin_audit_logs collection exists
+3. Verify user has email set correctly
+4. Check Firestore rules aren't blocking writes</p>
+<hr />
+<h2 id="conclusion">Conclusion</h2>
+<p>This guide covers all major admin features in the getJOBS Freelance App. For additional support:</p>
+<ol>
+<li>Check Firestore rules and structure</li>
+<li>Review audit logs for action history</li>
+<li>Contact technical support with specific issues</li>
+<li>Refer to code documentation for implementation details</li>
+</ol>
+<p><strong>Happy administering!</strong> 🎉</p>
+<hr />
+<p><em>Last Updated: 2024</em>
+<em>Platform: getJOBS Freelance App</em></p>
+</body>
+</html>

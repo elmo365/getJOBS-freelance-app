@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FEATURE_GUIDE_BATCH5_COMMON</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+            background: #f5f5f5;
+        }
+        h1, h2, h3, h4 {
+            color: #1f4788;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        h1 { font-size: 24px; }
+        h2 { font-size: 20px; border-bottom: 2px solid #1f4788; padding-bottom: 5px; }
+        h3 { font-size: 16px; }
+        h4 { font-size: 14px; }
+        p { text-align: justify; margin: 10px 0; }
+        ul, ol { margin: 10px 0; padding-left: 30px; }
+        li { margin: 5px 0; }
+        table { 
+            border-collapse: collapse; 
+            width: 100%; 
+            margin: 15px 0;
+            background: white;
+        }
+        th, td { 
+            border: 1px solid #ddd; 
+            padding: 10px; 
+            text-align: left;
+        }
+        th { 
+            background-color: #1f4788; 
+            color: white; 
+            font-weight: bold;
+        }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        code { 
+            background: #f4f4f4; 
+            padding: 2px 6px; 
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        blockquote {
+            border-left: 4px solid #1f4788;
+            padding-left: 15px;
+            margin: 15px 0;
+            color: #555;
+            background: #f0f0f0;
+            padding: 10px 15px;
+        }
+        .page-break { page-break-after: always; }
+        @page { margin: 20mm; }
+    </style>
+</head>
+<body>
+<h1 id="common-features-guide">🔗 COMMON FEATURES GUIDE</h1>
+<h2 id="easy-to-understand-guide-for-features-used-across-all-roles">Easy-to-Understand Guide for Features Used Across All Roles</h2>
+<p><strong>Based on Real Code Analysis</strong><br />
+<strong>Updated:</strong> December 25, 2025</p>
+<hr />
+<h2 id="1-user-authentication-create-login-to-your-account">📱 1. USER AUTHENTICATION - CREATE &amp; LOGIN TO YOUR ACCOUNT</h2>
+<h3 id="what-this-is">What This Is</h3>
+<p>The system that lets you create an account and login securely.</p>
+<h3 id="account-creation-process">Account Creation Process</h3>
+<p><strong>Step 1: Sign Up Screen</strong></p>
+<pre><code>┌──────────────────────────────────┐
+│  CREATE YOUR ACCOUNT             │
+├──────────────────────────────────┤
+│                                  │
+│  Select Your Role:               │
+│  [Job Seeker] [Employer]         │
+│  [Trainer] [Admin]               │
+│                                  │
+│  Email Address:                  │
+│  [email@example.com]             │
+│  ✓ Valid email required          │
+│                                  │
+│  Password:                       │
+│  [••••••••••]                    │
+│  ✓ Minimum 8 characters          │
+│  ✓ Must have uppercase           │
+│  ✓ Must have numbers             │
+│  ✓ Must have symbols (!@#$%...)  │
+│                                  │
+│  Full Name:                      │
+│  [Your Full Name]                │
+│                                  │
+│  [Create Account]                │
+│                                  │
+└──────────────────────────────────┘
+</code></pre>
+<p><strong>Step 2: Email Verification</strong></p>
+<pre><code>You'll receive an email with a link.
+- Click the link to verify email
+- This proves your email is real
+- Without verification, limited features
+- Takes 2-3 minutes
+</code></pre>
+<p><strong>Step 3: Complete Your Profile</strong></p>
+<pre><code>After verification, add:
+- Phone number
+- Profile picture
+- Bio/description
+- Location
+- Skills/experience
+- (depending on your role)
+</code></pre>
+<h3 id="password-requirements">Password Requirements</h3>
+<p><strong>Your password MUST have:</strong>
+- ✓ At least 8 characters
+- ✓ At least 1 UPPERCASE letter (A-Z)
+- ✓ At least 1 lowercase letter (a-z)
+- ✓ At least 1 number (0-9)
+- ✓ At least 1 special character (!@#$%^&amp;*)</p>
+<p><strong>Good Password Examples:</strong>
+- MyPassword123!
+- SecurePass@2024
+- LongPassword#456</p>
+<p><strong>Bad Password Examples:</strong>
+- password (no uppercase, number, symbol)
+- 12345678 (only numbers)
+- Password (no number, symbol)</p>
+<h3 id="login-process">Login Process</h3>
+<p><strong>Step 1: Login Screen</strong></p>
+<pre><code>┌──────────────────────────────────┐
+│  WELCOME BACK                    │
+├──────────────────────────────────┤
+│                                  │
+│  Email:                          │
+│  [your@email.com]                │
+│                                  │
+│  Password:                       │
+│  [••••••••••]                    │
+│                                  │
+│  [Show Password]                 │
+│                                  │
+│  [Login]                         │
+│  [Forgot Password?]              │
+│  [Create Account]                │
+│                                  │
+└──────────────────────────────────┘
+</code></pre>
+<p><strong>Step 2: System Validates</strong></p>
+<pre><code>1. Checks email exists
+2. Verifies password correct
+3. Checks if account verified
+4. Checks if account suspended
+5. Logs you in
+</code></pre>
+<p><strong>Step 3: You're In!</strong></p>
+<pre><code>Your dashboard appears
+- All your information
+- Personalized content
+- Your history
+- Your messages
+- Your actions
+</code></pre>
+<h3 id="password-reset">Password Reset</h3>
+<p><strong>If You Forget Your Password:</strong></p>
+<pre><code>1. Click &quot;Forgot Password?&quot; link
+2. Enter your email
+3. Check your email inbox
+4. Click reset link in email
+5. Create new password
+6. Login with new password
+</code></pre>
+<hr />
+<h2 id="2-messaging-communicate-with-other-users">💬 2. MESSAGING - COMMUNICATE WITH OTHER USERS</h2>
+<h3 id="what-this-is_1">What This Is</h3>
+<p>Built-in chat system to message employers, job seekers, trainers, admins, etc.</p>
+<h3 id="messaging-types">Messaging Types</h3>
+<p><strong>Job Seeker to Employer:</strong>
+- Ask questions about job
+- Send application details
+- Discuss pay/terms
+- Negotiate offer</p>
+<p><strong>Employer to Job Seeker:</strong>
+- Ask about experience
+- Clarify job details
+- Offer interview
+- Send job offer</p>
+<p><strong>Trainer to Student:</strong>
+- Schedule sessions
+- Send resources
+- Answer questions
+- Provide feedback</p>
+<p><strong>Admin to User:</strong>
+- Explain decisions
+- Request information
+- Send notifications
+- Provide support</p>
+<h3 id="messaging-interface">Messaging Interface</h3>
+<p><strong>Message List View:</strong></p>
+<pre><code>┌──────────────────────────────────┐
+│  YOUR MESSAGES                   │
+├──────────────────────────────────┤
+│ [Unread: 3] [All] [Archived]     │
+│                                  │
+│ 1. Sarah Johnson                 │
+│    Last: &quot;When can you start?&quot;   │
+│    2 hours ago                   │
+│    [Unread] ●                    │
+│    [Open Chat]                   │
+│                                  │
+│ 2. TechCorp Ltd                  │
+│    Last: &quot;Interview tomorrow&quot;    │
+│    8 hours ago                   │
+│    [Read]                        │
+│    [Open Chat]                   │
+│                                  │
+│ 3. John Trainer                  │
+│    Last: &quot;Session at 2pm&quot;        │
+│    1 day ago                     │
+│    [Unread] ●                    │
+│    [Open Chat]                   │
+│                                  │
+│ 4. Admin Support                 │
+│    Last: &quot;Your question:&quot;        │
+│    3 days ago                    │
+│    [Read]                        │
+│    [Open Chat]                   │
+│                                  │
+└──────────────────────────────────┘
+</code></pre>
+<p><strong>Individual Chat View:</strong></p>
+<pre><code>┌──────────────────────────────────┐
+│ Sarah Johnson                    │
+├──────────────────────────────────┤
+│                                  │
+│ [MESSAGES]                       │
+│                                  │
+│ ← Sarah: Hey! Interested in     │
+│   the Developer role?            │
+│   10:30 AM                       │
+│                                  │
+│                          Me: → |
+│   Yes, I'm very interested!      │
+│   When can I start?              │
+│   10:45 AM                       │
+│                                  │
+│ ← Sarah: Next Monday OK?         │
+│   We'll discuss salary           │
+│   10:50 AM                       │
+│                                  │
+│ [Type message...] [Send] [Attach]
+│                                  │
+└──────────────────────────────────┘
+</code></pre>
+<h3 id="message-features">Message Features</h3>
+<p><strong>Send Text:</strong>
+- Type message
+- Send immediately
+- See "read" status</p>
+<p><strong>Send Files:</strong>
+- Upload documents
+- Share images
+- Send CVs/portfolios</p>
+<p><strong>Search Messages:</strong>
+- Find old conversations
+- Search by keyword
+- Filter by person</p>
+<p><strong>Notifications:</strong>
+- Get alert when message arrives
+- Badge shows unread count
+- Can turn on/off</p>
+<h3 id="best-practices">Best Practices</h3>
+<p><strong>Professional Tone:</strong>
+- Be courteous
+- Spell correctly
+- Avoid slang
+- Stay on topic</p>
+<p><strong>Clear Communication:</strong>
+- Be specific
+- Ask clear questions
+- Provide context
+- Quick responses</p>
+<p><strong>Safety:</strong>
+- Don't share passwords
+- Don't send financial info
+- Report harassment
+- Block bad users</p>
+<hr />
+<h2 id="3-ratings-reviews-rate-your-experience">⭐ 3. RATINGS &amp; REVIEWS - RATE YOUR EXPERIENCE</h2>
+<h3 id="what-this-is_2">What This Is</h3>
+<p>System for rating people after you work with them. Helps others know who's good.</p>
+<h3 id="rating-scale">Rating Scale</h3>
+<p><strong>⭐⭐⭐⭐⭐ (5 Stars)</strong>
+- Excellent experience
+- Would work again
+- Highly recommend
+- No complaints</p>
+<p><strong>⭐⭐⭐⭐ (4 Stars)</strong>
+- Good experience
+- Minor issues
+- Would work again
+- Worth recommending</p>
+<p><strong>⭐⭐⭐ (3 Stars)</strong>
+- Average experience
+- Some issues
+- Got the job done
+- Not sure about next time</p>
+<p><strong>⭐⭐ (2 Stars)</strong>
+- Poor experience
+- Multiple issues
+- Job incomplete
+- Not recommended</p>
+<p><strong>⭐ (1 Star)</strong>
+- Very bad experience
+- Major problems
+- Won't work again
+- Bad quality</p>
+<h3 id="how-to-rate">How to Rate</h3>
+<p><strong>When You Can Rate:</strong>
+- After job completion
+- After training session
+- After gig work ends
+- After transaction finishes</p>
+<p><strong>Rating Process:</strong></p>
+<pre><code>1. Click &quot;Rate&quot; button
+2. Choose 1-5 stars
+3. Write optional comment
+4. Submit rating
+5. Rating appears on profile
+</code></pre>
+<p><strong>Good Review Example:</strong></p>
+<pre><code>⭐⭐⭐⭐⭐
+&quot;Excellent trainer! Very patient, 
+explained everything clearly, 
+great communication. Would 
+definitely book again!&quot;
+</code></pre>
+<p><strong>Bad Review Example:</strong></p>
+<pre><code>⭐
+&quot;Never delivered the work promised.
+Unresponsive to messages. Total 
+waste of money. Avoid!&quot;
+</code></pre>
+<h3 id="review-features">Review Features</h3>
+<p><strong>Your Profile Shows:</strong>
+- Average rating (out of 5)
+- Total number of reviews
+- Latest reviews
+- Rating breakdown (% at each star)</p>
+<p><strong>Using Reviews:</strong>
+- People read before hiring you
+- Good reviews attract work
+- Bad reviews lose jobs
+- Build your reputation</p>
+<hr />
+<h2 id="4-user-profiles-your-public-presence">👤 4. USER PROFILES - YOUR PUBLIC PRESENCE</h2>
+<h3 id="what-your-profile-shows">What Your Profile Shows</h3>
+<p>Different information depending on your role.</p>
+<h3 id="job-seeker-profile">Job Seeker Profile</h3>
+<pre><code>┌────────────────────────────────┐
+│ YOUR PROFILE                   │
+├────────────────────────────────┤
+│                                │
+│ 📸 [Profile Photo]             │
+│ John Smith                      │
+│ ⭐ 4.8 (15 reviews)            │
+│                                │
+│ ABOUT                          │
+│ Experienced developer with     │
+│ 5 years in web development.    │
+│ Passionate about clean code.   │
+│                                │
+│ SKILLS                         │
+│ • Python ⭐⭐⭐⭐⭐           │
+│ • JavaScript ⭐⭐⭐⭐          │
+│ • React ⭐⭐⭐⭐              │
+│ • AWS ⭐⭐⭐                  │
+│                                │
+│ EXPERIENCE                     │
+│ 5 years Software Development   │
+│ 2 years Full-Stack Dev         │
+│ Freelance: 1 year              │
+│                                │
+│ EDUCATION                      │
+│ BSc Computer Science           │
+│ University of Botswana         │
+│                                │
+│ LOCATION                       │
+│ Gaborone, Botswana             │
+│                                │
+│ CONTACT                        │
+│ Email: john@email.com          │
+│ Phone: +267-xxx-xxxx           │
+│ LinkedIn: john-dev             │
+│                                │
+│ PORTFOLIO                      │
+│ [View My Projects]             │
+│ [View My CV]                   │
+│                                │
+└────────────────────────────────┘
+</code></pre>
+<h3 id="employer-profile">Employer Profile</h3>
+<pre><code>┌────────────────────────────────┐
+│ COMPANY PROFILE                │
+├────────────────────────────────┤
+│                                │
+│ 🏢 [Company Logo]              │
+│ TechCorp Limited               │
+│ ✓ Verified ✓                   │
+│ ⭐ 4.9 (42 reviews)            │
+│                                │
+│ ABOUT COMPANY                  │
+│ Leading technology company     │
+│ specializing in software       │
+│ development and consulting.    │
+│                                │
+│ INDUSTRY                       │
+│ Information Technology         │
+│                                │
+│ SIZE                           │
+│ 50-100 employees               │
+│                                │
+│ LOCATION                       │
+│ Gaborone, Botswana             │
+│ Remote work available          │
+│                                │
+│ CONTACT                        │
+│ Email: hr@techcorp.bw          │
+│ Phone: +267-xxx-xxxx           │
+│ Website: www.techcorp.bw       │
+│                                │
+│ RECENT JOBS POSTED             │
+│ • Senior Developer (Open)      │
+│ • QA Engineer (3 hired)        │
+│ • DevOps Engineer (Filled)     │
+│                                │
+│ HIRING STATS                   │
+│ Jobs Posted: 25                │
+│ Successfully Filled: 23        │
+│ Average Rating: 4.9            │
+│                                │
+│ [Browse Their Jobs]            │
+│ [Contact Company]              │
+│                                │
+└────────────────────────────────┘
+</code></pre>
+<h3 id="trainer-profile">Trainer Profile</h3>
+<pre><code>┌────────────────────────────────┐
+│ TRAINER PROFILE                │
+├────────────────────────────────┤
+│                                │
+│ 📸 [Trainer Photo]             │
+│ Sarah Johnson                  │
+│ ⭐ 4.8 (32 reviews)            │
+│                                │
+│ EXPERTISE                      │
+│ • Excel Training               │
+│ • PowerPoint Design            │
+│ • Office Suite                 │
+│                                │
+│ EXPERIENCE                     │
+│ 8 years training experience    │
+│ 500+ students trained          │
+│ 2,000+ hours delivered         │
+│                                │
+│ QUALIFICATIONS                 │
+│ • Microsoft Certified          │
+│ • Training Certificate         │
+│ • Professional Development     │
+│                                │
+│ RATE                           │
+│ 350 BWP per hour               │
+│ Session Duration: 1 hour       │
+│                                │
+│ AVAILABILITY                   │
+│ Weekdays: 9AM - 6PM            │
+│ Weekends: By appointment       │
+│                                │
+│ ABOUT                          │
+│ Patient and engaging trainer.  │
+│ Customize lessons for each     │
+│ student's learning style.      │
+│                                │
+│ [Book Training] [Send Message] │
+│ [View Reviews]                 │
+│                                │
+└────────────────────────────────┘
+</code></pre>
+<h3 id="profile-visibility">Profile Visibility</h3>
+<p><strong>Public (Everyone Sees):</strong>
+- Name &amp; photo
+- About/bio
+- Skills &amp; experience
+- Average rating
+- Reviews
+- Contact info (if public)</p>
+<p><strong>Private (Only You See):</strong>
+- Email
+- Full phone number
+- Passwords
+- Financial info
+- Private messages</p>
+<p><strong>Privacy Settings:</strong>
+- Control what's public
+- Hide contact info
+- Block specific users
+- Report harassment</p>
+<hr />
+<h2 id="5-notifications-stay-updated">🔔 5. NOTIFICATIONS - STAY UPDATED</h2>
+<h3 id="what-notifications-are">What Notifications Are</h3>
+<p>Alerts that tell you about important events happening on the platform.</p>
+<h3 id="notification-types">Notification Types</h3>
+<p><strong>Application Notifications:</strong>
+- Job application received
+- Application status change
+- Interview scheduled
+- Offer sent/accepted</p>
+<p><strong>Messaging Notifications:</strong>
+- New message received
+- Someone commented
+- Group chat activity
+- Message replies</p>
+<p><strong>Account Notifications:</strong>
+- Login from new device
+- Password changed
+- Account verified
+- Suspension notice</p>
+<p><strong>Platform Notifications:</strong>
+- Job approved/rejected
+- Company verified
+- Payment received
+- Bid accepted</p>
+<p><strong>Payment Notifications:</strong>
+- Payment sent
+- Payment received
+- Refund processed
+- Wallet updated</p>
+<h3 id="where-notifications-appear">Where Notifications Appear</h3>
+<p><strong>In-App (Inside the App):</strong>
+- Bell icon at top
+- Badge with number
+- Notification center
+- Click to see details</p>
+<p><strong>Push Notifications (Phone):</strong>
+- Alert at top of screen
+- Sound (if enabled)
+- On lock screen
+- Click to open app</p>
+<p><strong>Email Notifications:</strong>
+- Sent to your email
+- Summary of events
+- Once per day
+- Can unsubscribe</p>
+<h3 id="notification-settings">Notification Settings</h3>
+<p><strong>What You Can Control:</strong></p>
+<pre><code>┌──────────────────────────────┐
+│ NOTIFICATION SETTINGS        │
+├──────────────────────────────┤
+│                              │
+│ ✓ Applications               │
+│   [Receive] [Email] [Push]   │
+│                              │
+│ ✓ Messages                   │
+│   [Receive] [Email] [Push]   │
+│                              │
+│ ✗ Marketing                  │
+│   [Don't receive]            │
+│                              │
+│ ✓ Account Activity           │
+│   [Receive] [Email only]     │
+│                              │
+│ ✓ Payment Alerts             │
+│   [Receive] [Email] [Push]   │
+│                              │
+│ [Save Preferences]           │
+│                              │
+└──────────────────────────────┘
+</code></pre>
+<p><strong>Notification Examples:</strong></p>
+<p><strong>Job Application:</strong></p>
+<pre><code>📧 &quot;New Application Received&quot;
+Sarah Smith applied for 
+Developer position
+$10,000/month
+[View Application]
+</code></pre>
+<p><strong>Message Received:</strong></p>
+<pre><code>💬 &quot;New Message from TechCorp&quot;
+&quot;Can you start next Monday?&quot;
+[Reply]
+</code></pre>
+<p><strong>Payment Received:</strong></p>
+<pre><code>💰 &quot;Payment Received!&quot;
+$5,000 BWP for completed project
+Pending: $500 | Paid: $5,000
+[View Details]
+</code></pre>
+<hr />
+<h2 id="6-account-security-privacy">🔒 6. ACCOUNT SECURITY &amp; PRIVACY</h2>
+<h3 id="password-security">Password Security</h3>
+<p><strong>Keep Your Password Safe:</strong>
+- ✓ Don't share password
+- ✓ Don't write it down
+- ✓ Use unique password (not same as other sites)
+- ✓ Change password regularly
+- ✓ Don't use personal info</p>
+<p><strong>Strong Passwords:</strong>
+- Minimum 8 characters
+- Mix of uppercase/lowercase
+- Include numbers
+- Include symbols
+- Not a dictionary word</p>
+<h3 id="two-factor-authentication-2fa">Two-Factor Authentication (2FA)</h3>
+<p><strong>What It Is:</strong>
+Extra security layer - needs two things to login:
+1. Your password
+2. Code from phone</p>
+<p><strong>How It Works:</strong></p>
+<pre><code>1. Enter email and password
+2. System sends code to phone
+3. Enter code to prove it's you
+4. Login successful
+</code></pre>
+<p><strong>Advantages:</strong>
+- Even if someone gets your password, they can't login
+- Extra protection
+- Takes 10 seconds
+- Highly recommended</p>
+<h3 id="privacy-settings">Privacy Settings</h3>
+<p><strong>Control What's Visible:</strong>
+- Hide phone number
+- Hide location
+- Hide email
+- Hide work history
+- Private profile option</p>
+<p><strong>Block Users:</strong>
+- Prevents them from messaging
+- They can't see your profile
+- They can't apply to your jobs
+- You can unblock later</p>
+<p><strong>Report Issues:</strong>
+- Report fraud
+- Report harassment
+- Report fake accounts
+- Report inappropriate content
+- Action taken within 24-48 hours</p>
+<h3 id="data-protection">Data Protection</h3>
+<p><strong>Your Data Is Protected By:</strong>
+- Secure servers
+- Encrypted connections (HTTPS)
+- Regular backups
+- Access controls
+- Privacy policy compliance</p>
+<p><strong>What We Collect:</strong>
+- Basic info: name, email, phone
+- Profile info: bio, skills, experience
+- Transaction info: jobs, payments
+- System info: login activity, device info</p>
+<p><strong>What We Don't Share:</strong>
+- Password (even we can't see it)
+- Credit card (never stored fully)
+- Personal info (unless you make public)
+- To third parties (except payment processors)</p>
+<hr />
+<h2 id="features-comparison-table">📊 FEATURES COMPARISON TABLE</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Job Seekers</th>
+<th>Employers</th>
+<th>Trainers</th>
+<th>Admins</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Authentication</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Messaging</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Ratings</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Notifications</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>User Profile</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>2FA</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅ Recommended</td>
+</tr>
+<tr>
+<td>Privacy Control</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>Limited</td>
+</tr>
+<tr>
+<td>Block Users</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Report Users</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="common-questions">🆘 COMMON QUESTIONS</h2>
+<p><strong>Q: Is my password safe?</strong><br />
+A: Yes. Passwords are encrypted and we can't see them. Even if hacked, your password stays secret.</p>
+<p><strong>Q: How do I recover a deleted account?</strong><br />
+A: Contact support within 30 days. After 30 days, account is permanently deleted.</p>
+<p><strong>Q: Can I change my email?</strong><br />
+A: Yes, go to Account Settings → Email. You'll need to verify the new email.</p>
+<p><strong>Q: What if I forget my 2FA code?</strong><br />
+A: Use backup codes (saved during setup) or contact support for identity verification.</p>
+<p><strong>Q: How do I deactivate my account?</strong><br />
+A: Settings → Account → Deactivate Account. You can reactivate within 90 days.</p>
+<p><strong>Q: Can I have multiple accounts?</strong><br />
+A: No. One email = one account. Multiple accounts violate terms.</p>
+<p><strong>Q: How long are messages kept?</strong><br />
+A: Forever, unless you delete. Archived messages still kept.</p>
+<p><strong>Q: What happens if I'm reported?</strong><br />
+A: Admin investigates within 24 hours. If rules broken, account suspended/banned.</p>
+<p><strong>Q: Can I preview messages before sending?</strong><br />
+A: Yes. Type message, review, then click Send.</p>
+<p><strong>Q: How do I get verified status?</strong><br />
+A: Employers: Submit company documents. Trainers: Complete verification process. System: Automatic for active users.</p>
+<hr />
+<p><strong>END OF COMMON FEATURES GUIDE</strong></p>
+<p><em>This guide covers features used by all user types.</em><br />
+<em>All features described are real and implemented.</em><br />
+<em>Last updated: December 25, 2025</em></p>
+</body>
+</html>

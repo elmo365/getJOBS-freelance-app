@@ -1,0 +1,1862 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FEATURE_GUIDE_BATCH4_ADMIN</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+            background: #f5f5f5;
+        }
+        h1, h2, h3, h4 {
+            color: #1f4788;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        h1 { font-size: 24px; }
+        h2 { font-size: 20px; border-bottom: 2px solid #1f4788; padding-bottom: 5px; }
+        h3 { font-size: 16px; }
+        h4 { font-size: 14px; }
+        p { text-align: justify; margin: 10px 0; }
+        ul, ol { margin: 10px 0; padding-left: 30px; }
+        li { margin: 5px 0; }
+        table { 
+            border-collapse: collapse; 
+            width: 100%; 
+            margin: 15px 0;
+            background: white;
+        }
+        th, td { 
+            border: 1px solid #ddd; 
+            padding: 10px; 
+            text-align: left;
+        }
+        th { 
+            background-color: #1f4788; 
+            color: white; 
+            font-weight: bold;
+        }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        code { 
+            background: #f4f4f4; 
+            padding: 2px 6px; 
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        blockquote {
+            border-left: 4px solid #1f4788;
+            padding-left: 15px;
+            margin: 15px 0;
+            color: #555;
+            background: #f0f0f0;
+            padding: 10px 15px;
+        }
+        .page-break { page-break-after: always; }
+        @page { margin: 20mm; }
+    </style>
+</head>
+<body>
+<h1 id="admin-features-guide">🔐 ADMIN FEATURES GUIDE</h1>
+<h2 id="easy-to-understand-guide-for-platform-administrators">Easy-to-Understand Guide for Platform Administrators</h2>
+<p><strong>Based on Real Code Analysis</strong><br />
+<strong>Updated:</strong> December 25, 2025</p>
+<hr />
+<h2 id="admin-role-overview">👑 ADMIN ROLE OVERVIEW</h2>
+<p><strong>Who Are Admins?</strong><br />
+Administrators are people who manage the entire getJOBS platform. They control users, approve content, handle payments, and ensure the platform runs smoothly.</p>
+<p><strong>What Do Admins Do?</strong>
+- Approve/reject job postings and gig offers
+- Verify companies and trainers
+- Manage user accounts
+- Monitor platform activity
+- Process payments and refunds
+- Handle compliance issues
+- Generate reports and analytics
+- Manage platform settings</p>
+<p><strong>Access Level:</strong> Full system access (can do almost anything)</p>
+<hr />
+<h2 id="1-admin-dashboard-system-overview">📊 1. ADMIN DASHBOARD - SYSTEM OVERVIEW</h2>
+<h3 id="what-it-is">What It Is</h3>
+<p>The main control center showing everything happening on the platform.</p>
+<h3 id="dashboard-view">Dashboard View</h3>
+<pre><code>┌────────────────────────────────────────┐
+│  ADMIN CONTROL DASHBOARD               │
+├────────────────────────────────────────┤
+│                                        │
+│  📊 PLATFORM STATISTICS (Real-time)   │
+│  • Active Users: 2,847                │
+│  • Total Jobs Posted: 1,234           │
+│  • Pending Approvals: 47              │
+│  • Transactions This Month: 5,302     │
+│  • Platform Revenue: 45,230 BWP       │
+│                                        │
+│  ⚠️  ALERTS &amp; PENDING ITEMS            │
+│  • 23 Jobs Awaiting Approval          │
+│  • 8 Company Verification Requests    │
+│  • 3 User Complaints                  │
+│  • 5 Payment Issues                   │
+│  • 2 Suspected Fraud Cases            │
+│                                        │
+│  👥 USER BREAKDOWN                    │
+│  • Job Seekers: 1,620 active          │
+│  • Employers: 423 active              │
+│  • Trainers: 304 active               │
+│  • Admins: 5                          │
+│                                        │
+│  💰 FINANCIAL SUMMARY                 │
+│  • Total Revenue: 45,230 BWP          │
+│  • Platform Fees Collected: 4,523 BWP │
+│  • Pending Payouts: 12,340 BWP        │
+│  • Failed Transactions: 2             │
+│                                        │
+│  🔒 SYSTEM HEALTH                     │
+│  • Uptime: 99.8%                      │
+│  • Database Status: ✅ Healthy        │
+│  • API Status: ✅ Normal              │
+│  • Backups: ✅ Last 2 hours ago       │
+│                                        │
+│  📈 QUICK METRICS                     │
+│  [View Reports] [Approve Items]       │
+│  [User Management] [Settings]         │
+│  [Financial Reports] [Compliance]     │
+│                                        │
+└────────────────────────────────────────┘
+</code></pre>
+<h3 id="key-metrics-explained">Key Metrics Explained</h3>
+<p><strong>Active Users</strong>
+- How many people use the platform
+- Job seekers, employers, trainers combined
+- Shows platform growth</p>
+<p><strong>Total Jobs Posted</strong>
+- All job postings ever made
+- Active and closed jobs
+- Indicator of platform activity</p>
+<p><strong>Pending Approvals</strong>
+- Items waiting for admin review
+- Jobs, gigs, company verifications
+- Action items for today</p>
+<p><strong>Transactions</strong>
+- Money transfers happening
+- Payments, refunds, transfers
+- Shows financial activity</p>
+<p><strong>Platform Revenue</strong>
+- Money the platform makes
+- From fees and commissions
+- Shows profitability</p>
+<p><strong>Alerts &amp; Pending</strong>
+- Issues needing attention
+- Approvals, complaints, fraud
+- Priority work queue</p>
+<hr />
+<h2 id="2-user-management-control-accounts">👤 2. USER MANAGEMENT - CONTROL ACCOUNTS</h2>
+<h3 id="what-this-does">What This Does</h3>
+<p>Manage all user accounts on the platform (job seekers, employers, trainers).</p>
+<h3 id="user-management-view">User Management View</h3>
+<pre><code>┌─────────────────────────────────────┐
+│ USER MANAGEMENT SYSTEM              │
+├─────────────────────────────────────┤
+│                                     │
+│ [ALL] [JOB SEEKERS] [EMPLOYERS]    │
+│ [TRAINERS] [ADMINS] [BANNED]       │
+│                                     │
+│ SEARCH: [Find user...] [Filter]    │
+│                                     │
+│ USER LIST:                          │
+│                                     │
+│ 1. John Smith                       │
+│    Type: Job Seeker                 │
+│    Email: john@example.com          │
+│    Status: ✅ Active                │
+│    Joined: 45 days ago              │
+│    Wallet: 2,500 BWP                │
+│    [View Profile] [Suspend]         │
+│    [Edit] [Send Message] [Ban]      │
+│                                     │
+│ 2. TechCorp Ltd                     │
+│    Type: Employer                   │
+│    Email: hr@techcorp.com           │
+│    Status: ✅ Verified              │
+│    Joined: 60 days ago              │
+│    Jobs Posted: 12                  │
+│    [View Profile] [View Activity]   │
+│    [Edit] [Send Message] [Ban]      │
+│                                     │
+│ 3. Sarah Johnson                    │
+│    Type: Trainer                    │
+│    Email: sarah@example.com         │
+│    Status: ⚠️ Unverified            │
+│    Joined: 5 days ago               │
+│    Students: 0                      │
+│    [View Profile] [Verify]          │
+│    [Edit] [Send Message] [Ban]      │
+│                                     │
+│ 4. Ahmed Hassan                     │
+│    Type: Job Seeker                 │
+│    Email: ahmed@example.com         │
+│    Status: 🚫 BANNED                │
+│    Reason: Fraudulent Activity      │
+│    Banned: 10 days ago              │
+│    [View Details] [Unban]           │
+│                                     │
+└─────────────────────────────────────┘
+</code></pre>
+<h3 id="user-statuses">User Statuses</h3>
+<p><strong>✅ Active/Verified</strong>
+- User account is working
+- Can use all features
+- Good standing
+- No issues</p>
+<p><strong>⚠️ Unverified</strong>
+- New account or incomplete verification
+- Limited features available
+- Pending documents/review
+- Action needed</p>
+<p><strong>⏳ Suspended</strong>
+- Temporary account freeze
+- Usually for investigation
+- User can't access account
+- Will be resolved soon</p>
+<p><strong>🚫 Banned</strong>
+- Permanent account removal
+- Breaking platform rules
+- Can't login anymore
+- Reserved for serious violations</p>
+<h3 id="user-actions-available">User Actions Available</h3>
+<p><strong>For Active Users:</strong>
+- 👀 View their full profile
+- 📧 Send them messages
+- ✏️ Edit their account details
+- ⏸️ Suspend account (temporary)
+- 🚫 Ban account (permanent)
+- 💰 View wallet/earnings
+- 📊 View their activity</p>
+<p><strong>For Unverified Users:</strong>
+- ✅ Approve verification
+- ❌ Reject verification
+- 📄 Request more documents
+- ⏳ Set deadline for documents</p>
+<p><strong>For Suspended Users:</strong>
+- 🔓 Unsuspend account
+- 🗑️ Delete account
+- 📝 Add notes about suspension</p>
+<p><strong>For Banned Users:</strong>
+- 🔓 Unban account (if error)
+- 📋 View ban reason
+- 📊 View their history</p>
+<h3 id="user-tabs-explained">User Tabs Explained</h3>
+<p><strong>[ALL]</strong>
+- Shows every user account
+- All statuses mixed
+- Full platform user list</p>
+<p><strong>[JOB SEEKERS]</strong>
+- Only job seeker accounts
+- People looking for work
+- 1,620+ users typically</p>
+<p><strong>[EMPLOYERS]</strong>
+- Only company accounts
+- People hiring workers
+- 420+ users typically</p>
+<p><strong>[TRAINERS]</strong>
+- Only trainer accounts
+- People offering training
+- 300+ users typically</p>
+<p><strong>[ADMINS]</strong>
+- Other admin accounts
+- People managing platform
+- Usually 3-5 people</p>
+<p><strong>[BANNED]</strong>
+- Removed users
+- Rule breakers
+- For reference/history</p>
+<hr />
+<h2 id="3-job-gig-approvals-review-postings">✅ 3. JOB &amp; GIG APPROVALS - REVIEW POSTINGS</h2>
+<h3 id="what-this-does_1">What This Does</h3>
+<p>Review jobs and gigs before they go live on the platform. Admin approves or rejects posted content with optional rejection feedback.</p>
+<h3 id="job-approval-queue-screen">Job Approval Queue Screen</h3>
+<pre><code>┌──────────────────────────────────────┐
+│ JOBS PENDING APPROVAL                │
+├──────────────────────────────────────┤
+│                                      │
+│ [Search by title...]                 │
+│                                      │
+│ JOB LISTING:                         │
+│                                      │
+│ Senior Developer                     │
+│ Employer: TechCorp Ltd               │
+│ Category: Software Development       │
+│ Posted: 2 hours ago                  │
+│                                      │
+│ 🟡 PENDING                           │
+│ [✅ Approve] [❌ Reject]             │
+│                                      │
+│ ─────────────────────────────────────│
+│                                      │
+│ Logo Design                          │
+│ Employer: Creative Services          │
+│ Category: Design                     │
+│ Posted: 1 hour ago                   │
+│                                      │
+│ 🟡 PENDING                           │
+│ [✅ Approve] [❌ Reject]             │
+│                                      │
+│ (No pending jobs? Great work!)       │
+│                                      │
+└──────────────────────────────────────┘
+</code></pre>
+<h3 id="how-jobs-get-to-admin-review">How Jobs Get to Admin Review</h3>
+<p><strong>Code Process:</strong></p>
+<pre><code>1. Employer creates job posting
+2. System saves to 'jobs' collection with:
+   - isVerified: false (KEY - marks as unreviewed)
+   - status: 'pending' (awaiting approval)
+
+3. Admin dashboard loads with:
+   - Query: jobs where isVerified=false AND status='pending'
+
+4. Admin reviews each job in list
+
+5. Admin clicks [Approve] or [Reject]
+</code></pre>
+<h3 id="approving-a-job-what-actually-happens">APPROVING A JOB - What Actually Happens</h3>
+<p><strong>When you click [✅ Approve]:</strong></p>
+<ol>
+<li><strong>Validation Check:</strong> System verifies job exists</li>
+<li><strong>Status Update:</strong> Sets job to LIVE:</li>
+<li><code>isVerified: true</code> (job is now reviewed)</li>
+<li><code>status: 'active'</code> (job is now visible)</li>
+<li><code>isApproved: true</code> (approved flag)</li>
+<li><code>approvalStatus: 'approved'</code></li>
+<li><code>approvedAt: [current date/time]</code> (records when approved)</li>
+<li>
+<p>Removes any previous rejection reason</p>
+</li>
+<li>
+<p><strong>Get Employer ID:</strong> System looks up who posted the job</p>
+</li>
+<li><strong>Send Notification:</strong> Employer gets email notification:</li>
+<li>Subject: "Job Approved! ✅"</li>
+<li>
+<p>Message: "Your job posting '[Job Title]' has been approved and is now live. Job seekers can now view and apply for this position."</p>
+</li>
+<li>
+<p><strong>Reload List:</strong> Dashboard refreshes to show updated queue</p>
+</li>
+<li><strong>Confirmation:</strong> You see "✓ '[Job Title]' approved" message</li>
+</ol>
+<h3 id="rejecting-a-job-what-actually-happens">REJECTING A JOB - What Actually Happens</h3>
+<p><strong>When you click [❌ Reject]:</strong></p>
+<ol>
+<li><strong>Reason Dialog Opens:</strong> System asks "Are you sure you want to reject this job?"</li>
+<li>Optional reason field: "Provide feedback..." </li>
+<li>
+<p>This reason helps employer understand why</p>
+</li>
+<li>
+<p><strong>You Enter Reason</strong> (optional):</p>
+</li>
+<li>"Missing job location"</li>
+<li>"Salary range not specified"</li>
+<li>"Duplicate posting"</li>
+<li>"Inappropriate content"</li>
+<li>
+<p>Or any custom feedback</p>
+</li>
+<li>
+<p><strong>System Updates Job:</strong></p>
+</li>
+<li><code>status: 'rejected'</code> (job is rejected)</li>
+<li><code>isVerified: false</code> (not reviewed as approved)</li>
+<li><code>isApproved: false</code> (not approved)</li>
+<li><code>approvalStatus: 'rejected'</code></li>
+<li><code>rejectedAt: [current date/time]</code> (when rejected)</li>
+<li>
+<p><code>rejectionReason: '[your reason]'</code> (if you provided one)</p>
+</li>
+<li>
+<p><strong>Notify Employer:</strong> Email notification sent with:</p>
+</li>
+<li>Subject: "Job Rejected"</li>
+<li>Message: "Your job posting '[Job Title]' was rejected. Please review the reason below and edit your job posting to resubmit."</li>
+<li>
+<p>If reason provided: Includes the reason you gave</p>
+</li>
+<li>
+<p><strong>Employer Can Resubmit:</strong> After rejection, employer can:</p>
+</li>
+<li>Edit the job</li>
+<li>Fix the issues</li>
+<li>Resubmit for approval</li>
+<li>Queue shows it again as pending</li>
+</ol>
+<h3 id="job-data-checked-during-review">Job Data Checked During Review</h3>
+<p>Before approving, verify the job has:</p>
+<p>✅ <strong>Job Title</strong> - Clear, descriptive job title
+✅ <strong>Description</strong> - Complete job details and requirements
+✅ <strong>Location</strong> - Where the job is based
+✅ <strong>Salary Range</strong> - Min and max salary in BWP
+✅ <strong>Category</strong> - Job category selected
+✅ <strong>Company Info</strong> - Employer is a verified company
+✅ <strong>Professional Content</strong> - No inappropriate language
+✅ <strong>Requirements</strong> - Clear job requirements listed</p>
+<h3 id="job-approval-checklist">Job Approval Checklist</h3>
+<p>Use this when reviewing jobs:</p>
+<ul>
+<li>[ ] Job has clear, professional title</li>
+<li>[ ] Description is complete (not one line)</li>
+<li>[ ] Salary range is reasonable (not 0 or 999,999)</li>
+<li>[ ] Location is specified or "Remote"</li>
+<li>[ ] Category matches job type</li>
+<li>[ ] Company/Employer is verified</li>
+<li>[ ] No spam or scam indicators</li>
+<li>[ ] No discriminatory language</li>
+<li>[ ] No inappropriate content</li>
+<li>[ ] Requirements are clear</li>
+</ul>
+<hr />
+<h2 id="4-company-verification-critical-kyc-approval-workflow">🔍 4. COMPANY VERIFICATION - CRITICAL KYC APPROVAL WORKFLOW</h2>
+<h3 id="important-kyc-is-required-before-approval">⚠️ IMPORTANT: KYC IS REQUIRED BEFORE APPROVAL</h3>
+<p><strong>This is a HARD REQUIREMENT in the code:</strong>
+- Companies MUST submit KYC documents before admin can approve them
+- Status must be 'submitted' (not 'draft' or 'rejected')
+- Admin approval fails if KYC not submitted
+- Company gets error message if you try to approve without KYC</p>
+<h3 id="what-this-does_2">What This Does</h3>
+<p>Review company KYC documents and decide whether to:
+1. <strong>✅ Approve</strong> - Company becomes verified and can post jobs
+2. <strong>❌ Reject</strong> - Company must resubmit with corrections
+3. <strong>Revoke</strong> - Remove approval from previously approved company</p>
+<h3 id="required-kyc-documents">Required KYC Documents</h3>
+<p>Companies MUST upload these 4 documents:</p>
+<pre><code>1. CIPA CERTIFICATE
+   - What: Government company registration
+   - Issued by: CIPA (Companies and Intellectual Property Authority)
+   - Shows: Company name, registration number, date of incorporation
+   - Format: PDF or image
+   - Status: Must be &quot;Uploaded&quot;
+
+2. CIPA EXTRACT
+   - What: Official document extract from CIPA registry
+   - Issued by: CIPA
+   - Shows: Current company status, directors, shares
+   - Format: PDF or image
+   - Status: Must be &quot;Uploaded&quot;
+
+3. BURS TIN EVIDENCE
+   - What: Tax identification document
+   - Issued by: BURS (Botswana Unified Revenue Service)
+   - Shows: Tax ID number, company tax status
+   - Format: PDF or image
+   - Status: Must be &quot;Uploaded&quot;
+
+4. PROOF OF ADDRESS
+   - What: Document showing company physical location
+   - Examples: Utility bill, lease agreement, property deed
+   - Issued by: Utility company, landlord, property owner
+   - Shows: Company name and address
+   - Format: PDF or image
+   - Status: Must be &quot;Uploaded&quot;
+
+OPTIONAL:
+5. Authority Letter - Optional for additional verification
+</code></pre>
+<h3 id="company-verification-statuses">Company Verification Statuses</h3>
+<pre><code>DRAFT (No approval yet)
+├─ Company started but hasn't submitted
+├─ Admin cannot approve in this state
+└─ Company must submit documents first
+
+    ↓ Company submits documents ↓
+
+SUBMITTED (Ready for admin review)
+├─ All 4 required documents uploaded
+├─ Admin CAN NOW approve
+├─ Admin reviews and makes decision
+└─ This is the only state where approval is allowed
+
+    ↓ Admin approves ↓
+
+APPROVED (Company verified)
+├─ Company gets ✓ Verified badge
+├─ Can post jobs, gigs, etc.
+├─ Higher trust with job seekers
+└─ Can be revoked if violations found
+
+    ↓ OR Admin rejects ↓
+
+REJECTED (Documents not acceptable)
+├─ Company told why documents rejected
+├─ Must fix issues and resubmit
+└─ Goes back to DRAFT status
+</code></pre>
+<h3 id="complete-approval-workflow">Complete Approval Workflow</h3>
+<pre><code>STEP 1: COMPANY REGISTRATION
+├─ Company signs up
+├─ KYC document collection initialized (DRAFT status)
+└─ Admin notified of new company
+
+STEP 2: COMPANY SUBMITS DOCUMENTS
+├─ Company uploads 4 required documents:
+│  • CIPA Certificate
+│  • CIPA Extract
+│  • BURS TIN Evidence
+│  • Proof of Address
+├─ System validates all 4 documents present
+├─ Status changes to SUBMITTED
+└─ Admin sees in &quot;Pending Companies&quot; queue
+
+STEP 3: ADMIN OPENS COMPANY CARD
+├─ Go to: Admin Panel → Pending (Companies)
+├─ Click on company name/card
+└─ Opens full company details screen
+
+STEP 4: ADMIN REVIEWS KYC DOCUMENTS
+├─ Click &quot;View KYC Documents&quot; button
+├─ Dialog shows:
+│  • Current KYC status (draft/submitted/approved)
+│  • All 4 required documents
+│  • For each document:
+│    - Label name
+│    - &quot;Uploaded&quot; or &quot;Missing&quot; status
+│    - &quot;View&quot; button if uploaded
+└─ Admin can view/download each document
+
+STEP 5: ADMIN MAKES DECISION
+
+IF ALL DOCUMENTS GOOD:
+├─ Click &quot;✅ Approve&quot; button
+├─ System checks:
+│  • KYC status == 'submitted' ✓
+│  • All 4 docs uploaded ✓
+│  • No fraud indicators ✓
+├─ Sets company status to 'approved'
+├─ Sets KYC status to 'approved'
+├─ Company gets ✓ Verified badge
+├─ Notification sent to company
+└─ Company can now post jobs
+
+IF DOCUMENTS HAVE ISSUES:
+├─ Click &quot;❌ Reject&quot; button
+├─ Enter rejection reason (dropdown + explanation)
+├─ Select reason:
+│  • Documents unclear/blurry
+│  • Document doesn't match company name
+│  • Document appears forged
+│  • Address can't be verified
+│  • Other (describe)
+├─ Notification sent to company with reason
+├─ Company goes back to DRAFT
+├─ Company must fix documents and resubmit
+└─ Re-submit for admin review
+
+IF APPROVAL LATER VIOLATED:
+├─ Admin can &quot;Revoke Approval&quot;
+├─ Company loses ✓ Verified badge
+├─ Company status reverts to 'rejected'
+├─ Company can request re-approval by resubmitting
+└─ Full review process starts over
+</code></pre>
+<h3 id="kyc-viewing-screen-explained">KYC Viewing Screen Explained</h3>
+<pre><code>┌──────────────────────────────────────────┐
+│  KYC Documents: TechCorp Ltd             │
+├──────────────────────────────────────────┤
+│                                          │
+│ KYC status: submitted                    │
+│                                          │
+│ ✓ CIPA Certificate                       │
+│   Status: Uploaded     [View]            │
+│   • Shows company registered with CIPA  │
+│   • Date issued: 2024-01-15             │
+│   • Document valid                       │
+│                                          │
+│ ✓ CIPA Extract                           │
+│   Status: Uploaded     [View]            │
+│   • Latest registry extract from CIPA   │
+│   • Current status: Active               │
+│   • Director info current                │
+│                                          │
+│ ✓ BURS TIN Evidence                      │
+│   Status: Uploaded     [View]            │
+│   • Company tax registration             │
+│   • Tax ID: valid and active             │
+│   • No outstanding tax issues            │
+│                                          │
+│ ✓ Proof of Address                       │
+│   Status: Uploaded     [View]            │
+│   • Utility bill dated within 3 months  │
+│   • Address matches company details     │
+│   • Company name visible                 │
+│                                          │
+│ Authority Letter (optional)              │
+│   Status: Missing                        │
+│   • Not required for approval            │
+│                                          │
+│                                [Close]   │
+└──────────────────────────────────────────┘
+</code></pre>
+<h3 id="what-each-document-proves">What Each Document Proves</h3>
+<p><strong>CIPA Certificate:</strong>
+- Proves company legally registered with government
+- Proves company exists and is legit
+- Proves company registration date
+- Shows official company number</p>
+<p><strong>CIPA Extract:</strong>
+- Proves company current status (active/dormant/removed)
+- Shows who directors are
+- Shows ownership structure
+- Proves company still valid today</p>
+<p><strong>BURS TIN Evidence:</strong>
+- Proves company is registered with tax authority
+- Proves tax ID is valid
+- Shows company can legally do business
+- Shows no outstanding tax issues</p>
+<p><strong>Proof of Address:</strong>
+- Proves company has physical office
+- Proves address in company documents is real
+- Prevents scammers using fake addresses
+- Allows government verification if needed</p>
+<h3 id="admin-review-checklist">Admin Review Checklist</h3>
+<p>Before approving, verify:</p>
+<pre><code>☐ All 4 documents uploaded (not missing)
+☐ Documents are clear and readable
+☐ Company name matches across all documents
+☐ Documents appear to be originals (not forged)
+☐ CIPA Certificate shows active status
+☐ CIPA Extract shows director info
+☐ BURS TIN is valid/current
+☐ Address proof document is recent (&lt; 3 months)
+☐ No red flags or suspicious details
+☐ KYC status shows &quot;submitted&quot; (not draft)
+</code></pre>
+<h3 id="why-kyc-is-required">Why KYC is Required</h3>
+<pre><code>PROTECTS THE PLATFORM:
+├─ Verifies companies are real
+├─ Prevents scam companies from posting
+├─ Ensures government compliance
+├─ Creates audit trail
+└─ Reduces fraud risk
+
+PROTECTS JOB SEEKERS:
+├─ Know they're dealing with real company
+├─ Can verify company legitimacy
+├─ Reduces risk of job scams
+└─ Increases platform trust
+
+PROTECTS VERIFIED COMPANIES:
+├─ Shows they're legitimate
+├─ Builds reputation
+├─ Attracts better job seekers
+├─ Increases job completion rate
+└─ Higher conversion rates
+</code></pre>
+<ul>
+<li>Current date</li>
+<li>Matches company name</li>
+<li>Registration number present</li>
+<li>Not expired</li>
+</ul>
+<p><strong>Tax Document:</strong>
+- Official tax certificate
+- Tax ID number
+- Company name matches
+- Not expired
+- Shows active status</p>
+<p><strong>Bank Statement:</strong>
+- Recent (within 3 months)
+- Shows company activity
+- Has company name
+- Shows address
+- Real bank name</p>
+<p><strong>Address Proof:</strong>
+- Utility bill OR
+- Lease agreement OR
+- Rental contract
+- Recent (last 3 months)
+- Matches company address</p>
+<h3 id="how-to-view-kyc-documents">How to View KYC Documents</h3>
+<p><strong>Complete KYC Viewing Workflow:</strong></p>
+<pre><code>┌────────────────────────────────────┐
+│ PENDING COMPANIES LIST             │
+├────────────────────────────────────┤
+│                                    │
+│ [Company Card 1 - TechCorp]        │
+│ Status: Pending                    │
+│ [Click to Open]                    │
+│        ↓                           │
+│                                    │
+│ ┌──────────────────────────────┐  │
+│ │ COMPANY DETAILS SCREEN       │  │
+│ ├──────────────────────────────┤  │
+│ │                              │  │
+│ │ 📋 TechCorp Ltd              │  │
+│ │ Registration: B2024-001234   │  │
+│ │ Industry: Technology         │  │
+│ │ Contact: Jane Smith          │  │
+│ │ Email: jane@techcorp.bw      │  │
+│ │                              │  │
+│ │ ─────────────────────────    │  │
+│ │ [View KYC Documents] ✓       │  │
+│ │ [Approve] [Reject]           │  │
+│ │                              │  │
+│ │        ↓                     │  │
+│ │                              │  │
+│ │ ┌──────────────────────────┐ │  │
+│ │ │ KYC DOCUMENTS DIALOG    │ │  │
+│ │ ├──────────────────────────┤ │  │
+│ │ │                          │ │  │
+│ │ │ KYC Status: Submitted    │ │  │
+│ │ │                          │ │  │
+│ │ │ 📄 CIPA Certificate      │ │  │
+│ │ │    ✓ Uploaded [View]     │ │  │
+│ │ │                          │ │  │
+│ │ │ 📄 BURS TIN Evidence     │ │  │
+│ │ │    ✓ Uploaded [View]     │ │  │
+│ │ │                          │ │  │
+│ │ │ 📄 Proof of Address      │ │  │
+│ │ │    ✓ Uploaded [View]     │ │  │
+│ │ │                          │ │  │
+│ │ │ [View Doc] [View Doc...]  │ │  │
+│ │ │ [Close]                  │ │  │
+│ │ │                          │ │  │
+│ │ └──────────────────────────┘ │  │
+│ │                              │  │
+│ └──────────────────────────────┘  │
+│                                    │
+└────────────────────────────────────┘
+</code></pre>
+<p><strong>Steps to View KYC:</strong>
+1. Go to Pending Companies
+2. Click on company card → Opens full details
+3. Scroll down to "View KYC Documents" button
+4. Click button → Opens KYC dialog
+5. See all documents (status shown as Uploaded/Missing)
+6. Click "View" on each document to see it
+7. Review for authenticity
+8. Close dialog and make decision</p>
+<p><strong>NO REDIRECTS:</strong> Everything happens in the same flow!
+- Document viewing opens in overlay
+- You can switch between KYC and company details
+- Decision buttons (Approve/Reject) on same screen
+- Complete workflow without leaving screen</p>
+<hr />
+<h2 id="5-plugins-gigs-courses-approvals-review-offerings">🎓 5. PLUGINS, GIGS &amp; COURSES APPROVALS - REVIEW OFFERINGS</h2>
+<h3 id="what-this-does_3">What This Does</h3>
+<p>Review gig offers and training courses before they appear on the platform. Manages approval for:
+- <strong>Gigs</strong>: One-off freelance tasks and services
+- <strong>Courses</strong>: Training programs and educational content</p>
+<h3 id="plugingigcourse-approval-queue">Plugin/Gig/Course Approval Queue</h3>
+<pre><code>┌────────────────────────────────────┐
+│ PENDING GIGS &amp; COURSES APPROVAL    │
+├────────────────────────────────────┤
+│                                    │
+│ [Search...] [Filter]              │
+│                                    │
+│ GIG LISTING:                       │
+│                                    │
+│ Logo Design Service                │
+│ Type: Gig (One-off task)           │
+│ Created by: Creative Services Inc  │
+│ Posted: 1 hour ago                 │
+│ Budget: 5,000 - 10,000 BWP         │
+│                                    │
+│ 🟡 PENDING                         │
+│ [✅ Approve] [❌ Reject]           │
+│                                    │
+│ ─────────────────────────────────  │
+│                                    │
+│ Business English Course             │
+│ Type: Course (Training)            │
+│ Created by: Learning Academy       │
+│ Posted: 2 hours ago                │
+│ Duration: 8 weeks                  │
+│ Fee: 2,500 BWP per student         │
+│                                    │
+│ 🟡 PENDING                         │
+│ [✅ Approve] [❌ Reject]           │
+│                                    │
+│ (No pending items? You're all set!)│
+│                                    │
+└────────────────────────────────────┘
+</code></pre>
+<h3 id="how-plugins-get-to-approval-queue">How Plugins Get to Approval Queue</h3>
+<p><strong>Code Process for GIGS:</strong></p>
+<pre><code>1. Trainer or freelancer creates gig
+2. System saves to 'gigs' collection with:
+   - status: 'pending' (awaiting approval)
+   - approvalStatus: 'pending' (awaiting review)
+
+3. Admin dashboard loads with:
+   - Query: gigs where status='pending' AND approvalStatus='pending'
+
+4. Admin reviews each gig in list
+
+5. Admin clicks [Approve] or [Reject]
+</code></pre>
+<p><strong>Code Process for COURSES:</strong></p>
+<pre><code>1. Trainer creates course
+2. System saves to 'courses' collection with:
+   - status: 'pending' (awaiting approval)
+   - approvalStatus: 'pending' (awaiting review)
+
+3. Admin dashboard loads with:
+   - Query: courses where status='pending' AND approvalStatus='pending'
+
+4. Admin reviews each course in list
+
+5. Admin clicks [Approve] or [Reject]
+</code></pre>
+<h3 id="approving-a-gigcourse-what-actually-happens">APPROVING A GIG/COURSE - What Actually Happens</h3>
+<p><strong>When you click [✅ Approve] for a Gig:</strong></p>
+<ol>
+<li><strong>Collection Lookup:</strong> System finds 'gigs' collection</li>
+<li><strong>Status Update:</strong> Sets gig to LIVE:</li>
+<li><code>status: 'active'</code> (gig is now visible to job seekers)</li>
+<li><code>approvalStatus: 'approved'</code> (marked as approved)</li>
+<li><code>isApproved: true</code> (approval flag)</li>
+<li><code>isVerified: true</code> (has been reviewed)</li>
+<li>
+<p><code>approvedAt: [current date/time]</code> (when approved)</p>
+</li>
+<li>
+<p><strong>Get Creator ID:</strong> System looks up gig creator (trainerId/userId/creatorId)</p>
+</li>
+<li><strong>Send Notification:</strong> Creator gets email:</li>
+<li>Subject: "Gig Approved! ✅"</li>
+<li>
+<p>Message: "Your gig '[Gig Title]' has been approved and is now live."</p>
+</li>
+<li>
+<p><strong>Reload List:</strong> Dashboard refreshes</p>
+</li>
+<li><strong>Confirmation:</strong> You see "✓ '[Title]' approved" message</li>
+</ol>
+<p><strong>When you click [✅ Approve] for a Course:</strong></p>
+<ol>
+<li><strong>Collection Lookup:</strong> System finds 'courses' collection</li>
+<li><strong>Status Update:</strong> Sets course to APPROVED:</li>
+<li><code>status: 'approved'</code> (course is now visible)</li>
+<li><code>approvalStatus: 'approved'</code> (marked as approved)</li>
+<li><code>isApproved: true</code> (approval flag)</li>
+<li><code>isVerified: true</code> (has been reviewed)</li>
+<li>
+<p><code>approvedAt: [current date/time]</code> (when approved)</p>
+</li>
+<li>
+<p><strong>Get Creator ID:</strong> System looks up course trainer (trainerId/userId)</p>
+</li>
+<li><strong>Send Notification:</strong> Trainer gets email:</li>
+<li>Subject: "Course Approved! ✅"</li>
+<li>
+<p>Message: "Your course '[Course Title]' has been approved and is now live."</p>
+</li>
+<li>
+<p><strong>Reload List:</strong> Dashboard refreshes</p>
+</li>
+<li><strong>Confirmation:</strong> You see "✓ '[Title]' approved" message</li>
+</ol>
+<h3 id="rejecting-a-gigcourse-what-actually-happens">REJECTING A GIG/COURSE - What Actually Happens</h3>
+<p><strong>When you click [❌ Reject]:</strong></p>
+<ol>
+<li><strong>Reason Dialog Opens:</strong> </li>
+<li>"Are you sure you want to reject this?"</li>
+<li>
+<p>Optional reason field: "Provide feedback..."</p>
+</li>
+<li>
+<p><strong>You Enter Reason</strong> (optional):</p>
+</li>
+<li>"Inappropriate content"</li>
+<li>"Unclear instructions"</li>
+<li>"Quality too low"</li>
+<li>
+<p>Or custom feedback</p>
+</li>
+<li>
+<p><strong>System Updates:</strong></p>
+</li>
+<li><code>status: 'rejected'</code> (item is rejected)</li>
+<li><code>approvalStatus: 'rejected'</code> (marked as rejected)</li>
+<li><code>isApproved: false</code> (not approved)</li>
+<li><code>isVerified: false</code> (not reviewed as approved)</li>
+<li><code>rejectedAt: [current date/time]</code> (when rejected)</li>
+<li>
+<p><code>rejectionReason: '[your reason]'</code> (if you provided one)</p>
+</li>
+<li>
+<p><strong>Notify Creator:</strong> Email sent:</p>
+</li>
+<li>Subject: "Gig/Course Rejected"</li>
+<li>Message: "Your [gig/course] '[Title]' was rejected. Please review the reason below and edit to resubmit."</li>
+<li>
+<p>Includes reason if provided</p>
+</li>
+<li>
+<p><strong>Creator Can Resubmit:</strong></p>
+</li>
+<li>Edit the gig/course</li>
+<li>Fix the issues</li>
+<li>Resubmit for approval</li>
+<li>Appears in queue again</li>
+</ol>
+<h3 id="gigcourse-data-checked-during-review">Gig/Course Data Checked During Review</h3>
+<p>Before approving, verify:</p>
+<p>✅ <strong>Title</strong> - Clear, descriptive
+✅ <strong>Description</strong> - Complete instructions
+✅ <strong>Category</strong> - Appropriate category selected
+✅ <strong>Budget/Fee</strong> - Reasonable pricing
+✅ <strong>Duration</strong> - Time frame specified
+✅ <strong>Requirements</strong> - Clear expectations
+✅ <strong>Professional Content</strong> - Appropriate language
+✅ <strong>Creator Verified</strong> - Author is trustworthy
+✅ <strong>No Red Flags</strong> - No scam indicators
+✅ <strong>No Duplicates</strong> - Not already posted</p>
+<h3 id="gig-approval-checklist">Gig Approval Checklist</h3>
+<ul>
+<li>[ ] Title is clear and professional</li>
+<li>[ ] Description explains what's included</li>
+<li>[ ] Budget is reasonable for skill level</li>
+<li>[ ] No inappropriate content</li>
+<li>[ ] No scam or spam indicators</li>
+<li>[ ] Creator has reasonable profile</li>
+<li>[ ] Clear deliverables listed</li>
+<li>[ ] Timeline is realistic</li>
+<li>[ ] Category is correct</li>
+<li>[ ] Not a duplicate posting</li>
+</ul>
+<h3 id="course-approval-checklist">Course Approval Checklist</h3>
+<ul>
+<li>[ ] Course title is clear</li>
+<li>[ ] Description explains learning outcomes</li>
+<li>[ ] Duration is realistic</li>
+<li>[ ] Fee is reasonable</li>
+<li>[ ] Course content is described</li>
+<li>[ ] No inappropriate material</li>
+<li>[ ] Trainer credentials visible</li>
+<li>[ ] Prerequisites clear (if any)</li>
+<li>[ ] Category is correct</li>
+<li>[ ] No spam or scams</li>
+</ul>
+<hr />
+<h2 id="6-financial-management-money-payments">💰 6. FINANCIAL MANAGEMENT - MONEY &amp; PAYMENTS</h2>
+<h3 id="what-this-does_4">What This Does</h3>
+<p>Manage all money on the platform - payments, refunds, commissions.</p>
+<h3 id="financial-dashboard">Financial Dashboard</h3>
+<pre><code>┌──────────────────────────────────┐
+│ FINANCIAL MANAGEMENT             │
+├──────────────────────────────────┤
+│                                  │
+│  ACCOUNT BALANCE                 │
+│  • Total Platform Money: 245,670 │
+│  • User Wallets: 180,400 BWP     │
+│  • Platform Reserve: 65,270 BWP  │
+│                                  │
+│  DECEMBER SUMMARY                │
+│  • Total Revenue: 45,230 BWP     │
+│  • Platform Fees: 4,523 BWP      │
+│  • Trainer Payments: 15,400 BWP  │
+│  • Employer Refunds: 2,100 BWP   │
+│                                  │
+│  TRANSACTIONS TODAY              │
+│  • 523 transactions processed    │
+│  • Value: 12,340 BWP             │
+│  • Average: 23.60 BWP            │
+│  • Failed: 2 transactions        │
+│                                  │
+│  PENDING ITEMS                   │
+│  • Pending Payouts: 8,920 BWP    │
+│  • Pending Refunds: 3,400 BWP    │
+│  • Disputed Transactions: 5      │
+│                                  │
+│  TOOLS:                          │
+│  [View Transactions] [Generate   │
+│   Reports] [Process Refunds]     │
+│  [Check Disputes] [Settings]     │
+│                                  │
+└──────────────────────────────────┘
+</code></pre>
+<h3 id="transaction-types">Transaction Types</h3>
+<p><strong>PAYMENT OUT</strong>
+- Trainer gets paid for teaching
+- Freelancer gets paid for gig
+- Transfer to their bank</p>
+<p><strong>PAYMENT IN</strong>
+- Job seeker pays for course
+- Employer pays for job posting
+- Money comes into platform</p>
+<p><strong>REFUND</strong>
+- Cancel session/gig
+- Return money to customer
+- Can be partial or full</p>
+<p><strong>COMMISSION</strong>
+- Platform takes percentage
+- From every transaction
+- Auto-calculated</p>
+<p><strong>DISPUTE</strong>
+- Disagreement about transaction
+- Admin must investigate
+- Either refund or confirm</p>
+<h3 id="common-financial-tasks">Common Financial Tasks</h3>
+<p><strong>Process a Refund:</strong></p>
+<pre><code>1. Find transaction
+2. Verify refund request
+3. Check if valid reason
+4. Click &quot;Refund&quot;
+5. Money returned to customer
+6. Trainer loses payment
+7. Document reason
+</code></pre>
+<p><strong>Investigate Disputed Transaction:</strong></p>
+<pre><code>1. See dispute in system
+2. Contact both parties
+3. Ask for explanation
+4. Review evidence
+5. Make decision
+6. Process accordingly
+</code></pre>
+<p><strong>Check Failed Transaction:</strong></p>
+<pre><code>1. See in failed list
+2. Find out why failed
+   - Bad card?
+   - Insufficient funds?
+   - Invalid account?
+3. Notify user
+4. Suggest solution
+5. Retry if possible
+</code></pre>
+<p><strong>Set Platform Fees:</strong></p>
+<pre><code>Example current rates:
+- Trainer bookings: 10% commission
+- Gig work: 15% commission
+- Job postings: 5,000 BWP per job
+Admin can adjust these
+</code></pre>
+<hr />
+<h2 id="7-compliance-monitoring-enforce-rules">📋 7. COMPLIANCE &amp; MONITORING - ENFORCE RULES</h2>
+<h3 id="what-this-does_5">What This Does</h3>
+<p>Monitor user behavior and enforce platform rules.</p>
+<h3 id="compliance-dashboard">Compliance Dashboard</h3>
+<pre><code>┌──────────────────────────────────┐
+│ COMPLIANCE &amp; MONITORING          │
+├──────────────────────────────────┤
+│                                  │
+│ 🚩 ACTIVE CASES                  │
+│                                  │
+│ CASE 1: Possible Fraud          │
+│ User: unknown_seller_123        │
+│ Flagged: 2 days ago             │
+│ Issue: Too many refunds         │
+│ Refunds: 12 in 2 weeks          │
+│ Status: Under Investigation     │
+│ [View Details] [Take Action]    │
+│ [Suspend User] [Ban]            │
+│                                  │
+│ CASE 2: Inappropriate Content   │
+│ Job: &quot;Easy Money - No Work&quot;     │
+│ Posted by: SuspiciousGuy99      │
+│ Flagged: 5 hours ago            │
+│ Reason: Looks like scam         │
+│ Status: Rejected ✓              │
+│                                  │
+│ CASE 3: Multiple Complaints     │
+│ Trainer: John Trainer           │
+│ Complaints: 3                   │
+│ From: Different students        │
+│ Issues: No-show for sessions    │
+│ Status: Warned                  │
+│ [Monitor] [Suspend] [Ban]       │
+│                                  │
+│ 📊 SYSTEM MONITORING             │
+│                                  │
+│ SUSPICIOUS PATTERNS:             │
+│ • 5 new accounts same IP        │
+│ • 10 jobs posted identical text │
+│ • User activity 500% above avg  │
+│                                  │
+│ ACTION AVAILABLE:                │
+│ [Auto-flag accounts]            │
+│ [Investigate] [Block IP]        │
+│                                  │
+│ 📋 COMPLAINT QUEUE               │
+│ • Pending Reviews: 8            │
+│ • Pending from: Users           │
+│ • Topics: Payment, Behavior     │
+│                                  │
+│ [View Complaints] [Process]     │
+│                                  │
+└──────────────────────────────────┘
+</code></pre>
+<h3 id="compliance-tasks">Compliance Tasks</h3>
+<p><strong>Handle User Complaints:</strong></p>
+<pre><code>Complaint received from: Job seeker
+About: Employer not paying
+Amount: 5,000 BWP
+Status: Pending
+
+Admin reviews:
+1. Job was completed
+2. Quality was good
+3. Employer hasn't paid
+4. Multiple complaints?
+5. Escalate or refund
+</code></pre>
+<p><strong>Flag Suspicious Activity:</strong></p>
+<pre><code>Warning signs:
+- Too many refunds
+- Multiple complaints
+- Sudden large transfers
+- Duplicate accounts
+- Scam-like behavior
+
+Admin response:
+1. Investigate
+2. Warn user
+3. Limit features
+4. Suspend if needed
+5. Ban if confirmed
+</code></pre>
+<p><strong>Investigate Fraud:</strong></p>
+<pre><code>If possible scam:
+1. Gather evidence
+2. Contact parties
+3. Review transactions
+4. Check history
+5. Make decision
+6. Take action:
+   - Refund victims
+   - Suspend account
+   - Ban user
+   - Report to authorities
+</code></pre>
+<h3 id="rules-enforcement">Rules Enforcement</h3>
+<p><strong>Warnings:</strong>
+- First minor violation
+- User gets message
+- Final opportunity to comply</p>
+<p><strong>Suspension:</strong>
+- Account temporarily frozen
+- Can't login for 30 days
+- For serious violations
+- Can be unsuspended</p>
+<p><strong>Ban:</strong>
+- Account permanently removed
+- Can never login again
+- For repeated/serious violations
+- Reserved for worst cases</p>
+<hr />
+<h2 id="8-reports-analytics-understand-the-platform">📈 8. REPORTS &amp; ANALYTICS - UNDERSTAND THE PLATFORM</h2>
+<h3 id="what-this-does_6">What This Does</h3>
+<p>Generate reports about platform performance and user behavior.</p>
+<h3 id="reports-available">Reports Available</h3>
+<pre><code>┌──────────────────────────────────┐
+│ REPORTS &amp; ANALYTICS              │
+├──────────────────────────────────┤
+│                                  │
+│ 📊 BUSINESS REPORTS              │
+│ • Monthly Revenue Report         │
+│ • User Growth Trends             │
+│ • Jobs Posted Analysis           │
+│ • Payment Success Rates          │
+│ • User Retention Analysis        │
+│ • Feature Usage Statistics       │
+│                                  │
+│ 👥 USER REPORTS                  │
+│ • Active Users by Role           │
+│ • New Users This Month: 234      │
+│ • User Churn Rate: 5%            │
+│ • Geographic Distribution        │
+│ • User Satisfaction Scores       │
+│                                  │
+│ 💰 FINANCIAL REPORTS             │
+│ • Revenue by Source              │
+│ • Commission Breakdown           │
+│ • Payout Analysis                │
+│ • Failed Transaction Report      │
+│ • Fraud Loss Report              │
+│                                  │
+│ 📋 COMPLIANCE REPORTS            │
+│ • Complaints Summary             │
+│ • Resolution Times               │
+│ • Ban/Suspension Report          │
+│ • Content Rejection Reasons      │
+│                                  │
+│ EXPORT OPTIONS:                  │
+│ [PDF] [Excel] [CSV] [Email]     │
+│ [Schedule] [Save as Template]   │
+│                                  │
+│ CHART EXAMPLES:                  │
+│                                  │
+│ USER GROWTH (Last 3 Months)      │
+│ 2,500 │     ╱╲                   │
+│ 2,400 │    ╱  ╲     ╱╲           │
+│ 2,300 │   ╱    ╲___╱  ╲__        │
+│ 2,200 │──────────────────        │
+│       └─────────────────         │
+│       Oct    Nov    Dec          │
+│                                  │
+│ JOB POSTINGS BY CATEGORY         │
+│ Tech:     ███████ 450 (36%)      │
+│ Sales:    ■■■■■ 280 (22%)       │
+│ Marketing:■■■■ 240 (20%)        │
+│ HR:       ■■ 160 (13%)          │
+│ Other:    ■ 104 (9%)            │
+│                                  │
+└──────────────────────────────────┘
+</code></pre>
+<h3 id="report-types-explained">Report Types Explained</h3>
+<p><strong>Monthly Revenue Report:</strong>
+- How much money platform made
+- Breaks down by source
+- Compares to previous months
+- Shows trends</p>
+<p><strong>User Growth Report:</strong>
+- How many new users joined
+- By role (job seeker, employer, etc.)
+- Retention rates
+- Churn analysis</p>
+<p><strong>Job Analytics:</strong>
+- Which job categories most popular
+- Salary trends
+- Post to hire ratio
+- Average time to fill</p>
+<p><strong>Payment Health:</strong>
+- Success rate of payments
+- Failed transactions count
+- Dispute rates
+- Fraud detected</p>
+<p><strong>User Satisfaction:</strong>
+- Average ratings on platform
+- User complaint trends
+- Common issues reported
+- Resolution quality</p>
+<h3 id="using-reports">Using Reports</h3>
+<p><strong>For Decision Making:</strong>
+- See what's working
+- Identify problems
+- Make improvements
+- Set goals</p>
+<p><strong>For Stakeholders:</strong>
+- Monthly summaries
+- Show platform health
+- Demonstrate growth
+- Build confidence</p>
+<p><strong>For Troubleshooting:</strong>
+- Find specific issues
+- Understand patterns
+- Take corrective action</p>
+<hr />
+<h2 id="9-admin-roles-access-control-rbac-manage-admin-permissions">🔐 9. ADMIN ROLES &amp; ACCESS CONTROL (RBAC) - MANAGE ADMIN PERMISSIONS</h2>
+<h3 id="what-this-does_7">What This Does</h3>
+<p>Manage who has admin access and what they can do. Different admins get different permissions based on their role.</p>
+<h3 id="admin-roles-available">Admin Roles Available</h3>
+<pre><code>┌──────────────────────────────────────────┐
+│ ADMIN ROLES &amp; PERMISSIONS                │
+├──────────────────────────────────────────┤
+│                                          │
+│ 👑 SUPER ADMIN (Full Control)           │
+│ ├─ Manage all features                  │
+│ ├─ Approve/reject content               │
+│ ├─ Handle finances                      │
+│ ├─ Create/remove other admins           │
+│ ├─ View analytics                       │
+│ └─ System settings                      │
+│                                          │
+│ 🛡️ MODERATOR (Content Control)          │
+│ ├─ Approve jobs, companies, gigs        │
+│ ├─ Manage user disputes                 │
+│ ├─ Issue warnings                       │
+│ ├─ Suspend users                        │
+│ └─ Cannot manage admins                 │
+│                                          │
+│ 📊 ANALYST (Data &amp; Reports)             │
+│ ├─ Generate reports                     │
+│ ├─ View analytics                       │
+│ ├─ Export data                          │
+│ └─ View metrics                         │
+│                                          │
+│ 💰 FINANCIAL (Money Management)         │
+│ ├─ View transactions                    │
+│ ├─ Process refunds                      │
+│ ├─ Generate financial reports           │
+│ └─ Manage wallet operations             │
+│                                          │
+│ 🎧 SUPPORT (Customer Service)           │
+│ ├─ Manage user tickets                  │
+│ ├─ Contact users                        │
+│ ├─ Resolve disputes                     │
+│ └─ Help with issues                     │
+│                                          │
+└──────────────────────────────────────────┘
+</code></pre>
+<h3 id="how-to-assign-admin-roles">How to Assign Admin Roles</h3>
+<p><strong>Step 1: Use Email (Not User ID!)</strong></p>
+<pre><code>1. Open &quot;Admin Roles &amp; Access Control&quot;
+2. Find [Add New Admin] button
+3. Enter USER EMAIL (easier than ID):
+   • jane@example.com
+   • john.doe@company.bw
+
+4. System AUTOMATICALLY FETCHES user ID
+   from email in background
+5. You just provide email!
+</code></pre>
+<p><strong>Why Email Instead of User ID?</strong>
+- ✓ Admin emails are easy to remember
+- ✓ Everyone knows their email
+- ✓ Can be found in user list
+- ✓ Less error-prone than copying IDs
+- ✓ System handles ID lookup automatically</p>
+<p><strong>Step 2: Select Role</strong></p>
+<pre><code>1. After entering email
+2. Choose role:
+   • Super Admin (full access)
+   • Moderator (content approval)
+   • Analyst (reports only)
+   • Financial (money only)
+   • Support (help users)
+</code></pre>
+<p><strong>Step 3: Confirm</strong></p>
+<pre><code>1. Review email address correct
+2. Review role selected
+3. Click [Assign Admin Role]
+4. System fetches user ID from email
+5. Creates admin_roles record
+6. Admin gets notified
+</code></pre>
+<h3 id="how-it-works-technically">How It Works Technically</h3>
+<p><strong>Behind the Scenes:</strong></p>
+<pre><code>Admin types email: jane@example.com
+     ↓
+System queries users collection
+  Query: where email = 'jane@example.com'
+     ↓
+System finds user document ID (userId)
+     ↓
+System creates admin_roles record with userId
+     ↓
+Admin jane now has role permissions
+</code></pre>
+<p><strong>Code Flow:</strong>
+1. Admin enters email in text field
+2. System executes: <code>where('email', isEqualTo: userEmail)</code>
+3. Gets the user document
+4. Extracts the document ID (this is userId)
+5. Saves admin role with that userId
+6. Permissions activated immediately</p>
+<h3 id="remove-admin-roles">Remove Admin Roles</h3>
+<p><strong>To Remove an Admin:</strong></p>
+<pre><code>1. Go to &quot;Admin Roles &amp; Access Control&quot;
+2. Find the admin in list (by email)
+3. Click [Remove Role]
+4. Confirm action
+5. Admin role deleted
+6. Admin loses permissions
+7. User can still login as regular account
+</code></pre>
+<p><strong>What Happens When Removed:</strong>
+- admin_roles document deleted
+- isAdmin flag set to false
+- All admin permissions revoked
+- Can access as regular user still
+- Not deleted from system</p>
+<hr />
+<h2 id="10-user-suspension-account-management-enforce-rules">🚫 10. USER SUSPENSION &amp; ACCOUNT MANAGEMENT - ENFORCE RULES</h2>
+<h3 id="what-this-does_8">What This Does</h3>
+<p>Temporarily or permanently suspend user accounts for violations or investigations.</p>
+<h3 id="how-to-suspend-a-user">How to Suspend a User</h3>
+<p><strong>Using Email (Not User ID!)</strong></p>
+<pre><code>┌──────────────────────────────────────┐
+│ SUSPEND USER DIALOG                  │
+├──────────────────────────────────────┤
+│                                      │
+│ Enter User Email:                   │
+│ [john@example.com            ]      │
+│ (System fetches user ID auto)        │
+│                                      │
+│ Reason for Suspension:              │
+│ [Multiple payment disputes    ]      │
+│ [                             ]      │
+│ [                             ]      │
+│                                      │
+│ Suspension Type:                    │
+│ ○ Temporary (specify end date)      │
+│ ○ Permanent                         │
+│                                      │
+│ If Temporary:                       │
+│ [Select End Date: Jan 15, 2026]     │
+│                                      │
+│ [Cancel] [Suspend User]             │
+│                                      │
+└──────────────────────────────────────┘
+</code></pre>
+<p><strong>Why Email Instead of User ID?</strong>
+- ✓ Can look up email from user list
+- ✓ Email shown in admin screens
+- ✓ Don't need to find user ID
+- ✓ System handles ID lookup
+- ✓ Less typing, less errors</p>
+<h3 id="how-suspension-works-technically">How Suspension Works Technically</h3>
+<p><strong>Step 1: Admin Enters Email</strong></p>
+<pre><code>Admin types: sarah.trainer@example.com
+     ↓
+System queries users collection
+  Query: where email = 'sarah.trainer@example.com'
+     ↓
+System finds userId
+     ↓
+Proceeds to suspension
+</code></pre>
+<p><strong>Step 2: Create Suspension Record</strong></p>
+<pre><code>System creates user_suspensions document:
+- userId: (fetched from email lookup)
+- reason: &quot;Multiple complaints from students&quot;
+- suspendedAt: [current timestamp]
+- suspendedUntil: [end date if temporary]
+- isPermanent: false/true
+- status: 'active'
+</code></pre>
+<p><strong>Step 3: User Blocked</strong></p>
+<pre><code>User tries to login
+     ↓
+Firebase checks user_suspensions collection
+     ↓
+Finds active suspension for this userId
+     ↓
+User sees: &quot;Account suspended until [date]&quot;
+     ↓
+Login blocked
+     ↓
+User cannot access any features
+</code></pre>
+<h3 id="suspension-statuses">Suspension Statuses</h3>
+<p><strong>⏳ TEMPORARY SUSPENSION</strong>
+- Account frozen for specific time
+- Example: 30 days
+- Can be unsuspended early if issue resolved
+- User gets notification with end date
+- Countdown shown in app</p>
+<p><strong>🔒 PERMANENT SUSPENSION</strong>
+- Account permanently frozen
+- No end date set
+- User cannot access ever (without override)
+- Must be manually reviewed/unsuspended
+- Reserved for serious violations</p>
+<h3 id="how-to-unsuspend-a-user">How to Unsuspend a User</h3>
+<p><strong>To End a Suspension Early:</strong></p>
+<pre><code>1. Go to &quot;Suspensions&quot; tab
+2. Find user by email
+3. Click [Unsuspend Early]
+4. Enter reason: &quot;Issue resolved&quot;
+5. Confirm
+6. User can login again immediately
+</code></pre>
+<p><strong>Automatic Unsuspension:</strong></p>
+<pre><code>- If temporary and end date passed
+- System auto-unsuspends
+- User can login again
+- No action needed from admin
+</code></pre>
+<h3 id="suspension-checklist">Suspension Checklist</h3>
+<p>Before suspending a user:</p>
+<ul>
+<li>[ ] User email correct (not confused with another)</li>
+<li>[ ] Clear violation documented</li>
+<li>[ ] Reason specific and detailed</li>
+<li>[ ] Temporary or permanent appropriate?</li>
+<li>[ ] If temporary, end date reasonable</li>
+<li>[ ] Notification sent to user</li>
+<li>[ ] Reason saved in system</li>
+</ul>
+<h3 id="common-suspension-reasons">Common Suspension Reasons</h3>
+<p><strong>Fraud/Scam:</strong>
+- Fake job postings
+- Money scams
+- Impersonation
+- → Usually PERMANENT</p>
+<p><strong>Quality/Behavior:</strong>
+- Rude to users
+- Low quality work
+- Missed deadlines
+- → Usually TEMPORARY (30-60 days)</p>
+<p><strong>Compliance:</strong>
+- No KYC documents
+- Fake credentials
+- Policy violations
+- → Usually TEMPORARY (7-30 days)</p>
+<p><strong>Investigation:</strong>
+- Pending investigation
+- Gathering evidence
+- Awaiting review
+- → Usually TEMPORARY (14 days)</p>
+<hr />
+<h2 id="11-system-settings-configuration">⚙️ 11. SYSTEM SETTINGS &amp; CONFIGURATION</h2>
+<h3 id="what-admin-can-configure">What Admin Can Configure</h3>
+<pre><code>┌──────────────────────────────────┐
+│ ADMIN SETTINGS                   │
+├──────────────────────────────────┤
+│                                  │
+│ 💰 COMMISSION RATES              │
+│ Trainer Sessions: 10%            │
+│ Gig Work: 15%                    │
+│ Job Postings: 5,000 BWP per job │
+│ Courses: 20%                     │
+│ [Edit] [Save]                    │
+│                                  │
+│ 📋 FEATURE TOGGLES               │
+│ ✓ Job Posting: Enabled           │
+│ ✓ Gig Creation: Enabled          │
+│ ✓ Training Platform: Enabled     │
+│ ✓ AI Job Matching: Enabled       │
+│ ✗ Mobile App (Beta): Disabled    │
+│ [Toggle Features]                │
+│                                  │
+│ 🔐 SECURITY SETTINGS             │
+│ • Password Min Length: 8 chars   │
+│ • 2FA Required: No               │
+│ • Session Timeout: 30 days       │
+│ • Max Login Attempts: 5          │
+│ • IP Whitelist: [Add IPs]        │
+│ [Edit Security]                  │
+│                                  │
+│ 📧 EMAIL SETTINGS                │
+│ • New User Welcome: Enabled      │
+│ • Job Posted Alert: Enabled      │
+│ • Payment Confirmation: Enabled  │
+│ • System Alerts: Enabled         │
+│ [Test Email] [Configure]         │
+│                                  │
+│ 🌍 GENERAL SETTINGS              │
+│ • Platform Name: getJOBS         │
+│ • Support Email: support@jobs.bw│
+│ • Support Phone: +267-xxx-xxxx   │
+│ • Currency: BWP (Pula)           │
+│ • Timezone: Africa/Gaborone      │
+│ • Maintenance Mode: Off          │
+│ [Edit General Settings]          │
+│                                  │
+│ 👥 ADMIN MANAGEMENT              │
+│ • Current Admins: 5              │
+│ • Add New Admin: [Add]           │
+│ • Remove Admin: [List]           │
+│ • Admin Permissions: [Manage]    │
+│                                  │
+└──────────────────────────────────┘
+</code></pre>
+<h3 id="important-settings">Important Settings</h3>
+<p><strong>Commission Rates:</strong>
+- What % platform takes
+- Different for each service
+- Can be changed anytime
+- Shows in transaction details</p>
+<p><strong>Feature Toggles:</strong>
+- Turn features on/off
+- Without code changes
+- Useful for testing
+- Can manage by user role</p>
+<p><strong>Security Settings:</strong>
+- Password requirements
+- Two-factor authentication
+- Session management
+- Login attempt limits</p>
+<p><strong>Email Configuration:</strong>
+- Which emails to send
+- From address
+- SMTP settings
+- Email templates</p>
+<p><strong>Maintenance Mode:</strong>
+- Turn platform "offline"
+- For updates/fixes
+- Users see maintenance message
+- Admin can still access</p>
+<hr />
+<h2 id="12-issue-resolution-handle-problems">🎯 12. ISSUE RESOLUTION - HANDLE PROBLEMS</h2>
+<h3 id="common-issues-admin-handles">Common Issues Admin Handles</h3>
+<p><strong>Payment Disputes:</strong></p>
+<pre><code>Problem: User says they paid but no money received
+
+Resolution:
+1. Find transaction in system
+2. Check if processed
+3. Check bank records
+4. If not in bank:
+   - Retry transaction
+   - Try different method
+   - Refund and retry
+5. If in bank but not showing:
+   - System error
+   - Manual correction needed
+   - Refund + redeliver
+</code></pre>
+<p><strong>Account Issues:</strong></p>
+<pre><code>Problem: User can't login
+
+Causes:
+- Forgot password
+- Account locked
+- Email not confirmed
+- Account suspended
+
+Solutions:
+- Reset password
+- Unlock account
+- Resend confirmation
+- Unsuspend (if error)
+</code></pre>
+<p><strong>Trainer No-Show:</strong></p>
+<pre><code>Problem: Trainer didn't show for session
+
+Resolution:
+1. Confirm trainer didn't appear
+2. Check for messages
+3. If legitimate reason: warn
+4. If pattern: suspend
+5. If first time: refund student
+6. Issue to be monitored
+</code></pre>
+<p><strong>Suspicious Activity:</strong></p>
+<pre><code>Problem: User doing something wrong
+
+Investigation:
+1. Gather all data
+2. Look for patterns
+3. Check transaction history
+4. Contact user
+5. Get explanation
+6. Take appropriate action
+</code></pre>
+<hr />
+<h2 id="overall-admin-workflow">📱 OVERALL ADMIN WORKFLOW</h2>
+<h3 id="daily-admin-tasks">Daily Admin Tasks</h3>
+<pre><code>MORNING (Start of Day)
+┌────────────────────────┐
+│ Check Dashboard        │
+│ • Review overnight     │
+│ • Check alerts         │
+│ • Note pending items   │
+└────────────────────────┘
+       ↓
+
+APPROVALS (Throughout Day)
+┌────────────────────────┐
+│ Review Queue Items     │
+│ • Jobs to approve      │
+│ • Company verifications│
+│ • User appeals         │
+│ • Make decisions       │
+└────────────────────────┘
+       ↓
+
+COMPLIANCE (As Needed)
+┌────────────────────────┐
+│ Monitor System         │
+│ • Check flags          │
+│ • Review complaints    │
+│ • Investigate issues   │
+│ • Take action          │
+└────────────────────────┘
+       ↓
+
+SUPPORT (Throughout Day)
+┌────────────────────────┐
+│ Help Users             │
+│ • Answer questions     │
+│ • Resolve issues       │
+│ • Process refunds      │
+│ • Send messages        │
+└────────────────────────┘
+       ↓
+
+REPORTING (Weekly)
+┌────────────────────────┐
+│ Generate Reports       │
+│ • Financial summary    │
+│ • User statistics      │
+│ • Compliance report    │
+│ • Send to management   │
+└────────────────────────┘
+</code></pre>
+<h3 id="admin-responsibilities-summary">Admin Responsibilities Summary</h3>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Frequency</th>
+<th>Importance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Check dashboard</td>
+<td>Daily</td>
+<td>⭐⭐⭐ High</td>
+</tr>
+<tr>
+<td>Approve jobs/gigs</td>
+<td>Throughout day</td>
+<td>⭐⭐⭐ High</td>
+</tr>
+<tr>
+<td>Verify companies</td>
+<td>As needed</td>
+<td>⭐⭐⭐ High</td>
+</tr>
+<tr>
+<td>Resolve disputes</td>
+<td>As needed</td>
+<td>⭐⭐⭐ High</td>
+</tr>
+<tr>
+<td>Monitor compliance</td>
+<td>Daily</td>
+<td>⭐⭐⭐ High</td>
+</tr>
+<tr>
+<td>Process refunds</td>
+<td>As needed</td>
+<td>⭐⭐ Medium</td>
+</tr>
+<tr>
+<td>Generate reports</td>
+<td>Weekly</td>
+<td>⭐⭐ Medium</td>
+</tr>
+<tr>
+<td>User support</td>
+<td>As needed</td>
+<td>⭐⭐ Medium</td>
+</tr>
+<tr>
+<td>System maintenance</td>
+<td>Scheduled</td>
+<td>⭐ Low</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="best-practices-for-admins">✅ BEST PRACTICES FOR ADMINS</h2>
+<h3 id="decision-making">Decision Making</h3>
+<ol>
+<li><strong>Be Fair</strong></li>
+<li>Apply rules equally</li>
+<li>Don't show favoritism</li>
+<li>Document decisions</li>
+<li>
+<p>Be transparent</p>
+</li>
+<li>
+<p><strong>Be Thorough</strong></p>
+</li>
+<li>Check all details</li>
+<li>Ask questions</li>
+<li>Get complete picture</li>
+<li>
+<p>Before deciding</p>
+</li>
+<li>
+<p><strong>Be Professional</strong></p>
+</li>
+<li>Respectful communication</li>
+<li>Clear explanations</li>
+<li>Timely responses</li>
+<li>
+<p>Follow procedures</p>
+</li>
+<li>
+<p><strong>Be Consistent</strong></p>
+</li>
+<li>Same rules for everyone</li>
+<li>Document patterns</li>
+<li>Apply precedent</li>
+<li>Update policies</li>
+</ol>
+<h3 id="communication">Communication</h3>
+<p><strong>When Rejecting:</strong>
+- Be specific about why
+- Don't be rude
+- Offer next steps
+- Show how to fix</p>
+<p><strong>When Approving:</strong>
+- Send confirmation
+- Explain what happens next
+- Set expectations
+- Be welcoming</p>
+<p><strong>When Investigating:</strong>
+- Ask neutral questions
+- Listen to both sides
+- Don't assume guilt
+- Gather evidence first</p>
+<hr />
+<h2 id="common-admin-questions">🆘 COMMON ADMIN QUESTIONS</h2>
+<p><strong>Q: How do I know if a document is fake?</strong><br />
+A: Look for: official seals, current dates, clear details, consistent formatting. Compare with known real documents.</p>
+<p><strong>Q: What if user disagrees with my decision?</strong><br />
+A: Document everything. Explain reasoning clearly. Allow appeal process. Be willing to reconsider if new info appears.</p>
+<p><strong>Q: How do I handle two admins disagreeing?</strong><br />
+A: Discuss it. Check policy. If still different opinions, senior admin decides. Document the reasoning.</p>
+<p><strong>Q: What about privacy of user data?</strong><br />
+A: Only access data needed for task. Don't share personal info. Follow data protection laws. Secure all data.</p>
+<p><strong>Q: How do I handle difficult users?</strong><br />
+A: Stay professional. Listen without emotion. Document everything. Involve senior admin if needed.</p>
+<p><strong>Q: Can I override a user decision?</strong><br />
+A: Yes, if there's good reason. Document why. Follow escalation procedure. Keep records.</p>
+<p><strong>Q: What if there's a security issue?</strong><br />
+A: Immediately notify technical team. Take system offline if needed. Investigate thoroughly. Prevent future occurrence.</p>
+<hr />
+<h2 id="admin-statistics-typical-values">📊 ADMIN STATISTICS TYPICAL VALUES</h2>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Typical</th>
+<th>Range</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Daily Approvals</td>
+<td>50-100</td>
+<td>30-150</td>
+</tr>
+<tr>
+<td>Complaint Cases</td>
+<td>5-10</td>
+<td>2-20</td>
+</tr>
+<tr>
+<td>Refunds Processed</td>
+<td>10-20</td>
+<td>5-30</td>
+</tr>
+<tr>
+<td>Company Verifications</td>
+<td>5-15</td>
+<td>2-20</td>
+</tr>
+<tr>
+<td>User Suspensions</td>
+<td>0-2</td>
+<td>0-5</td>
+</tr>
+<tr>
+<td>Platform Revenue</td>
+<td>3,000-5,000 BWP</td>
+<td>1,000-8,000</td>
+</tr>
+<tr>
+<td>Active Users</td>
+<td>2,000-3,000</td>
+<td>500-5,000</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong>END OF ADMIN FEATURES GUIDE</strong></p>
+<p><em>This guide is based on actual code analysis of 24+ admin screens.</em><br />
+<em>All features and functionality described are real and implemented.</em><br />
+<em>Last updated: December 25, 2025</em></p>
+</body>
+</html>

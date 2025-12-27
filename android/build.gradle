@@ -1,13 +1,21 @@
 buildscript {
-    ext.kotlin_version = '1.6.10'
+    ext.kotlin_version = '2.1.0'
     repositories {
         google()
         mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.1.2'
+        classpath 'com.google.gms:google-services:4.4.0'
+        classpath 'com.android.tools.build:gradle:8.7.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+
+    // Force Kotlin version for all buildscript dependencies globally
+    configurations.classpath {
+        resolutionStrategy {
+            force "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        }
     }
 }
 
@@ -16,16 +24,82 @@ allprojects {
         google()
         mavenCentral()
     }
+
+    // Force all subprojects to use Kotlin 1.9.0
+    configurations.all {
+        resolutionStrategy {
+            force "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+            force "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+            force "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+            force "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+        }
+    }
 }
 
 rootProject.buildDir = '../build'
+
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
-}
-subprojects {
-    project.evaluationDependsOn(':app')
+
+    // Force Kotlin version in all configurations
+    configurations.all {
+        resolutionStrategy {
+            force "org.jetbrains.kotlin:kotlin-gradle-plugin:2.1.0"
+            force "org.jetbrains.kotlin:kotlin-stdlib:2.1.0"
+            force "org.jetbrains.kotlin:kotlin-stdlib-jdk7:2.1.0"
+            force "org.jetbrains.kotlin:kotlin-stdlib-jdk8:2.1.0"
+        }
+    }
+
+    // Force Kotlin version in buildscript classpath
+    buildscript {
+        configurations.all {
+            resolutionStrategy {
+                force "org.jetbrains.kotlin:kotlin-gradle-plugin:2.1.0"
+            }
+        }
+    }
+
+    // Fix for AGP 8.x - Add namespace to plugins that don't have it
+    afterEvaluate { project ->
+        if (project.hasProperty('android')) {
+            project.android {
+                if (namespace == null) {
+                    def moduleName = project.name.replace('-', '_').replace('/', '_')
+                    namespace "com.flutter.plugin.${moduleName}"
+                }
+
+                // Force consistent JVM target for all plugins (Java 17 for camera_android_camerax compatibility)
+                compileOptions {
+                    sourceCompatibility JavaVersion.VERSION_17
+                    targetCompatibility JavaVersion.VERSION_17
+                }
+            }
+
+            // Force Kotlin JVM target to match Java
+            if (project.hasProperty('kotlin')) {
+                tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+                    kotlinOptions {
+                        jvmTarget = "17"
+                    }
+                }
+            }
+
+            // Fix for AGP 8.x - Remove package attribute from AndroidManifest.xml
+            def manifestFile = project.file("src/main/AndroidManifest.xml")
+            if (manifestFile.exists()) {
+                def manifest = manifestFile.text
+                if (manifest.contains('package=')) {
+                    // Remove package attribute from manifest tag
+                    manifest = manifest.replaceAll(/\s*package\s*=\s*"[^"]*"/, '')
+                    manifestFile.text = manifest
+                    println "Removed package attribute from ${project.name} AndroidManifest.xml"
+                }
+            }
+        }
+    }
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+tasks.register("clean", Delete) {
+    delete rootProject.layout.buildDirectory
 }

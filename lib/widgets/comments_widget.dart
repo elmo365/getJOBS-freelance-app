@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:freelance_app/screens/profile/profile_company.dart';
+import 'package:freelance_app/screens/profile/profile.dart';
 
 class CommentWidget extends StatefulWidget {
   final String commentId;
@@ -17,28 +17,20 @@ class CommentWidget extends StatefulWidget {
       required this.commenterImageUrl});
 
   @override
-  _CommentWidgetState createState() => _CommentWidgetState();
+  State<CommentWidget> createState() => _CommentWidgetState();
 }
 
 class _CommentWidgetState extends State<CommentWidget> {
-  final List<Color> _colors = [
-    Colors.black,
-    Colors.black12,
-    Colors.black26,
-    Colors.black38,
-    Colors.black45
-  ];
-
   @override
   Widget build(BuildContext context) {
-    _colors.shuffle();
+    final colorScheme = Theme.of(context).colorScheme;
     return InkWell(
       onTap: () {
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(
                 builder: (context) =>
-                    ProfileScreen(userID: widget.commenterId)));
+                    ProfilePage(userID: widget.commenterId)));
       },
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,17 +44,31 @@ class _CommentWidgetState extends State<CommentWidget> {
               decoration: BoxDecoration(
                 border: Border.all(
                   width: 2,
-                  color: _colors[1],
+                  color: colorScheme.primary.withValues(alpha: 0.35),
                 ),
                 shape: BoxShape.circle,
-                image: DecorationImage(
-                    image: NetworkImage(widget.commenterImageUrl),
-                    fit: BoxFit.fill),
+                image: widget.commenterImageUrl.isNotEmpty
+                    ? DecorationImage(
+                        image: NetworkImage(widget.commenterImageUrl),
+                        fit: BoxFit.fill,
+                      )
+                    : null,
               ),
+              child: widget.commenterImageUrl.isEmpty
+                  ? Center(
+                      child: Text(
+                        widget.commenterName.isNotEmpty
+                            ? widget.commenterName[0].toUpperCase()
+                            : '?',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: colorScheme.onSurface,
+                        ),
+                      ),
+                    )
+                  : null,
             ),
-          ),
-          const SizedBox(
-            width: 6,
           ),
           Flexible(
             flex: 5,
@@ -71,19 +77,19 @@ class _CommentWidgetState extends State<CommentWidget> {
               children: [
                 Text(
                   widget.commenterName,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontStyle: FontStyle.normal,
                     fontWeight: FontWeight.bold,
-                    color: Colors.grey,
+                    color: colorScheme.onSurface,
                     fontSize: 16,
                   ),
                 ),
                 Text(
                   widget.commentBody,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontStyle: FontStyle.italic,
                     fontWeight: FontWeight.normal,
-                    color: Colors.grey,
+                    color: colorScheme.onSurfaceVariant,
                     fontSize: 13,
                   ),
                 ),

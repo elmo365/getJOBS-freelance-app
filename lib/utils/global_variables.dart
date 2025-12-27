@@ -25,7 +25,7 @@ List<String> jobCategories = [
 ];
 
 String? name;
-String? user_image;
+String? userImage;
 String? address;
 String? id;
 

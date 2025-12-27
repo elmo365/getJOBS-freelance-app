@@ -20,7 +20,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.18.2 <3.0.0'
+  sdk: '>=3.0.0 <4.0.0'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -36,48 +36,87 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  #firebase dependencies
-  firebase_auth: ^4.2.1
-  firebase_core: ^2.4.0
-  cloud_firestore: ^4.2.0
-  firebase_storage: ^11.0.8
-  google_sign_in: ^5.4.0
+  
+  # Firebase - Backend as a Service
+  firebase_core: ^4.2.1
+  firebase_auth: ^6.1.2
+  cloud_firestore: ^6.1.0
+  firebase_storage: ^13.0.4
+  firebase_messaging: ^16.0.4
+  http: ^1.1.0
+  path: ^1.9.0
+  connectivity_plus: ^7.0.0
+  shimmer: ^3.0.0
   #filehandling for signup and upload
-  cached_network_image: ^3.2.2
-  image_cropper: ^3.0.0
-  uuid:
+  cached_network_image: ^3.4.1
+  image_cropper: ^11.0.0
+  uuid: ^4.5.1
   #welcome screen
-  introduction_screen: ^3.1.2
+  introduction_screen: ^4.0.0
   #homeScreen dependencies
   searchbar_animation: ^0.0.4
-  bubble_bottom_bar: ^2.0.0
   #profile page
-  fluttertoast: ^8.1.2
-  file_picker: ^4.1.3
-  image_picker: ^0.8.6
-  font_awesome_flutter: ^10.3.0
-  permission_handler: 8.3.0
-  external_path: 1.0.1
-  dio: ^4.0.6
-  syncfusion_flutter_pdfviewer:
-  ndialog: ^4.1.0
-  open_file: ^3.2.1
-  path_provider: ^2.0.5  
-  intl: ^0.18.0
+  fluttertoast: ^9.0.0
+  file_picker: ^10.3.7
+  image_picker: ^1.1.2
+  font_awesome_flutter: ^10.7.0
+  permission_handler: ^12.0.1
+  dio: ^5.7.0
+  syncfusion_flutter_pdfviewer: ^31.2.16
+  ndialog: ^4.3.1
+  open_file: ^3.5.9
+  path_provider: ^2.1.5
+  intl: ^0.20.2
+  timeago: ^3.7.0
   #job application related
   url_launcher: ^6.1.8
   fluttericon: ^2.0.0
+  
+  # MVP Features - CV Builder & Video Resume
+  pdf: ^3.10.7
+  printing: ^5.12.0
+  camera: ^0.11.3
+  video_player: ^2.8.1
+  video_thumbnail: ^0.5.3
+  
+  # Interview Scheduling
+  table_calendar: ^3.0.9
+  flutter_local_notifications: ^19.5.0
+  
+  # Charts for Career Tracker
+  fl_chart: ^1.1.1
+  bubble_bottom_bar: ^2.0.0
+  
+  # AI Integration - Google Gemini (Free Tier)
+  google_generative_ai: ^0.4.7
+  cloud_functions: ^6.0.4
+  google_api_availability: ^5.0.1
+  flutter_rating_bar: ^4.0.1
+  read_pdf_text: ^0.3.1
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
-  flutter_native_splash: ^2.2.16
+  flutter_lints: ^6.0.0
+  flutter_native_splash: ^2.4.2
+  flutter_launcher_icons: ^0.14.2
+
+# Dependency overrides to fix compatibility issues
+dependency_overrides:
+  flutter_web_auth_2: ^4.0.0
 
 flutter_native_splash:
-  image: assets/images/ic_launcher.png
-  color: "#fafafa"
+  image: assets/images/BOTSJOBSCONNECT logo.png
+  color: "#FFFFFF"
+  android: true
+  ios: true
+
+# App icon configuration
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/BOTSJOBSCONNECT logo icon.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

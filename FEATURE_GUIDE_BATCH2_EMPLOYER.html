@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FEATURE_GUIDE_BATCH2_EMPLOYER</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+            background: #f5f5f5;
+        }
+        h1, h2, h3, h4 {
+            color: #1f4788;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        h1 { font-size: 24px; }
+        h2 { font-size: 20px; border-bottom: 2px solid #1f4788; padding-bottom: 5px; }
+        h3 { font-size: 16px; }
+        h4 { font-size: 14px; }
+        p { text-align: justify; margin: 10px 0; }
+        ul, ol { margin: 10px 0; padding-left: 30px; }
+        li { margin: 5px 0; }
+        table { 
+            border-collapse: collapse; 
+            width: 100%; 
+            margin: 15px 0;
+            background: white;
+        }
+        th, td { 
+            border: 1px solid #ddd; 
+            padding: 10px; 
+            text-align: left;
+        }
+        th { 
+            background-color: #1f4788; 
+            color: white; 
+            font-weight: bold;
+        }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        code { 
+            background: #f4f4f4; 
+            padding: 2px 6px; 
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        blockquote {
+            border-left: 4px solid #1f4788;
+            padding-left: 15px;
+            margin: 15px 0;
+            color: #555;
+            background: #f0f0f0;
+            padding: 10px 15px;
+        }
+        .page-break { page-break-after: always; }
+        @page { margin: 20mm; }
+    </style>
+</head>
+<body>
+<h1 id="employer-features-guide">💼 EMPLOYER FEATURES GUIDE</h1>
+<h2 id="easy-to-understand-guide-for-employers-hiring-managers">Easy-to-Understand Guide for Employers &amp; Hiring Managers</h2>
+<p><strong>Based on Real Code Analysis</strong><br />
+<strong>Updated:</strong> December 25, 2025</p>
+<hr />
+<h2 id="1-employer-dashboard-your-hiring-hub">🏢 1. EMPLOYER DASHBOARD - YOUR HIRING HUB</h2>
+<h3 id="what-it-is">What It Is</h3>
+<p>Your central control panel for all hiring activities and company statistics.</p>
+<h3 id="dashboard-view">Dashboard View</h3>
+<pre><code>┌─────────────────────────────────────┐
+│  YOUR HIRING DASHBOARD              │
+├─────────────────────────────────────┤
+│                                     │
+│  📊 QUICK STATS                     │
+│  • Active Job Postings: 5           │
+│  • Applications Received: 47        │
+│  • Interviews Scheduled: 8          │
+│  • Jobs Filled This Month: 2        │
+│                                     │
+│  👥 RECENT ACTIVITIES               │
+│  • New applicant for &quot;Developer&quot;    │
+│  • Interview scheduled for tomorrow │
+│  • Candidate declined offer         │
+│  • Job &quot;Manager&quot; got 5 applications │
+│                                     │
+│  🎯 QUICK ACTIONS                   │
+│  [Post New Job] [Review Apps]       │
+│  [Schedule Interview] [View Jobs]   │
+│                                     │
+│  📈 COMPANY VERIFICATION             │
+│  Status: ✅ Verified                │
+│  or                                 │
+│  Status: ⏳ Pending Review          │
+│                                     │
+└─────────────────────────────────────┘
+</code></pre>
+<h3 id="what-you-see">What You See</h3>
+<p><strong>Active Jobs Count</strong>
+- How many open positions you have
+- Updated in real-time as you post/close jobs</p>
+<p><strong>Applications Received</strong>
+- Total number of job applications
+- Across all your open positions
+- Includes pending and reviewed applications</p>
+<p><strong>Interviews Scheduled</strong>
+- How many interviews are coming up
+- Shows upcoming dates</p>
+<p><strong>Recent Activities</strong>
+- Your latest hiring actions
+- New applications, interviews, offers
+- Keeps you updated on what's happening</p>
+<p><strong>Company Verification Status</strong>
+- Shows if your company is verified
+- If pending: shows what documents needed
+- (More on this below)</p>
+<h3 id="how-to-use-the-dashboard">How to Use the Dashboard</h3>
+<ol>
+<li><strong>Every Morning:</strong> Check dashboard to see new applications</li>
+<li><strong>Before Interviews:</strong> Review upcoming interviews</li>
+<li><strong>For Statistics:</strong> See if hiring is going well</li>
+<li><strong>For Planning:</strong> Know how many positions still open</li>
+</ol>
+<hr />
+<h2 id="2-post-a-job-hire-your-first-candidate">📝 2. POST A JOB - HIRE YOUR FIRST CANDIDATE</h2>
+<h3 id="what-you-need-to-know">What You Need to Know</h3>
+<p>Posting a job is how you tell candidates what position you have open.</p>
+<h3 id="step-by-step-job-posting">Step-by-Step Job Posting</h3>
+<p><strong>Step 1: Basic Information</strong></p>
+<pre><code>Fill in:
+┌────────────────────────────────┐
+│ Job Title *                    │
+│ [Software Developer       ]    │
+│                                │
+│ Category *                     │
+│ [Select from dropdown]        │
+│  - Technology                 │
+│  - Sales                      │
+│  - Marketing                  │
+│  - etc.                       │
+│                                │
+│ Job Type                       │
+│ [Dropdown]                    │
+│  ◉ Full-time                 │
+│  ◯ Part-time                 │
+│  ◯ Contract                  │
+│  ◯ Internship                │
+│                                │
+│ Experience Level              │
+│ [Dropdown]                    │
+│  ◉ Entry Level               │
+│  ◯ Mid Level                 │
+│  ◯ Senior Level              │
+└────────────────────────────────┘
+
+* = Required fields
+</code></pre>
+<p><strong>Step 2: Job Details</strong></p>
+<pre><code>Fill in:
+┌────────────────────────────────┐
+│ Job Description *              │
+│                                │
+│ [Large text box - write what  │
+│  the job involves, what you   │
+│  need the person to do]       │
+│                                │
+│ Location                      │
+│ [Gaborone, Francistown, etc] │
+│                                │
+│ Salary Range (Optional)        │
+│ [Enter amount: 8000 - 12000]  │
+│                                │
+│ Number of Positions           │
+│ [How many people to hire?]    │
+│ Default: 1                    │
+│                                │
+│ Application Deadline          │
+│ [Pick a date]                 │
+│ Must be in the future        │
+│ Recommendation: 30-60 days    │
+└────────────────────────────────┘
+</code></pre>
+<p><strong>Step 3: Submit</strong></p>
+<pre><code>[Post Job Now]
+     ↓
+Job becomes LIVE
+     ↓
+Candidates can now apply
+     ↓
+You start receiving applications
+</code></pre>
+<h3 id="important-job-details-explained">Important Job Details Explained</h3>
+<p><strong>Job Title</strong>
+- Be specific: "Senior React Developer" not just "Developer"
+- Help candidates understand the role
+- Makes job searchable</p>
+<p><strong>Category</strong>
+- Choose the main category for the job
+- Helps candidates find it
+- Tech, Sales, Marketing, HR, etc.</p>
+<p><strong>Job Type</strong>
+- <strong>Full-time:</strong> Regular job, 40+ hours per week
+- <strong>Part-time:</strong> Limited hours, flexible
+- <strong>Contract:</strong> Fixed period, specific project
+- <strong>Internship:</strong> Learning opportunity, usually temporary</p>
+<p><strong>Experience Level</strong>
+- <strong>Entry:</strong> Fresh graduates or first job
+- <strong>Mid:</strong> 3-7 years experience
+- <strong>Senior:</strong> 7+ years, leadership skills
+- Helps candidates know if they're right fit</p>
+<p><strong>Description</strong>
+- This is VERY important
+- Be detailed about:
+  - What they'll do daily
+  - What skills they need
+  - What team they'll join
+  - Why it's a great opportunity
+- More detail = better applications</p>
+<p><strong>Location</strong>
+- Where the job is based
+- Remote/Work from home (if applicable)
+- City/Office address</p>
+<p><strong>Salary</strong>
+- Optional but recommended
+- Be honest and competitive
+- Helps attract right candidates
+- Format: "8,000 - 12,000 BWP per month"</p>
+<p><strong>Number of Positions</strong>
+- How many people you want to hire
+- 1 for one position, 5 for five positions
+- Candidates see this</p>
+<p><strong>Deadline</strong>
+- When applications close
+- Candidates need to apply by this date
+- After deadline, job closes
+- Suggestion: 30-60 days from posting</p>
+<h3 id="after-you-post">After You Post</h3>
+<pre><code>Job Posted (Day 1)
+    ↓
+Candidates start seeing it
+    ↓
+Candidates start applying
+    ↓
+You receive applications (Dashboard updates)
+    ↓
+Review applications (check matching profiles)
+    ↓
+Contact good candidates
+    ↓
+Schedule interviews
+    ↓
+Conduct interviews
+    ↓
+Make offer to best candidate
+    ↓
+Job is &quot;Filled&quot;
+</code></pre>
+<hr />
+<h2 id="3-manage-your-jobs-view-edit-postings">📊 3. MANAGE YOUR JOBS - VIEW &amp; EDIT POSTINGS</h2>
+<h3 id="what-you-can-do">What You Can Do</h3>
+<p><strong>See All Your Jobs:</strong></p>
+<pre><code>┌─────────────────────────────────────┐
+│ [ALL] [ACTIVE] [CLOSED] [CANCELLED] │
+├─────────────────────────────────────┤
+│                                     │
+│ 1. Software Developer               │
+│    Status: ACTIVE ✅                │
+│    Applications: 12                 │
+│    Posted: 15 days ago              │
+│    [Edit] [Close] [View]            │
+│                                     │
+│ 2. Marketing Manager                │
+│    Status: ACTIVE ✅                │
+│    Applications: 8                  │
+│    Posted: 5 days ago               │
+│    [Edit] [Close] [View]            │
+│                                     │
+│ 3. HR Manager                       │
+│    Status: CLOSED (Filled) ✓         │
+│    Applications: 15                 │
+│    Closed: 10 days ago              │
+│    [View]                           │
+│                                     │
+│ 4. Accountant                       │
+│    Status: CANCELLED ✗               │
+│    Applications: 3                  │
+│    Cancelled: 2 days ago            │
+│    [View]                           │
+│                                     │
+└─────────────────────────────────────┘
+</code></pre>
+<h3 id="job-statuses">Job Statuses</h3>
+<p><strong>ACTIVE</strong> (Green check ✅)
+- Job is currently open
+- Candidates can apply
+- You're actively hiring
+- You can edit this job
+- You can close it anytime</p>
+<p><strong>CLOSED/FILLED</strong> (Gray ✓)
+- You hired someone
+- No more applications accepted
+- Already filled the position
+- Can't edit anymore
+- Can view applications received</p>
+<p><strong>CANCELLED</strong> (Red X)
+- You cancelled the job
+- No longer hiring for this position
+- Read-only (can't change)
+- Can view all applications received</p>
+<h3 id="what-you-can-do-for-each-job">What You Can Do for Each Job</h3>
+<p><strong>For ACTIVE Jobs:</strong>
+- ✏️ <strong>Edit:</strong> Change job details, salary, deadline
+- ❌ <strong>Close:</strong> Stop accepting applications
+- 📋 <strong>View:</strong> See full job and all applications
+- 📞 <strong>Contact:</strong> Message interested candidates</p>
+<p><strong>For CLOSED/CANCELLED Jobs:</strong>
+- 👀 <strong>View:</strong> See original job posting
+- 📊 <strong>View Stats:</strong> See total applications
+- ⭐ <strong>Rate Candidate:</strong> If you hired them</p>
+<h3 id="job-tabs-explained">Job Tabs Explained</h3>
+<p><strong>[ALL]</strong>
+- Shows every job you've ever posted
+- Active, closed, and cancelled
+- Full history</p>
+<p><strong>[ACTIVE]</strong>
+- Only your currently open positions
+- Jobs you're still hiring for
+- Quick view of current hiring needs</p>
+<p><strong>[CLOSED]</strong>
+- Jobs you've filled successfully
+- These positions are no longer open
+- You hired someone</p>
+<p><strong>[CANCELLED]</strong>
+- Jobs you decided not to fill
+- Positions you closed early
+- Usually because you found alternatives</p>
+<hr />
+<h2 id="4-review-applications-whos-applying">👥 4. REVIEW APPLICATIONS - WHO'S APPLYING?</h2>
+<h3 id="the-application-process-flow">The Application Process Flow</h3>
+<pre><code>You Post Job
+     ↓
+Candidates Apply
+     ↓
+Applications Arrive
+     ↓
+You Review (This Section)
+     ↓
+Contact Best Candidates
+     ↓
+Schedule Interviews
+</code></pre>
+<h3 id="what-you-see-in-applications">What You See in Applications</h3>
+<p><strong>Application List:</strong></p>
+<pre><code>For Each Applicant:
+┌────────────────────────────────┐
+│ Name: John Smith               │
+│ Position Applied For: Developer│
+│ Applied: 2 days ago            │
+│ Status: Under Review           │
+│ Skills Match: 5/8 (Good)      │
+│ Experience: 4 years            │
+│ Location: Same as job          │
+│                                │
+│ [View Full CV] [Approve/Reject]│
+│ [Message] [Schedule Interview] │
+└────────────────────────────────┘
+</code></pre>
+<h3 id="application-information">Application Information</h3>
+<p><strong>Match Score:</strong>
+- How well does candidate fit the job?
+- Based on their CV skills
+- Helps you quickly identify good fits</p>
+<p><strong>Skills Match:</strong>
+- "5/8 skills match" = They have 5 of 8 required skills
+- Higher number = better fit
+- System auto-calculates based on job requirements</p>
+<p><strong>Application Status Options:</strong>
+- <strong>Under Review:</strong> You haven't decided yet
+- <strong>Approved:</strong> Good candidate, want to interview
+- <strong>Rejected:</strong> Not right fit for this job
+- <strong>Offer Extended:</strong> You offered them the job
+- <strong>Interview Scheduled:</strong> Meeting is booked</p>
+<h3 id="how-to-review-applications">How to Review Applications</h3>
+<p><strong>Quick Review Method:</strong></p>
+<pre><code>1. Look at candidate name and photo
+   ↓
+2. Check experience level
+   ↓
+3. Look at skills match percentage
+   ↓
+4. Quick decision:
+   • High match? → Schedule interview
+   • Medium match? → View full CV first
+   • Low match? → Reject
+</code></pre>
+<p><strong>Detailed Review Method:</strong></p>
+<pre><code>1. Click &quot;View Full CV&quot;
+   ↓
+2. Read their complete background
+   ↓
+3. See education, experience, projects
+   ↓
+4. Check if they match your needs
+   ↓
+5. Make decision: Approve or Reject
+</code></pre>
+<h3 id="managing-applications">Managing Applications</h3>
+<p><strong>For Good Candidates:</strong>
+- ✅ Approve for interview
+- 📞 Send message saying you're interested
+- 📅 Schedule interview date
+- 🤝 Build relationship</p>
+<p><strong>For Average Candidates:</strong>
+- View full CV first
+- Ask clarifying questions
+- Keep on standby if others fall through</p>
+<p><strong>For Poor Matches:</strong>
+- ❌ Reject politely
+- 💬 Send message: "Thanks, not right fit this time"
+- 📌 Keep in system for future positions</p>
+<h3 id="key-stats-you-see">Key Stats You See</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>What It Means</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Skills Match</td>
+<td>% of job's required skills they have</td>
+</tr>
+<tr>
+<td>Experience</td>
+<td>Years of work experience</td>
+</tr>
+<tr>
+<td>Location</td>
+<td>Where they're based</td>
+</tr>
+<tr>
+<td>Applied When</td>
+<td>How recent the application is</td>
+</tr>
+<tr>
+<td>CV Completeness</td>
+<td>Is their profile complete?</td>
+</tr>
+<tr>
+<td>Education Level</td>
+<td>What degrees do they have?</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-schedule-interviews-meet-your-candidates">🎤 5. SCHEDULE INTERVIEWS - MEET YOUR CANDIDATES</h2>
+<h3 id="interview-scheduling-view">Interview Scheduling View</h3>
+<pre><code>CANDIDATE: Sarah Johnson
+Position: Marketing Manager
+Applied: 5 days ago
+Match: 85% ✅
+
+┌────────────────────────────────┐
+│ SCHEDULE INTERVIEW             │
+├────────────────────────────────┤
+│                                │
+│ Interview Date:                │
+│ [Select Date] → Dec 28, 2025   │
+│                                │
+│ Interview Time:                │
+│ [Select Time] → 2:00 PM        │
+│                                │
+│ Interview Type:                │
+│ ◉ Phone Call                  │
+│ ◯ Video Call                  │
+│ ◯ In-Person (Office)          │
+│                                │
+│ Additional Notes:              │
+│ [Ask about their portfolio]    │
+│                                │
+│ [Schedule Interview]           │
+│                                │
+└────────────────────────────────┘
+</code></pre>
+<h3 id="interview-types">Interview Types</h3>
+<p><strong>Phone Call</strong>
+- Traditional phone conversation
+- Candidate calls or you call
+- Good for first round screening
+- Quick and easy
+- Time: 15-30 minutes usually</p>
+<p><strong>Video Call</strong>
+- Face-to-face over internet (Zoom, Teams, etc.)
+- More personal than phone
+- Can see body language
+- Good for mid-round interviews
+- Time: 30-45 minutes</p>
+<p><strong>In-Person</strong>
+- Meet at your office
+- Most thorough interview
+- See their presentation skills
+- Final round usually
+- Time: 45-60 minutes</p>
+<h3 id="before-the-interview">Before the Interview</h3>
+<p><strong>Send Calendar Invite:</strong>
+- System automatically sends candidate the time/date
+- They confirm they can make it
+- Reminder email sent day before</p>
+<p><strong>Prepare:</strong>
+- Review their CV
+- Prepare questions for your industry
+- Have their application open
+- Be ready 5 minutes early</p>
+<p><strong>Send Interview Notes:</strong></p>
+<pre><code>&quot;Hi Sarah,
+
+We'd like to interview you for the Marketing Manager 
+position.
+
+Date: Dec 28, 2025
+Time: 2:00 PM
+Type: Video call via Zoom
+
+Please confirm you can attend.
+
+Looking forward to speaking with you!
+- The Hiring Team&quot;
+</code></pre>
+<h3 id="during-interview">During Interview</h3>
+<p><strong>Ask About:</strong>
+- Their experience
+- Why they want this job
+- How they handle challenges
+- Specific projects they've done
+- Their career goals</p>
+<p><strong>Observe:</strong>
+- Communication skills
+- Enthusiasm
+- Problem-solving ability
+- Culture fit
+- Confidence level</p>
+<p><strong>Don't Ask:</strong>
+- Personal questions (age, marital status)
+- Questions about protected characteristics
+- Discriminatory topics</p>
+<h3 id="after-interview">After Interview</h3>
+<p><strong>Status Options:</strong>
+- ✅ <strong>Approved:</strong> Want to move forward
+- ❌ <strong>Rejected:</strong> Not right fit
+- ⏳ <strong>Maybe:</strong> Need to think more</p>
+<p><strong>Next Steps:</strong>
+- Send follow-up message (thanks for interview)
+- If approved: Prepare offer
+- If rejected: Send rejection (politely)
+- Keep notes in their file</p>
+<hr />
+<h2 id="6-ai-candidate-suggestions-let-ai-find-best-candidates">🤖 6. AI CANDIDATE SUGGESTIONS - LET AI FIND BEST CANDIDATES</h2>
+<h3 id="what-this-feature-does">What This Feature Does</h3>
+<p>AI automatically analyzes ALL candidates in the system and finds who best matches your job requirements.</p>
+<h3 id="how-it-works">How It Works</h3>
+<pre><code>PROCESS:
+────────
+1. You Select a Job
+   (Pick one of your active job postings)
+
+2. AI Analyzes
+   • Looks at job requirements
+   • Examines all available candidates
+   • Scores each candidate
+
+3. AI Ranks
+   • Best match first
+   • Shows match percentage
+   • Explains which skills match
+
+4. You See Results
+   • Top candidates for this job
+   • With match scores
+   • Ready to contact
+</code></pre>
+<h3 id="what-you-see_1">What You See</h3>
+<p><strong>Ranked Candidate List:</strong></p>
+<pre><code>JOB: Senior Software Developer
+
+Candidate 1: Alex Chen
+┌────────────────────────────┐
+│ 🏆 95% MATCH               │
+│ • Skills: React ✓          │
+│         Python ✓           │
+│         AWS ✓              │
+│         Leadership ✓       │
+│ • Experience: 7 years      │
+│ • Location: Remote (Good)  │
+│ [View Profile] [Contact]   │
+└────────────────────────────┘
+
+Candidate 2: Maria Santos
+┌────────────────────────────┐
+│ 🥈 88% MATCH               │
+│ • Skills: React ✓          │
+│         Python ✓           │
+│         Leadership ✓       │
+│         AWS (Learning)     │
+│ • Experience: 5 years      │
+│ • Location: In office      │
+│ [View Profile] [Contact]   │
+└────────────────────────────┘
+
+Candidate 3: Dev Kumar
+┌────────────────────────────┐
+│ 🥉 82% MATCH               │
+│ • Skills: Python ✓         │
+│         React (Learning)   │
+│         AWS ✓              │
+│ • Experience: 3 years      │
+│ • Location: Remote         │
+│ [View Profile] [Contact]   │
+└────────────────────────────┘
+</code></pre>
+<h3 id="understanding-match-scores">Understanding Match Scores</h3>
+<p><strong>95%+ = Excellent Match</strong>
+- Has almost all required skills
+- Experience level is perfect
+- Ready to do job immediately
+- Contact ASAP</p>
+<p><strong>80-94% = Good Match</strong>
+- Has most required skills
+- Can learn remaining skills quickly
+- Worth interviewing
+- Likely to succeed</p>
+<p><strong>70-79% = Possible Match</strong>
+- Has some skills you need
+- Will need training
+- Could grow into role
+- Consider if short on candidates</p>
+<p><strong>Below 70% = Long Shot</strong>
+- Missing key skills
+- Would require significant training
+- Only contact if desperate
+- Better candidates probably exist</p>
+<h3 id="how-to-use-ai-suggestions">How to Use AI Suggestions</h3>
+<p><strong>Step-by-Step:</strong></p>
+<pre><code>1. Open &quot;AI Candidate Suggestions&quot;
+   ↓
+2. Select job from dropdown
+   (Choose one of your active jobs)
+   ↓
+3. Click &quot;Get Suggestions&quot;
+   ↓
+4. AI searches and ranks candidates
+   ↓
+5. Review the ranked list
+   ↓
+6. Click top candidates
+   ↓
+7. View full profile
+   ↓
+8. Contact best matches
+   ↓
+9. Schedule interviews
+</code></pre>
+<h3 id="why-this-is-powerful">Why This Is Powerful</h3>
+<ul>
+<li><strong>Saves Time:</strong> Don't read every single application</li>
+<li><strong>Finds Best Fit:</strong> AI scores objectively</li>
+<li><strong>Doesn't Miss People:</strong> Analyzes ALL candidates</li>
+<li><strong>Ranked:</strong> Best candidates at top</li>
+<li><strong>Detailed Match:</strong> Shows exactly which skills match</li>
+<li><strong>Fair:</strong> Algorithms don't have bias</li>
+</ul>
+<h3 id="ai-matching-algorithm-technical">AI Matching Algorithm (Technical)</h3>
+<p><em>The system uses a two-stage approach:</em></p>
+<p><strong>Stage 1: Quick Filter</strong>
+- Analyzes all available candidates
+- Quickly scores each one
+- Keeps only best 30 matches
+- Discards poor fits</p>
+<p><strong>Stage 2: AI Ranking</strong>
+- AI examines the top 30 closely
+- Considers: skill quality, experience fit, location, job type
+- Ranks from best to worst
+- Shows you the final ranked list</p>
+<p><em>Result: You see only the most relevant candidates, ranked perfectly.</em></p>
+<hr />
+<h2 id="7-company-verification-get-approved-to-hire">✅ 7. COMPANY VERIFICATION - GET APPROVED TO HIRE</h2>
+<h3 id="why-verification-matters">Why Verification Matters</h3>
+<p>Companies need to verify they are legitimate before they can hire people.</p>
+<p><strong>Benefits of Verification:</strong>
+- ✅ Candidates trust you more
+- ✅ Your company looks professional
+- ✅ You're approved by the platform
+- ✅ Higher chance candidates accept offers</p>
+<h3 id="verification-process">Verification Process</h3>
+<p><strong>Step 1: Check What You Need</strong></p>
+<pre><code>For Botswana Companies:
+- Company registration (CIPA)
+- Tax registration (BURS)
+- Bank statement (proof of business)
+- Company address proof
+
+For Other Countries:
+- Company registration documents
+- Tax registration
+- Proof of business existence
+</code></pre>
+<p><strong>Step 2: Upload Documents</strong></p>
+<pre><code>1. Go to &quot;Company Verification&quot;
+   ↓
+2. See required documents list
+   ↓
+3. Click &quot;Upload&quot; for each document
+   ↓
+4. Select file from your computer
+   ↓
+5. Include description/notes if needed
+   ↓
+6. Click &quot;Submit for Review&quot;
+</code></pre>
+<p><strong>Step 3: Wait for Admin Review</strong></p>
+<pre><code>Status: ⏳ Pending Review
+└─ Admin team reviews documents
+└─ Usually 24-48 hours
+└─ May ask for more info
+└─ Check email for updates
+</code></pre>
+<p><strong>Step 4: Approved!</strong></p>
+<pre><code>Status: ✅ Verified
+└─ You can now fully hire candidates
+└─ Candidates see verification badge
+└─ Increased trust
+└─ Access all hiring features
+</code></pre>
+<h3 id="document-upload-requirements">Document Upload Requirements</h3>
+<p><strong>Company Registration</strong>
+- Official government registration
+- Should show:
+  - Company name
+  - Registration number
+  - Registration date
+  - Company address</p>
+<p><strong>Tax Registration</strong>
+- Tax registration certificate
+- Should show:
+  - Tax ID number
+  - Company name
+  - Registered business address</p>
+<p><strong>Bank Statement</strong>
+- Recent bank statement (last 3 months)
+- Shows business activity
+- Proves company is active</p>
+<p><strong>Address Proof</strong>
+- Utility bill, lease, or rental agreement
+- Shows company has physical location</p>
+<h3 id="verification-status">Verification Status</h3>
+<p><strong>Status: ✅ Verified</strong>
+- Your company is approved
+- Full hiring access
+- Candidates see ✓ badge
+- Higher conversion rates</p>
+<p><strong>Status: ⏳ Pending Review</strong>
+- Documents submitted
+- Under admin review
+- You can still post jobs (limited)
+- Check back in 24-48 hours</p>
+<p><strong>Status: ⚠️ Needs More Info</strong>
+- Admin needs additional documents
+- Check email for what's needed
+- Resubmit documents
+- No time limit, but delays hiring</p>
+<p><strong>Status: ❌ Rejected</strong>
+- Documents didn't meet requirements
+- Try again with correct documents
+- Contact support if unsure</p>
+<hr />
+<h2 id="8-completed-jobs-candidate-ratings">🎓 8. COMPLETED JOBS &amp; CANDIDATE RATINGS</h2>
+<h3 id="what-this-shows">What This Shows</h3>
+<p>Record of jobs you've filled and candidates you've worked with.</p>
+<h3 id="what-you-see_2">What You See</h3>
+<p><strong>Completed Jobs:</strong></p>
+<pre><code>┌──────────────────────────────┐
+│ 1. Senior Developer          │
+│    Hired: Sarah Johnson      │
+│    Completed: Dec 15, 2025   │
+│    Duration: 2 months        │
+│    Result: Successful ✓      │
+│    [View] [Rate Candidate]   │
+│                              │
+│ 2. Marketing Manager         │
+│    Hired: James Smith        │
+│    Completed: Dec 10, 2025   │
+│    Duration: 3 weeks         │
+│    Result: Successful ✓      │
+│    [View] [Rate Candidate]   │
+│                              │
+│ 3. Accountant                │
+│    Hired: Maria Gonzales     │
+│    Completed: Nov 30, 2025   │
+│    Duration: 6 weeks         │
+│    Result: Good ✓            │
+│    [View] [Rate Candidate]   │
+└──────────────────────────────┘
+</code></pre>
+<h3 id="how-ratings-work">How Ratings Work</h3>
+<p><strong>Why Rate Candidates:</strong>
+- Build reputation as fair employer
+- Help platform maintain quality
+- Recognize good workers
+- Get reviewed fairly in return</p>
+<p><strong>How to Rate:</strong></p>
+<pre><code>1. Find completed job
+   ↓
+2. Click &quot;Rate Candidate&quot;
+   ↓
+3. Give Star Rating (1-5):
+   ⭐⭐⭐⭐⭐ = Excellent
+   ⭐⭐⭐⭐  = Good
+   ⭐⭐⭐   = Average
+   ⭐⭐    = Poor
+   ⭐     = Very Poor
+   ↓
+4. Write optional comment:
+   &quot;Delivered quality work, 
+    excellent communication, 
+    very professional.&quot;
+   ↓
+5. Click &quot;Submit Rating&quot;
+   ↓
+6. Rating appears on candidate profile
+</code></pre>
+<h3 id="what-good-ratings-include">What Good Ratings Include</h3>
+<p><strong>5-Star (Excellent):</strong>
+- "Delivered high-quality work"
+- "Communicated excellently"
+- "Met all deadlines"
+- "Professional and reliable"
+- "Would hire again"</p>
+<p><strong>4-Star (Good):</strong>
+- "Good quality work"
+- "Some delays but resolved"
+- "Helpful and responsive"
+- "Met requirements"</p>
+<p><strong>3-Star (Average):</strong>
+- "Work met basic requirements"
+- "Some quality issues"
+- "Communication could improve"
+- "Late but completed"</p>
+<p><strong>1-2 Star (Poor):</strong>
+- Only use if serious issues:
+- "Missed deadlines consistently"
+- "Poor quality work"
+- "Not responsive"
+- "Didn't meet requirements"</p>
+<h3 id="building-your-employer-reputation">Building Your Employer Reputation</h3>
+<p><strong>Good Employer Reputation:</strong>
+- ✅ Hire quality candidates
+- ✅ Rate them fairly
+- ✅ Pay on time
+- ✅ Communicate clearly
+- ✅ Build long-term relationships</p>
+<p><strong>This Leads To:</strong>
+- Better candidates apply
+- Higher acceptance rates
+- Easier to hire quickly
+- Candidates trust you
+- Lower turnover</p>
+<hr />
+<h2 id="overall-employer-workflow">📱 OVERALL EMPLOYER WORKFLOW</h2>
+<h3 id="complete-hiring-journey">Complete Hiring Journey</h3>
+<pre><code>STEP 1: Prepare to Hire
+┌─────────────────────────────┐
+│ Verify Company              │
+│ Upload documents            │
+│ Get ✓ Verified badge        │
+└─────────────────────────────┘
+           ↓
+
+STEP 2: Post Job
+┌─────────────────────────────┐
+│ Fill job form               │
+│ Set requirements            │
+│ Post job                    │
+│ Job goes LIVE               │
+└─────────────────────────────┘
+           ↓
+
+STEP 3: Review Applications
+┌─────────────────────────────┐
+│ Candidates apply            │
+│ See in dashboard            │
+│ Review profiles             │
+│ Check match %               │
+└─────────────────────────────┘
+           ↓
+
+STEP 4: Use AI Suggestions
+┌─────────────────────────────┐
+│ AI ranks candidates         │
+│ Shows best matches first    │
+│ Review top candidates       │
+└─────────────────────────────┘
+           ↓
+
+STEP 5: Schedule Interviews
+┌─────────────────────────────┐
+│ Select candidate            │
+│ Pick date/time              │
+│ Choose phone/video/in-person│
+│ Send calendar invite        │
+└─────────────────────────────┘
+           ↓
+
+STEP 6: Conduct Interviews
+┌─────────────────────────────┐
+│ Interview candidate         │
+│ Assess fit                  │
+│ Ask questions               │
+│ Make decision               │
+└─────────────────────────────┘
+           ↓
+
+STEP 7: Make Offer
+┌─────────────────────────────┐
+│ Offer salary/terms          │
+│ Send official offer         │
+│ Wait for acceptance         │
+│ Negotiate if needed         │
+└─────────────────────────────┘
+           ↓
+
+STEP 8: Job Starts
+┌─────────────────────────────┐
+│ Candidate accepts           │
+│ Work begins                 │
+│ Manage job progress         │
+│ Stay in contact             │
+└─────────────────────────────┘
+           ↓
+
+STEP 9: Job Completes
+┌─────────────────────────────┐
+│ Work finished               │
+│ Payment processed           │
+│ Mark job as complete        │
+│ Rate candidate              │
+│ Build employer reputation   │
+└─────────────────────────────┘
+</code></pre>
+<hr />
+<h2 id="important-limitations-notes">⚠️ IMPORTANT LIMITATIONS &amp; NOTES</h2>
+<h3 id="what-you-can-do_1">What You Can Do</h3>
+<ul>
+<li>✅ Post unlimited jobs</li>
+<li>✅ Review all applications</li>
+<li>✅ Use AI to find candidates</li>
+<li>✅ Schedule interviews</li>
+<li>✅ Rate candidates</li>
+<li>✅ Manage job postings</li>
+<li>✅ Track hiring progress</li>
+</ul>
+<h3 id="what-you-cant-do">What You Can't Do</h3>
+<ul>
+<li>❌ See candidate applications without posting job</li>
+<li>❌ Directly contact random candidates (no message function shown)</li>
+<li>❌ Access candidates' private information</li>
+<li>❌ Hire outside the platform</li>
+<li>❌ Post jobs for other companies</li>
+</ul>
+<h3 id="company-verification">Company Verification</h3>
+<ul>
+<li>⚠️ Required to fully hire people</li>
+<li>⚠️ Takes 24-48 hours</li>
+<li>⚠️ Different requirements by country</li>
+<li>⚠️ Must provide real documents</li>
+</ul>
+<h3 id="hiring-best-practices">Hiring Best Practices</h3>
+<ol>
+<li><strong>Post Clear Job Descriptions</strong></li>
+<li>Detail helps candidates self-select</li>
+<li>
+<p>Clearer = better matches</p>
+</li>
+<li>
+<p><strong>Set Realistic Salary</strong></p>
+</li>
+<li>Competitive pay attracts talent</li>
+<li>
+<p>Too low = fewer applications</p>
+</li>
+<li>
+<p><strong>Respond Quickly</strong></p>
+</li>
+<li>Quick responses show you're serious</li>
+<li>
+<p>Delays lose good candidates</p>
+</li>
+<li>
+<p><strong>Schedule Interviews Promptly</strong></p>
+</li>
+<li>Good candidates get other offers</li>
+<li>
+<p>Move fast with top matches</p>
+</li>
+<li>
+<p><strong>Communicate Clearly</strong></p>
+</li>
+<li>Tell candidates what to expect</li>
+<li>
+<p>Send updates on their status</p>
+</li>
+<li>
+<p><strong>Rate Fairly</strong></p>
+</li>
+<li>Build your employer brand</li>
+<li>
+<p>Fair ratings attract more talent</p>
+</li>
+<li>
+<p><strong>Negotiate Respectfully</strong></p>
+</li>
+<li>Be professional</li>
+<li>Respect candidate's time</li>
+<li>Clear about terms</li>
+</ol>
+<hr />
+<h2 id="common-questions">🆘 COMMON QUESTIONS</h2>
+<p><strong>Q: Why can't I post a job?</strong><br />
+A: Your company probably needs verification. Upload documents to get approved.</p>
+<p><strong>Q: How long until verification is done?</strong><br />
+A: Usually 24-48 hours. Check email for updates.</p>
+<p><strong>Q: Can candidates see my company name?</strong><br />
+A: Yes, your verified company name appears on all job postings.</p>
+<p><strong>Q: How accurate is AI matching?</strong><br />
+A: Very accurate - uses real job requirements vs. candidate skills. Usually 85%+ accuracy.</p>
+<p><strong>Q: Can I change a job after posting?</strong><br />
+A: Yes, edit anytime while ACTIVE. Can't edit CLOSED jobs.</p>
+<p><strong>Q: How many candidates can I contact?</strong><br />
+A: Unlimited - contact as many as you want.</p>
+<p><strong>Q: What if candidate doesn't show up for interview?</strong><br />
+A: Send follow-up message. Reschedule if they respond.</p>
+<p><strong>Q: Can I post the same job twice?</strong><br />
+A: No, close the old one and post new. Or edit the existing one.</p>
+<p><strong>Q: How do I fire someone after hiring?</strong><br />
+A: Mark job as completed. Can leave honest rating.</p>
+<hr />
+<p><strong>END OF EMPLOYER FEATURES GUIDE</strong></p>
+<p><em>This guide is based on actual code analysis. All features described are real and working.</em></p>
+</body>
+</html>

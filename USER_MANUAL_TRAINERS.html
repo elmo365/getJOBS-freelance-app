@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USER_MANUAL_TRAINERS</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+            background: #f5f5f5;
+        }
+        h1, h2, h3, h4 {
+            color: #1f4788;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        h1 { font-size: 24px; }
+        h2 { font-size: 20px; border-bottom: 2px solid #1f4788; padding-bottom: 5px; }
+        h3 { font-size: 16px; }
+        h4 { font-size: 14px; }
+        p { text-align: justify; margin: 10px 0; }
+        ul, ol { margin: 10px 0; padding-left: 30px; }
+        li { margin: 5px 0; }
+        table { 
+            border-collapse: collapse; 
+            width: 100%; 
+            margin: 15px 0;
+            background: white;
+        }
+        th, td { 
+            border: 1px solid #ddd; 
+            padding: 10px; 
+            text-align: left;
+        }
+        th { 
+            background-color: #1f4788; 
+            color: white; 
+            font-weight: bold;
+        }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        code { 
+            background: #f4f4f4; 
+            padding: 2px 6px; 
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        blockquote {
+            border-left: 4px solid #1f4788;
+            padding-left: 15px;
+            margin: 15px 0;
+            color: #555;
+            background: #f0f0f0;
+            padding: 10px 15px;
+        }
+        .page-break { page-break-after: always; }
+        @page { margin: 20mm; }
+    </style>
+</head>
+<body>
+<h1 id="trainers-complete-guide">Trainers Complete Guide</h1>
+<p>A comprehensive guide for trainers using the getJOBS Freelance App to teach courses and conduct live training sessions.</p>
+<hr />
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#getting-started-as-a-trainer">Getting Started as a Trainer</a></li>
+<li><a href="#dashboard--overview">Dashboard &amp; Overview</a></li>
+<li><a href="#creating--managing-courses">Creating &amp; Managing Courses</a></li>
+<li><a href="#live-sessions">Live Sessions</a></li>
+<li><a href="#student-management">Student Management</a></li>
+<li><a href="#earnings--payments">Earnings &amp; Payments</a></li>
+<li><a href="#ratings--reviews">Ratings &amp; Reviews</a></li>
+<li><a href="#best-practices">Best Practices</a></li>
+</ol>
+<hr />
+<h2 id="getting-started-as-a-trainer">Getting Started as a Trainer</h2>
+<h3 id="account-setup">Account Setup</h3>
+<p><strong>Step 1: Create Account</strong>
+1. Open getJOBS Freelance App
+2. Tap <strong>"Sign Up"</strong>
+3. Select <strong>"Trainer"</strong> as account type
+4. Fill in:
+   - Full Name
+   - Email
+   - Password
+   - Phone Number
+   - Bio (about your training experience)</p>
+<p><strong>Step 2: Complete Profile</strong>
+1. Add professional photo
+2. Write detailed bio highlighting your expertise
+3. Add qualifications/certifications
+4. Add social links (LinkedIn, portfolio, etc.)
+5. Set your hourly rate for sessions</p>
+<p><strong>Step 3: Verify</strong>
+1. Check email for verification link
+2. Click link to verify
+3. Return to app
+4. Profile is now active</p>
+<h3 id="profile-optimization">Profile Optimization</h3>
+<p>Your trainer profile is key to attracting students:</p>
+<p><strong>Essential Information</strong>:
+- Professional photo (headshot)
+- Detailed bio (150-300 words)
+- Areas of expertise
+- Years of experience
+- Qualifications/degrees
+- Languages spoken
+- Teaching style</p>
+<p><strong>Recommended Additions</strong>:
+- Portfolio of past work/courses
+- Student testimonials
+- YouTube channel or teaching videos
+- GitHub profile (for technical trainers)
+- Personal website
+- Certification details</p>
+<p><strong>Example Bio</strong>:
+"Senior Flutter trainer with 8+ years in mobile app development. Specializing in Dart, Firebase, and UI/UX. I've trained 1000+ students with 95% satisfaction rate. Certified Google Flutter Developer. Available for live sessions and course creation."</p>
+<hr />
+<h2 id="dashboard-overview">Dashboard &amp; Overview</h2>
+<h3 id="trainer-home-screen">Trainer Home Screen</h3>
+<p>The trainer dashboard shows key metrics:</p>
+<p><strong>Statistics Section</strong>:
+- <strong>Total Courses</strong>: Number of courses you've created
+- <strong>Total Students</strong>: Cumulative enrolled students
+- <strong>Average Rating</strong>: Your average rating from students
+- <strong>Upcoming Sessions</strong>: Count of scheduled live sessions</p>
+<p><strong>Recent Courses</strong>:
+- Shows 3-5 most recent courses
+- Displays enrollment count for each
+- Shows course status</p>
+<p><strong>Upcoming Live Sessions</strong>:
+- Next scheduled sessions
+- Date, time, and student count
+- Quick action buttons</p>
+<h3 id="dashboard-code-reference">Dashboard Code Reference</h3>
+<p>File: <a href="lib/screens/trainers/trainers_home.dart">lib/screens/trainers/trainers_home.dart</a></p>
+<pre><code class="language-dart">// Key metrics loaded from Firestore
+Future&lt;void&gt; _loadDashboard() async {
+  // Get all courses for this trainer
+  final coursesSnap = await _firestore
+      .collection('courses')
+      .where('trainerId', isEqualTo: uid)
+      .orderBy('createdAt', descending: true)
+      .get();
+
+  // Calculate total students and average rating
+  int studentsTotal = 0;
+  double ratingSum = 0;
+  int ratingCount = 0;
+
+  final courses = coursesSnap.docs.map((d) {
+    final data = d.data();
+
+    // Add to student count
+    final enrolled = data['enrolledCount'];
+    if (enrolled is int) studentsTotal += enrolled;
+
+    // Add to rating calculation
+    final rating = data['ratingAvg'];
+    if (rating is num) {
+      ratingSum += rating.toDouble();
+      ratingCount += 1;
+    }
+
+    return {
+      'id': d.id,
+      'title': data['title'],
+      'students': data['enrolledCount'] ?? 0,
+      'createdAt': data['createdAt'],
+      'status': data['status'],
+    };
+  }).toList();
+
+  // Get upcoming live sessions
+  final sessionsSnap = await _firestore
+      .collection('live_sessions')
+      .where('trainerId', isEqualTo: uid)
+      .where('scheduledAt', isGreaterThan: now)
+      .orderBy('scheduledAt')
+      .limit(5)
+      .get();
+}
+</code></pre>
+<hr />
+<h2 id="creating-managing-courses">Creating &amp; Managing Courses</h2>
+<h3 id="course-structure">Course Structure</h3>
+<p><strong>Course Components</strong>:
+1. <strong>Basic Info</strong>: Title, description, category
+2. <strong>Content</strong>: Lessons, modules, assignments
+3. <strong>Requirements</strong>: Prerequisites, skills needed
+4. <strong>Pricing</strong>: Course fee (if applicable)
+5. <strong>Media</strong>: Course thumbnail, promotional images
+6. <strong>Status</strong>: Draft → Pending → Approved → Published</p>
+<h3 id="creating-a-course">Creating a Course</h3>
+<p><strong>Step 1: Start New Course</strong>
+1. Go to <strong>Courses</strong> screen
+2. Tap <strong>"+"</strong> icon (top right)
+3. Or click <strong>"Create New Course"</strong> button</p>
+<p><strong>Step 2: Fill Basic Information</strong></p>
+<pre><code class="language-dart">// Course creation dialog
+showDialog(
+  context: context,
+  builder: (context) {
+    return AlertDialog(
+      title: const Text('Create New Course'),
+      content: SingleChildScrollView(
+        child: Column(
+          children: [
+            StandardInput(
+              controller: titleController,
+              label: 'Title',
+              hint: 'e.g. Flutter Fundamentals',
+              prefixIcon: Icons.video_library,
+            ),
+            StandardInput(
+              controller: descriptionController,
+              label: 'Description',
+              hint: 'What will students learn?',
+              prefixIcon: Icons.description,
+              maxLines: 3,
+            ),
+          ],
+        ),
+      ),
+    );
+  },
+);
+</code></pre>
+<p>Enter:
+- <strong>Title</strong>: Clear, specific course title
+  - Good: "Flutter App Development for Beginners"
+  - Bad: "Mobile Development"
+- <strong>Description</strong>: What students will learn (100-500 words)
+  - Learning outcomes
+  - Topics covered
+  - Who should enroll</p>
+<p><strong>Step 3: Add Course Details</strong>
+1. <strong>Category</strong>: Select from list
+2. <strong>Level</strong>: Beginner, Intermediate, Advanced
+3. <strong>Duration</strong>: Estimated completion time
+4. <strong>Price</strong>: Course fee (₱0 for free courses)
+5. <strong>Thumbnail</strong>: Upload course image (500x300 recommended)</p>
+<p><strong>Step 4: Add Course Content</strong>
+1. Create modules/sections
+2. Add lessons to each section
+3. Add resources (PDFs, links, files)
+4. Add assignments or quizzes</p>
+<p><strong>Step 5: Submit for Approval</strong>
+1. Review all information
+2. Click <strong>"Submit Course"</strong>
+3. Status changes to "Pending"
+4. Admin will review within 24-48 hours
+5. You'll get approval/rejection email</p>
+<h3 id="course-status-flow">Course Status Flow</h3>
+<pre><code>Draft → Pending Approval → Approved → Published → Archived
+   ↓           ↓              ↓          ↓          ↓
+ Editing    Admin Review   Live &amp;    Students    No longer
+            In Progress   Accepting   Enrolling    Available
+                          Students
+</code></pre>
+<h3 id="managing-your-courses">Managing Your Courses</h3>
+<p><strong>Courses Screen Layout</strong>:</p>
+<p><strong>Tab 1: Published Courses</strong>
+- Courses approved and live
+- Students can enroll
+- Show enrollment count
+- Show ratings
+- Tap to view details</p>
+<p><strong>Tab 2: Drafts</strong>
+- Courses pending approval
+- Still being edited
+- Can be modified
+- Can be deleted before submission</p>
+<p><strong>Actions on Course Card</strong>:
+- <strong>Tap Card</strong>: View course details
+- <strong>Swipe Left</strong>: Delete (draft only) or Archive
+- <strong>Edit Button</strong>: Modify course content
+- <strong>View Analytics</strong>: See enrollment, reviews, etc.</p>
+<h3 id="editing-a-published-course">Editing a Published Course</h3>
+<p><strong>Can Edit</strong>:
+- ✅ Description
+- ✅ Content (add/remove lessons)
+- ✅ Pricing
+- ✅ Requirements
+- ❌ Title (requires reapproval)
+- ❌ Category (requires reapproval)</p>
+<p><strong>How to Edit</strong>:
+1. Open published course
+2. Tap <strong>"Edit"</strong> button
+3. Modify content
+4. Tap <strong>"Save"</strong>
+5. Changes take effect immediately</p>
+<h3 id="deleting-a-course">Deleting a Course</h3>
+<p><strong>For Drafts</strong> (Pending Approval):
+1. Swipe left on course
+2. Tap <strong>"Delete"</strong>
+3. Confirm deletion</p>
+<p><strong>For Published Courses</strong>:
+1. Tap <strong>"More Options"</strong> (...)
+2. Select <strong>"Archive Course"</strong>
+3. Course no longer visible to students
+4. Can be restored later</p>
+<hr />
+<h2 id="live-sessions">Live Sessions</h2>
+<h3 id="scheduling-live-sessions">Scheduling Live Sessions</h3>
+<p>Live sessions let you teach directly to students.</p>
+<p><strong>Step 1: Create Session</strong>
+1. Go to <strong>Live Sessions</strong> screen
+2. Tap <strong>"Schedule New Session"</strong>
+3. Fill in details:
+   - <strong>Title</strong>: Session topic
+   - <strong>Description</strong>: What you'll cover
+   - <strong>Date &amp; Time</strong>: When session occurs
+   - <strong>Duration</strong>: How long (e.g., 1 hour)
+   - <strong>Max Capacity</strong>: How many students
+   - <strong>Associated Course</strong> (optional)</p>
+<p><strong>Step 2: Set Session Details</strong></p>
+<pre><code class="language-dart">// Live session creation
+_showCreateSessionDialog() {
+  final titleController = TextEditingController();
+  final descriptionController = TextEditingController();
+  DateTime selectedDateTime = DateTime.now();
+
+  showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: const Text('Schedule Live Session'),
+        content: SingleChildScrollView(
+          child: Column(
+            children: [
+              // Session title
+              StandardInput(
+                controller: titleController,
+                label: 'Session Title',
+                hint: 'e.g., Building Your First Flutter App',
+              ),
+              // Session description
+              StandardInput(
+                controller: descriptionController,
+                label: 'What will you cover?',
+                hint: 'Brief overview of session content',
+                maxLines: 3,
+              ),
+              // Date and time picker
+              Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Date &amp; Time'),
+                        ElevatedButton(
+                          onPressed: () =&gt; _selectDateTime(),
+                          child: Text(
+                            DateFormat('MMM dd, yyyy HH:mm')
+                                .format(selectedDateTime)
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              // Duration
+              StandardInput(
+                controller: durationController,
+                label: 'Duration (minutes)',
+                hint: 'e.g., 60',
+                keyboardType: TextInputType.number,
+              ),
+              // Max students
+              StandardInput(
+                controller: capacityController,
+                label: 'Max Students',
+                hint: 'e.g., 30',
+                keyboardType: TextInputType.number,
+              ),
+            ],
+          ),
+        ),
+        actions: [
+          StandardButton(
+            label: 'Cancel',
+            onPressed: () =&gt; Navigator.pop(context),
+          ),
+          StandardButton(
+            label: 'Schedule Session',
+            onPressed: _createSession,
+          ),
+        ],
+      );
+    },
+  );
+}
+</code></pre>
+<p><strong>Step 3: Confirm and Publish</strong>
+1. Review all details
+2. Click <strong>"Schedule Session"</strong>
+3. Session is now scheduled
+4. Students can enroll
+5. Notification sent to interested students</p>
+<h3 id="running-a-live-session">Running a Live Session</h3>
+<p><strong>Before Session</strong> (30 minutes before):
+1. Open scheduled session
+2. Tap <strong>"Join Session"</strong>
+3. Allow camera/microphone access
+4. Test your audio and video
+5. Check screen sharing (if needed)</p>
+<p><strong>During Session</strong>:
+- All enrolled students will see you
+- Can see student list
+- Can mute/unmute students
+- Can end session anytime
+- Session is recorded (optional)</p>
+<p><strong>After Session</strong>:
+- Recording is available for students
+- Session rating opened for feedback
+- Students can ask questions in chat
+- Can download attendance report</p>
+<h3 id="session-types">Session Types</h3>
+<p><strong>Live Q&amp;A</strong>:
+- Answer student questions
+- Quick technical guidance
+- Short format (15-30 min)
+- Usually free</p>
+<p><strong>Tutorial Session</strong>:
+- Teach specific topic
+- Step-by-step instruction
+- Medium format (45-90 min)
+- May be free or paid</p>
+<p><strong>Workshop</strong>:
+- Hands-on project work
+- Full course structure
+- Long format (2-4 hours)
+- Usually paid</p>
+<p><strong>Office Hours</strong>:
+- One-on-one or small groups
+- Student-directed
+- Flexible duration
+- May be free or paid</p>
+<hr />
+<h2 id="student-management">Student Management</h2>
+<h3 id="viewing-your-students">Viewing Your Students</h3>
+<p><strong>Access Student List</strong>:
+1. Go to any course
+2. Tap <strong>"Students"</strong> tab
+3. See all enrolled students</p>
+<p><strong>Student List Shows</strong>:
+- Student name and photo
+- Enrollment date
+- Completion percentage
+- Last active date
+- Rating given (if any)
+- Assignment scores</p>
+<h3 id="student-engagement">Student Engagement</h3>
+<p><strong>Track Progress</strong>:
+1. Tap on student name
+2. View:
+   - Lessons completed
+   - Assignments submitted
+   - Videos watched
+   - Time spent
+   - Quiz scores</p>
+<p><strong>Send Messages</strong>:
+1. From student profile
+2. Tap <strong>"Message"</strong> button
+3. Send personalized message
+4. Student receives notification</p>
+<p><strong>Provide Feedback</strong>:
+1. View student's assignments
+2. Add comments/grades
+3. Provide constructive feedback
+4. Student notified of update</p>
+<h3 id="handling-issues">Handling Issues</h3>
+<p><strong>Student Not Engaging</strong>:
+1. Send personalized message
+2. Offer help/support
+3. Share resources
+4. Ask about blockers</p>
+<p><strong>Cheating/Integrity</strong>:
+1. Document evidence
+2. Contact student first
+3. If serious, report to admin
+4. Admin handles investigation</p>
+<p><strong>Student Disputes/Complaints</strong>:
+1. Try to resolve directly
+2. Offer refund if reasonable
+3. If unresolved, escalate to admin
+4. Admin mediates</p>
+<hr />
+<h2 id="earnings-payments">Earnings &amp; Payments</h2>
+<h3 id="how-you-earn">How You Earn</h3>
+<p><strong>Revenue Sources</strong>:
+1. <strong>Course Enrollment</strong>: Students pay to enroll
+2. <strong>Live Session Fees</strong>: If you charge for sessions
+3. <strong>Assignments/Certifications</strong>: Issuing certificates</p>
+<p><strong>Commission Structure</strong>:
+- Platform takes commission (typically 20-30%)
+- You receive balance in wallet
+- Minimum withdrawal: ₱500</p>
+<h3 id="earnings-dashboard">Earnings Dashboard</h3>
+<p><strong>View Earnings</strong>:
+1. Go to <strong>Profile</strong> → <strong>Wallet/Payments</strong>
+2. See:
+   - Total earned (all time)
+   - Current balance
+   - Pending amount
+   - Transactions history</p>
+<p><strong>Earnings Breakdown</strong>:
+- By course
+- By time period
+- By student
+- By activity type</p>
+<h3 id="withdrawing-money">Withdrawing Money</h3>
+<p><strong>Process</strong>:
+1. Go to <strong>Wallet</strong>
+2. Tap <strong>"Withdraw"</strong>
+3. Enter amount (minimum ₱500)
+4. Select bank account
+5. Review details
+6. Tap <strong>"Confirm Withdrawal"</strong></p>
+<p><strong>Processing</strong>:
+- Usually 1-3 business days
+- Bank dependent
+- May have small fee
+- Check status in history</p>
+<h3 id="payment-records">Payment Records</h3>
+<p><strong>Invoice Generation</strong>:
+- Can download invoices
+- Needed for taxes
+- Shows all earnings
+- Monthly or custom period</p>
+<p><strong>Tax Documentation</strong>:
+- Keep records for tax purposes
+- Report income to BIR
+- Get necessary documentation from app
+- Consult accountant for guidance</p>
+<hr />
+<h2 id="ratings-reviews">Ratings &amp; Reviews</h2>
+<h3 id="student-ratings">Student Ratings</h3>
+<p><strong>How Ratings Work</strong>:
+- Students can rate course 1-5 stars
+- Can also leave written review
+- Ratings visible on your profile
+- Average rating calculated automatically</p>
+<p><strong>Rating Scale</strong>:
+- ⭐ 5 stars: Excellent instructor
+- ⭐⭐ 4 stars: Very good
+- ⭐⭐⭐ 3 stars: Good
+- ⭐⭐⭐⭐ 2 stars: Needs improvement
+- ⭐⭐⭐⭐⭐ 1 star: Poor quality</p>
+<h3 id="managing-reviews">Managing Reviews</h3>
+<p><strong>View Reviews</strong>:
+1. Go to course details
+2. Scroll to reviews section
+3. See all student feedback
+4. Filter by rating
+5. Sort by date/rating</p>
+<p><strong>Respond to Reviews</strong>:
+1. Find the review
+2. Tap <strong>"Reply"</strong>
+3. Write professional response
+4. Address concerns
+5. Thank for feedback</p>
+<p><strong>Example Response</strong>:
+"Thank you for the feedback! I'm sorry the course didn't fully meet your expectations. I'd be happy to help clarify any topics. Please feel free to message me. 👍"</p>
+<h3 id="improving-your-rating">Improving Your Rating</h3>
+<p><strong>Tips</strong>:
+- ✅ Clear explanations
+- ✅ Responsive to questions
+- ✅ Regular course updates
+- ✅ Engaging content
+- ✅ Provide excellent support
+- ✅ Update based on feedback
+- ✅ Be professional always
+- ✅ Address negative feedback constructively</p>
+<hr />
+<h2 id="best-practices">Best Practices</h2>
+<h3 id="course-design">Course Design</h3>
+<p><strong>Structure Effectively</strong>:
+1. Divide into logical modules
+2. Start with basics
+3. Progress to advanced
+4. Include real-world examples
+5. Have clear learning objectives
+6. Break content into digestible lessons
+7. Include exercises/practice
+8. End with capstone project</p>
+<p><strong>Quality Content</strong>:
+- ✅ Clear audio (use good microphone)
+- ✅ Good video quality
+- ✅ Professional presentation
+- ✅ Consistent branding
+- ✅ Regular updates
+- ✅ Current material
+- ✅ Engaging style
+- ✅ Interactive components</p>
+<p><strong>Lesson Format</strong>:
+1. Introduction (2-3 minutes)
+2. Learning objectives
+3. Main content (10-20 minutes)
+4. Demonstrations (live coding, walkthroughs)
+5. Exercises (hands-on practice)
+6. Summary (recap key points)
+7. Resources (additional materials)</p>
+<h3 id="student-engagement_1">Student Engagement</h3>
+<p><strong>Keep Students Engaged</strong>:
+- ✅ Respond to messages within 24 hours
+- ✅ Grade assignments promptly (within 3-5 days)
+- ✅ Provide constructive feedback
+- ✅ Use discussion forums
+- ✅ Host Q&amp;A sessions regularly
+- ✅ Create community among students
+- ✅ Recognize achievements
+- ✅ Share additional resources</p>
+<p><strong>Communication Tips</strong>:
+- Be professional but friendly
+- Be responsive and helpful
+- Celebrate student successes
+- Encourage questions
+- Admit when you don't know
+- Provide specific feedback
+- Be patient with beginners
+- Follow up on concerns</p>
+<h3 id="pricing-strategy">Pricing Strategy</h3>
+<p><strong>Free vs Paid</strong>:
+- <strong>Free</strong>: Build audience, get reviews, establish authority
+- <strong>Paid</strong>: Generate income, attract serious students</p>
+<p><strong>Pricing Guidelines</strong>:
+- Research competitor pricing
+- Consider course depth and length
+- Factor in your expertise level
+- Start lower, increase with ratings
+- Offer discounts for bundles
+- Have occasional promotions</p>
+<p><strong>Example Pricing</strong>:
+- Beginner course: ₱500-₱1,500
+- Intermediate: ₱1,500-₱3,500
+- Advanced: ₱3,500-₱8,000
+- Bundle (3+ courses): 20-30% discount</p>
+<h3 id="marketing-your-courses">Marketing Your Courses</h3>
+<p><strong>Promotion Strategies</strong>:
+1. <strong>Profile Optimization</strong>: Complete, professional profile
+2. <strong>Social Media</strong>: Share course updates and tips
+3. <strong>Testimonials</strong>: Showcase student success
+4. <strong>Free Content</strong>: Share sample lessons
+5. <strong>Discounts</strong>: Limited-time promotions
+6. <strong>Referrals</strong>: Reward student referrals
+7. <strong>Collaborations</strong>: Partner with other trainers
+8. <strong>Content Marketing</strong>: Blog posts, YouTube</p>
+<h3 id="technical-requirements">Technical Requirements</h3>
+<p><strong>Your Setup</strong>:
+- Good internet connection (5+ Mbps)
+- Quality microphone (USB or headset)
+- Quality camera/webcam
+- Good lighting
+- Quiet room
+- Updated software/OS
+- Backup internet option
+- Recording capability</p>
+<p><strong>Student Requirements</strong>:
+- Internet connection
+- Browser (Chrome, Firefox, Safari)
+- Speakers or headphones
+- (Camera optional for most sessions)</p>
+<hr />
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="course-not-getting-approved">Course Not Getting Approved</h3>
+<p><strong>Problem</strong>: Stuck in "Pending" status</p>
+<p><strong>Possible Causes</strong>:
+- Incomplete information
+- Inappropriate content
+- Poor quality description
+- Missing required fields
+- Similar course already exists</p>
+<p><strong>Solutions</strong>:
+1. Wait 24-48 hours (normal review time)
+2. Check email for rejection reason
+3. Update course based on feedback
+4. Resubmit
+5. Contact admin if no response</p>
+<h3 id="live-session-issues">Live Session Issues</h3>
+<p><strong>Problem</strong>: Can't connect to session</p>
+<p><strong>Solutions</strong>:
+1. Check internet connection
+2. Allow camera/microphone permissions
+3. Refresh browser
+4. Try different browser
+5. Restart app
+6. Update app to latest version</p>
+<p><strong>Problem</strong>: Audio/Video problems</p>
+<p><strong>Solutions</strong>:
+1. Check microphone works
+2. Check camera works
+3. Test in Settings first
+4. Reduce video quality
+5. Close other apps
+6. Check lighting
+7. Move closer to router</p>
+<h3 id="students-not-enrolling">Students Not Enrolling</h3>
+<p><strong>Problem</strong>: Course has zero/few enrollments</p>
+<p><strong>Possible Reasons</strong>:
+- Poor course description
+- Low or new trainer rating
+- High price
+- Course not discoverable
+- Wrong category</p>
+<p><strong>Solutions</strong>:
+1. Improve course description
+2. Add course thumbnail
+3. Get initial reviews (offer discount)
+4. Optimize course title (keywords)
+5. Ask enrolled students to rate
+6. Promote on social media
+7. Reduce price temporarily</p>
+<hr />
+<h2 id="support-resources">Support &amp; Resources</h2>
+<h3 id="help-support">Help &amp; Support</h3>
+<p><strong>In-App Help</strong>:
+1. Settings → Help &amp; Support
+2. Browse FAQ
+3. Watch tutorial videos</p>
+<p><strong>Contact Support</strong>:
+- Email: support@getjobs.com
+- Include course/session ID
+- Describe issue clearly
+- Attach screenshots</p>
+<p><strong>Community Forum</strong>:
+- Connect with other trainers
+- Share tips and experiences
+- Get peer support
+- Access shared resources</p>
+<h3 id="trainer-resources">Trainer Resources</h3>
+<p><strong>Available Resources</strong>:
+- Course template examples
+- Video editing guides
+- Live streaming tips
+- Student engagement ideas
+- Pricing guides
+- Marketing templates
+- Technical setup guides</p>
+<hr />
+<h2 id="conclusion">Conclusion</h2>
+<p>The getJOBS Trainer platform empowers you to reach and educate students worldwide. Focus on quality content, excellent student service, and continuous improvement. Good luck with your teaching journey! 🎓</p>
+<hr />
+<p><em>Last Updated: 2024</em>
+<em>Platform: getJOBS Freelance App</em></p>
+</body>
+</html>

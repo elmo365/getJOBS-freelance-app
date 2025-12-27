@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>COMPANY_MANUAL</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#botsjobsconnect-company-employer-manual"
+id="toc-botsjobsconnect-company-employer-manual">BotsJobsConnect Company
+&amp; Employer Manual</a>
+<ul>
+<li><a href="#welcome-to-botsjobsconnect"
+id="toc-welcome-to-botsjobsconnect">Welcome to BotsJobsConnect</a></li>
+<li><a href="#getting-started" id="toc-getting-started">Getting
+Started</a></li>
+<li><a href="#company-verification-kyc"
+id="toc-company-verification-kyc">Company Verification (KYC)</a></li>
+<li><a href="#your-employer-dashboard"
+id="toc-your-employer-dashboard">Your Employer Dashboard</a></li>
+<li><a href="#posting-jobs" id="toc-posting-jobs">Posting Jobs</a></li>
+<li><a href="#reviewing-applications"
+id="toc-reviewing-applications">Reviewing Applications</a></li>
+<li><a href="#interview-scheduling"
+id="toc-interview-scheduling">Interview Scheduling</a></li>
+<li><a href="#verified-profiles" id="toc-verified-profiles">Verified
+Profiles</a></li>
+<li><a href="#ai-features-for-employers"
+id="toc-ai-features-for-employers">AI Features for Employers</a></li>
+<li><a href="#notifications"
+id="toc-notifications">Notifications</a></li>
+<li><a href="#profile-management" id="toc-profile-management">Profile
+Management</a></li>
+<li><a href="#tips-for-success" id="toc-tips-for-success">Tips for
+Success</a></li>
+<li><a href="#troubleshooting"
+id="toc-troubleshooting">Troubleshooting</a></li>
+<li><a href="#contact-support" id="toc-contact-support">Contact
+Support</a></li>
+<li><a href="#privacy-security" id="toc-privacy-security">Privacy &amp;
+Security</a></li>
+<li><a href="#quick-reference" id="toc-quick-reference">Quick
+Reference</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="botsjobsconnect-company-employer-manual">BotsJobsConnect Company
+&amp; Employer Manual</h1>
+<h2 id="welcome-to-botsjobsconnect">Welcome to BotsJobsConnect</h2>
+<p>This comprehensive guide is designed for <strong>Companies and
+Employers</strong> using BotsJobsConnect to find and hire talent in
+Botswana. Learn how to post jobs, review candidates, and leverage
+AI-powered features to streamline your hiring process.</p>
+<hr />
+<h2 id="getting-started">Getting Started</h2>
+<h3 id="creating-a-company-account">Creating a Company Account</h3>
+<ol type="1">
+<li><strong>Download the App</strong> from the App Store or Play
+Store</li>
+<li><strong>Open the App</strong> and tap “Register”</li>
+<li><strong>Select “Employer/Company”</strong> as your account type</li>
+<li><strong>Fill in Company Details:</strong>
+<ul>
+<li>Company Name (required)</li>
+<li>Business Email Address</li>
+<li>Password (minimum 8 characters)</li>
+<li>Phone Number</li>
+<li>Business Address</li>
+<li>Company Logo (recommended)</li>
+</ul></li>
+<li><strong>Tap “Create Account”</strong></li>
+<li><strong>Verify your email</strong> (check your inbox)</li>
+</ol>
+<h3 id="logging-in">Logging In</h3>
+<ol type="1">
+<li>Open the app</li>
+<li>Tap “Login”</li>
+<li>Enter your company email and password</li>
+<li>Tap “Sign In”</li>
+</ol>
+<hr />
+<h2 id="company-verification-kyc">Company Verification (KYC)</h2>
+<p><strong>Important:</strong> You must verify your company before
+posting jobs.</p>
+<h3 id="required-documents">Required Documents</h3>
+<p>Upload the following documents for verification:</p>
+<ol type="1">
+<li><strong>CIPA Certificate</strong> (PDF/DOC)
+<ul>
+<li>Certificate of Incorporation from CIPA</li>
+<li>Must be current and valid</li>
+</ul></li>
+<li><strong>CIPA Extract</strong> (PDF/DOC)
+<ul>
+<li>Recent extract from CIPA showing company status</li>
+<li>Should be dated within the last 6 months</li>
+</ul></li>
+<li><strong>BURS TIN Evidence</strong> (PDF/JPG/PNG)
+<ul>
+<li>Tax Identification Number certificate</li>
+<li>Proof of tax registration</li>
+</ul></li>
+<li><strong>Proof of Business Address</strong> (PDF/JPG/PNG)
+<ul>
+<li>Utility bill, lease agreement, or bank statement</li>
+<li>Must show business address matching registration</li>
+</ul></li>
+</ol>
+<h3 id="optional-documents">Optional Documents</h3>
+<ul>
+<li><strong>Authority Letter / Resolution</strong> (PDF/DOC)
+<ul>
+<li>If registering on behalf of the company</li>
+<li>Board resolution authorizing registration</li>
+</ul></li>
+</ul>
+<h3 id="verification-process">Verification Process</h3>
+<ol type="1">
+<li>Go to <strong>Company Verification</strong> from your dashboard</li>
+<li>Upload all required documents</li>
+<li>Review your submissions</li>
+<li>Tap “Submit for Review”</li>
+<li>Wait for admin approval (typically 1-3 business days)</li>
+<li>You’ll receive a notification when approved</li>
+</ol>
+<h3 id="verification-status">Verification Status</h3>
+<ul>
+<li><strong>Pending:</strong> Documents submitted, awaiting review</li>
+<li><strong>Under Review:</strong> Admin is reviewing your
+documents</li>
+<li><strong>Approved:</strong> ✅ You can now post jobs</li>
+<li><strong>Rejected:</strong> Review rejection reason and resubmit</li>
+</ul>
+<p><strong>Note:</strong> You cannot post jobs until your company is
+verified and approved.</p>
+<hr />
+<h2 id="your-employer-dashboard">Your Employer Dashboard</h2>
+<p>After logging in, you’ll see your personalized dashboard with:</p>
+<h3 id="key-metrics">Key Metrics</h3>
+<ul>
+<li><strong>Active Jobs</strong> - Number of jobs currently posted</li>
+<li><strong>Applications</strong> - Total applications received</li>
+<li><strong>Interviews Scheduled</strong> - Upcoming interviews</li>
+</ul>
+<h3 id="quick-actions">Quick Actions</h3>
+<ul>
+<li><strong>Post Job</strong> - Create a new job posting</li>
+<li><strong>Verified Profiles</strong> - Browse verified candidate
+profiles</li>
+<li><strong>AI Suggestions</strong> - Get AI-powered candidate
+recommendations</li>
+<li><strong>Schedule Interview</strong> - Manage interview
+scheduling</li>
+</ul>
+<h3 id="recent-activity">Recent Activity</h3>
+<ul>
+<li>Latest applications received</li>
+<li>Interview invitations sent</li>
+<li>Job posting updates</li>
+</ul>
+<hr />
+<h2 id="posting-jobs">Posting Jobs</h2>
+<h3 id="creating-a-job-posting">Creating a Job Posting</h3>
+<ol type="1">
+<li><p>Go to <strong>Post a Job</strong> from your dashboard</p></li>
+<li><p>Fill in job details:</p>
+<p><strong>Basic Information:</strong></p>
+<ul>
+<li><strong>Job Title</strong> (required) - e.g., “Software
+Developer”</li>
+<li><strong>Category</strong> (required) - IT, Healthcare, Finance,
+etc.</li>
+<li><strong>Location</strong> - City, country, or “Remote”</li>
+<li><strong>Job Type</strong> - Full-time, Part-time, Contract,
+Internship</li>
+</ul>
+<p><strong>Compensation:</strong></p>
+<ul>
+<li><strong>Salary Range</strong> - Minimum and maximum (BWP)</li>
+<li><strong>Benefits</strong> - Health insurance, bonuses, etc.</li>
+</ul>
+<p><strong>Job Details:</strong></p>
+<ul>
+<li><strong>Description</strong> - Detailed job description</li>
+<li><strong>Requirements</strong> - Skills, education, experience
+needed</li>
+<li><strong>Responsibilities</strong> - Key duties and tasks</li>
+<li><strong>Experience Level</strong> - Entry, Mid, Senior</li>
+</ul>
+<p><strong>Additional:</strong></p>
+<ul>
+<li><strong>Application Deadline</strong> (optional)</li>
+<li><strong>Start Date</strong> (optional)</li>
+<li><strong>Remote Work Options</strong></li>
+</ul></li>
+<li><p><strong>Review</strong> your posting</p></li>
+<li><p><strong>Publish</strong> to make it live</p></li>
+</ol>
+<h3 id="ai-job-description-writer">AI Job Description Writer 🤖</h3>
+<p><strong>Coming Soon:</strong> Use AI to generate professional,
+SEO-optimized job descriptions from basic requirements.</p>
+<h3 id="managing-your-jobs">Managing Your Jobs</h3>
+<ul>
+<li><strong>View All Jobs:</strong> See all your posted jobs</li>
+<li><strong>Edit Job:</strong> Update job details (if no applications
+yet)</li>
+<li><strong>Close Job:</strong> Stop accepting applications</li>
+<li><strong>Delete Job:</strong> Remove job posting (use carefully)</li>
+</ul>
+<h3 id="best-practices-for-job-postings">Best Practices for Job
+Postings</h3>
+<ol type="1">
+<li><strong>Be Specific:</strong> Clear job titles and descriptions
+attract better candidates</li>
+<li><strong>List Requirements:</strong> Be transparent about required
+skills and experience</li>
+<li><strong>Include Salary Range:</strong> Attracts more qualified
+applicants</li>
+<li><strong>Use Keywords:</strong> Help candidates find your job in
+search</li>
+<li><strong>Update Regularly:</strong> Keep job postings current</li>
+</ol>
+<hr />
+<h2 id="reviewing-applications">Reviewing Applications</h2>
+<h3 id="viewing-applications">Viewing Applications</h3>
+<ol type="1">
+<li>Go to your <strong>Job Posting</strong></li>
+<li>Tap <strong>“View Applications”</strong></li>
+<li>See all applicants with:
+<ul>
+<li>Candidate name and photo</li>
+<li>Application date</li>
+<li>Match score (if available)</li>
+<li>Quick view of profile</li>
+</ul></li>
+</ol>
+<h3 id="application-details">Application Details</h3>
+<p>For each application, you can view:</p>
+<ul>
+<li><strong>Candidate Profile:</strong>
+<ul>
+<li>Full CV/Resume</li>
+<li>Skills and experience</li>
+<li>Education background</li>
+<li>Video resume (if available)</li>
+</ul></li>
+<li><strong>Application Information:</strong>
+<ul>
+<li>Cover letter/message</li>
+<li>Application date</li>
+<li>Status (Pending, Shortlisted, Rejected)</li>
+</ul></li>
+</ul>
+<h3 id="application-actions">Application Actions</h3>
+<ol type="1">
+<li><strong>View Full Profile</strong> - See complete candidate
+information</li>
+<li><strong>Shortlist</strong> - Mark as potential candidate</li>
+<li><strong>Schedule Interview</strong> - Set up interview
+date/time</li>
+<li><strong>Reject</strong> - Decline application (provide
+feedback)</li>
+<li><strong>Download CV</strong> - Save candidate resume</li>
+</ol>
+<h3 id="ai-powered-candidate-ranking">AI-Powered Candidate Ranking
+🤖</h3>
+<p>The app uses AI to rank candidates by best fit:</p>
+<ol type="1">
+<li>Go to <strong>AI Candidate Suggestions</strong></li>
+<li>Select a job posting</li>
+<li>View AI-ranked candidates with:
+<ul>
+<li><strong>Match Score</strong> (0-100%)</li>
+<li><strong>Reasoning</strong> - Why they’re a good fit</li>
+<li><strong>Skills Match</strong> - Matching skills highlighted</li>
+<li><strong>Experience Alignment</strong> - Relevant experience</li>
+</ul></li>
+</ol>
+<p><strong>AI Analyzes:</strong> - Skills compatibility - Experience
+relevance - Education alignment - Overall fit for the role</p>
+<p><strong>Benefits:</strong> - Save time reviewing applications - Find
+best-fit candidates faster - Reduce bias in initial screening</p>
+<hr />
+<h2 id="interview-scheduling">Interview Scheduling</h2>
+<h3 id="scheduling-an-interview">Scheduling an Interview</h3>
+<ol type="1">
+<li>Go to <strong>Schedule Interview</strong> or select a candidate</li>
+<li>Choose <strong>Date and Time</strong></li>
+<li>Select <strong>Interview Type:</strong>
+<ul>
+<li>In-person</li>
+<li>Video call (Zoom, Teams, etc.)</li>
+<li>Phone call</li>
+</ul></li>
+<li>Add <strong>Interview Details:</strong>
+<ul>
+<li>Location or video link</li>
+<li>Interview format (technical, behavioral, etc.)</li>
+<li>Interviewer names</li>
+</ul></li>
+<li>Add <strong>Notes</strong> (optional)</li>
+<li><strong>Send Invitation</strong></li>
+</ol>
+<h3 id="managing-interviews">Managing Interviews</h3>
+<ul>
+<li><strong>View All Interviews:</strong> See all scheduled
+interviews</li>
+<li><strong>Reschedule:</strong> Change date/time if needed</li>
+<li><strong>Cancel:</strong> Cancel interview with notification</li>
+<li><strong>Add Notes:</strong> Record interview feedback</li>
+<li><strong>Mark Complete:</strong> After interview is done</li>
+</ul>
+<h3 id="interview-best-practices">Interview Best Practices</h3>
+<ol type="1">
+<li><strong>Confirm Early:</strong> Send invitations at least 3 days in
+advance</li>
+<li><strong>Provide Details:</strong> Include location, format, and what
+to expect</li>
+<li><strong>Follow Up:</strong> Send reminders 24 hours before</li>
+<li><strong>Take Notes:</strong> Record feedback during/after
+interview</li>
+<li><strong>Communicate:</strong> Update candidates on next steps</li>
+</ol>
+<hr />
+<h2 id="verified-profiles">Verified Profiles</h2>
+<h3 id="browsing-verified-candidates">Browsing Verified Candidates</h3>
+<ol type="1">
+<li>Go to <strong>Verified Profiles</strong> from your dashboard</li>
+<li><strong>Filter by:</strong>
+<ul>
+<li>Skills</li>
+<li>Experience level</li>
+<li>Education</li>
+<li>Location</li>
+<li>Availability</li>
+</ul></li>
+<li><strong>View Profiles:</strong>
+<ul>
+<li>Professional summary</li>
+<li>Skills and certifications</li>
+<li>Work experience</li>
+<li>Education background</li>
+<li>Portfolio links (if available)</li>
+</ul></li>
+</ol>
+<h3 id="contacting-candidates">Contacting Candidates</h3>
+<ul>
+<li><strong>Send Message</strong> - Direct communication</li>
+<li><strong>Request Application</strong> - Invite to apply for your
+job</li>
+<li><strong>Save Profile</strong> - Bookmark for later</li>
+</ul>
+<hr />
+<h2 id="ai-features-for-employers">AI Features for Employers</h2>
+<h3 id="ai-candidate-suggestions">1. AI Candidate Suggestions 🤖</h3>
+<p><strong>What it does:</strong> - Analyzes job requirements - Matches
+candidates from the platform - Ranks by compatibility - Provides
+detailed reasoning</p>
+<p><strong>How to use:</strong> 1. Go to <strong>AI Candidate
+Suggestions</strong> 2. Select a job posting 3. Review AI-ranked
+candidates 4. See match scores and reasons 5. Contact or shortlist top
+candidates</p>
+<h3 id="ai-job-description-writer-1">2. AI Job Description Writer
+📝</h3>
+<p><strong>Coming Soon:</strong> Generate professional job descriptions
+automatically.</p>
+<p><strong>Features:</strong> - SEO-optimized descriptions - Inclusive
+language suggestions - Industry best practices - Customizable tone</p>
+<h3 id="application-analytics">3. Application Analytics</h3>
+<p><strong>Track:</strong> - Application sources - Candidate quality
+metrics - Time-to-hire statistics - Interview conversion rates</p>
+<hr />
+<h2 id="notifications">Notifications</h2>
+<p>Stay updated with:</p>
+<ul>
+<li><strong>New Applications</strong> - When candidates apply</li>
+<li><strong>Interview Reminders</strong> - Upcoming interviews</li>
+<li><strong>Verification Status</strong> - Company approval updates</li>
+<li><strong>Platform Updates</strong> - New features and
+announcements</li>
+</ul>
+<p><strong>Manage Notifications:</strong> - Go to <strong>Settings →
+Notifications</strong> - Enable/disable specific notification types -
+Set quiet hours</p>
+<hr />
+<h2 id="profile-management">Profile Management</h2>
+<h3 id="updating-company-profile">Updating Company Profile</h3>
+<ol type="1">
+<li>Go to <strong>My Profile</strong> or tap your company logo</li>
+<li>Edit information:
+<ul>
+<li>Company name</li>
+<li>Business address</li>
+<li>Phone number</li>
+<li>Company description</li>
+<li>Company logo</li>
+<li>Website/social media links</li>
+</ul></li>
+<li><strong>Save Changes</strong></li>
+</ol>
+<h3 id="company-profile-best-practices">Company Profile Best
+Practices</h3>
+<ol type="1">
+<li><strong>Complete Profile:</strong> 100% complete profiles get more
+views</li>
+<li><strong>Professional Logo:</strong> Use high-quality company
+logo</li>
+<li><strong>Company Description:</strong> Write compelling company
+overview</li>
+<li><strong>Add Links:</strong> Include website and social media</li>
+<li><strong>Keep Updated:</strong> Regularly update company
+information</li>
+</ol>
+<hr />
+<h2 id="tips-for-success">Tips for Success</h2>
+<h3 id="hiring-best-practices">Hiring Best Practices</h3>
+<ol type="1">
+<li><strong>Write Clear Job Descriptions</strong>
+<ul>
+<li>Be specific about requirements</li>
+<li>Include salary range</li>
+<li>Describe company culture</li>
+</ul></li>
+<li><strong>Respond Promptly</strong>
+<ul>
+<li>Quick responses attract better candidates</li>
+<li>Review applications within 48 hours</li>
+<li>Set clear expectations</li>
+</ul></li>
+<li><strong>Use AI Suggestions</strong>
+<ul>
+<li>Leverage AI candidate ranking</li>
+<li>Save time on initial screening</li>
+<li>Focus on best-fit candidates</li>
+</ul></li>
+<li><strong>Provide Feedback</strong>
+<ul>
+<li>Give constructive feedback to rejected candidates</li>
+<li>Help candidates improve</li>
+<li>Build positive employer brand</li>
+</ul></li>
+<li><strong>Build Your Brand</strong>
+<ul>
+<li>Complete company profile</li>
+<li>Share company culture</li>
+<li>Engage with candidates</li>
+</ul></li>
+</ol>
+<h3 id="common-mistakes-to-avoid">Common Mistakes to Avoid</h3>
+<ul>
+<li>❌ Posting vague job descriptions</li>
+<li>❌ Not responding to applications</li>
+<li>❌ Ignoring AI suggestions</li>
+<li>❌ Incomplete company profile</li>
+<li>❌ Not verifying company (can’t post jobs)</li>
+</ul>
+<hr />
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="cannot-post-jobs">Cannot Post Jobs</h3>
+<p><strong>Possible reasons:</strong> - Company not verified/approved -
+Missing required information - Account issues</p>
+<p><strong>Solutions:</strong> - Check verification status - Complete
+company profile - Contact support if verified but still can’t post</p>
+<h3 id="applications-not-showing">Applications Not Showing</h3>
+<ul>
+<li>Refresh the applications list</li>
+<li>Check internet connection</li>
+<li>Verify job is still active</li>
+<li>Contact support if issue persists</li>
+</ul>
+<h3 id="interview-scheduling-issues">Interview Scheduling Issues</h3>
+<ul>
+<li>Check date/time availability</li>
+<li>Verify candidate contact information</li>
+<li>Ensure notifications are enabled</li>
+<li>Try rescheduling if needed</li>
+</ul>
+<h3 id="documents-not-uploading">Documents Not Uploading</h3>
+<ul>
+<li>Check file size (max 10MB)</li>
+<li>Use supported formats (PDF, DOC, JPG, PNG)</li>
+<li>Check internet connection</li>
+<li>Try smaller file sizes</li>
+</ul>
+<hr />
+<h2 id="contact-support">Contact Support</h2>
+<p>For assistance:</p>
+<ul>
+<li><strong>Email:</strong> support@botsjobsconnect.com</li>
+<li><strong>In-App:</strong> Settings → Help &amp; Support</li>
+<li><strong>Response Time:</strong> Within 24 hours</li>
+</ul>
+<hr />
+<h2 id="privacy-security">Privacy &amp; Security</h2>
+<p>Your data is protected:</p>
+<ul>
+<li><strong>Secure Storage:</strong> All documents encrypted</li>
+<li><strong>Access Control:</strong> Only you and admins can view your
+data</li>
+<li><strong>Firebase Security:</strong> Industry-standard security
+rules</li>
+<li><strong>GDPR Compliant:</strong> Privacy-first practices</li>
+</ul>
+<p>Read our full Privacy Policy in Settings → Privacy Policy</p>
+<hr />
+<h2 id="quick-reference">Quick Reference</h2>
+<h3 id="dashboard-icons">Dashboard Icons</h3>
+<ul>
+<li>📊 <strong>Metrics</strong> - View statistics</li>
+<li>➕ <strong>Post Job</strong> - Create new posting</li>
+<li>👥 <strong>Candidates</strong> - Browse profiles</li>
+<li>🤖 <strong>AI Suggestions</strong> - Get recommendations</li>
+<li>📅 <strong>Interviews</strong> - Manage interviews</li>
+<li>✅ <strong>Verification</strong> - Company verification status</li>
+</ul>
+<h3 id="keyboard-shortcuts-web">Keyboard Shortcuts (Web)</h3>
+<ul>
+<li><code>Ctrl + J</code> - Post new job</li>
+<li><code>Ctrl + A</code> - View applications</li>
+<li><code>Ctrl + I</code> - Schedule interview</li>
+<li><code>Ctrl + S</code> - AI suggestions</li>
+</ul>
+<hr />
+<p><em>BotsJobsConnect - Find the Right Talent!</em></p>
+<p><em>Version 1.0.0 | December 2024</em></p>
+</body>
+</html>

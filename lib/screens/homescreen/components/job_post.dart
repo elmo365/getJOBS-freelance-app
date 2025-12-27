@@ -1,13 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:freelance_app/services/validation/input_validators.dart';
+import 'package:freelance_app/utils/app_design_system.dart';
 import 'package:freelance_app/utils/global_methods.dart';
 import 'package:freelance_app/utils/global_variables.dart';
-import 'package:freelance_app/utils/clr.dart';
-import 'package:freelance_app/utils/layout.dart';
-import 'package:freelance_app/utils/txt.dart';
+import 'package:freelance_app/widgets/common/app_card.dart';
+import 'package:freelance_app/widgets/common/standard_button.dart';
+import 'package:freelance_app/widgets/common/standard_input.dart';
 import 'package:uuid/uuid.dart';
+import 'package:freelance_app/widgets/common/app_app_bar.dart';
 
 class Upload extends StatefulWidget {
   final String userID;
@@ -31,6 +35,10 @@ class _UploadState extends State<Upload> {
 
   final TextEditingController _jobDeadlineController = TextEditingController();
   final FocusNode _jobDeadlineFocusNode = FocusNode();
+
+  final TextEditingController _positionsController = TextEditingController();
+  final FocusNode _positionsFocusNode = FocusNode();
+  
   DateTime? selectedDeadline;
   Timestamp? deadlineDateTimeStamp;
 
@@ -46,6 +54,8 @@ class _UploadState extends State<Upload> {
     _jobDescFocusNode.dispose();
     _jobDeadlineController.dispose();
     _jobDeadlineFocusNode.dispose();
+    _positionsController.dispose();
+    _positionsFocusNode.dispose();
     super.dispose();
   }
 
@@ -57,84 +67,96 @@ class _UploadState extends State<Upload> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-      child: Container(
-        decoration: boxDecorationGradient(),
-        child: Scaffold(
-          appBar: AppBar(
-            elevation: 0,
-            backgroundColor: Colors.white,
-            iconTheme: const IconThemeData(
-              color: Colors.orange,
-            ),
-            title: const Padding(
-              padding: EdgeInsets.only(left: 180),
-              child: Text(
-                "getJOBS",
-                style: TextStyle(color: Colors.orange),
-              ),
-            ),
+      child: Scaffold(
+        resizeToAvoidBottomInset: true,
+        appBar: AppAppBar(
+          title: 'Post a Job',
+          variant: AppBarVariant.primary,
+          centerTitle: true,
+        ),
+        body: Padding(
+          padding: AppDesignSystem.paddingFromLTRB(
+            AppDesignSystem.spaceM,
+            AppDesignSystem.spaceL,
+            AppDesignSystem.spaceM,
+            AppDesignSystem.spaceM,
           ),
-          backgroundColor: Colors.white,
-          body: Padding(
-            padding: const EdgeInsets.only(
-              top: layout.padding * 3,
-              bottom: layout.padding,
-              left: layout.padding,
-              right: layout.padding,
-            ),
-            child: SingleChildScrollView(
-              child: Card(
-                elevation: layout.elevation,
-                color: clr.card,
-                child: Padding(
-                  padding: const EdgeInsets.all(layout.padding),
-                  child: Column(
+          child: SingleChildScrollView(
+            child: AppCard(
+              padding: AppDesignSystem.paddingM,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Section Header
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      'Job Details',
+                      style: theme.textTheme.titleLarge
+                          ?.copyWith(fontWeight: FontWeight.w800),
+                    ),
+                  ),
+                  AppDesignSystem.verticalSpace(AppDesignSystem.spaceS),
+                  // Required field note
+                  Padding(
+                    padding: AppDesignSystem.paddingHorizontal(AppDesignSystem.spaceXS),
+                    child: Text(
+                      '* Required fields',
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: theme.colorScheme.onSurfaceVariant,
+                        fontStyle: FontStyle.italic,
+                      ),
+                    ),
+                  ),
+                  AppDesignSystem.verticalSpace(AppDesignSystem.spaceL),
+                  Form(
+                    key: _uploadJobFormKey,
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Padding(
-                          padding:
-                              EdgeInsets.symmetric(vertical: layout.padding),
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: Text(
-                              'Job Description',
-                              style: txt.titleDark,
-                            ),
+                        // Basic Information Section
+                        Text(
+                          'Basic Information',
+                          style: theme.textTheme.titleMedium?.copyWith(
+                            fontWeight: FontWeight.w700,
+                            color: theme.colorScheme.primary,
                           ),
                         ),
-                        Form(
-                          key: _uploadJobFormKey,
-                          child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                _jobCategoryFormField(),
-                                _jobTitleFormField(),
-                                _jobDescFormField(),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      bottom: layout.padding),
-                                  child: _jobDeadlineFormField(),
-                                ),
-                              ]),
+                        AppDesignSystem.verticalSpace(AppDesignSystem.spaceM),
+                        _jobCategoryFormField(),
+                        AppDesignSystem.verticalSpace(AppDesignSystem.spaceM),
+                        _jobTitleFormField(),
+                        AppDesignSystem.verticalSpace(AppDesignSystem.spaceXL),
+                        // Job Details Section
+                        Text(
+                          'Job Details',
+                          style: theme.textTheme.titleMedium?.copyWith(
+                            fontWeight: FontWeight.w700,
+                            color: theme.colorScheme.primary,
+                          ),
                         ),
-                        _isLoading
-                            ? const Align(
-                                alignment: Alignment.center,
-                                child: CircularProgressIndicator(),
-                              )
-                            : Padding(
-                                padding: const EdgeInsets.only(
-                                  top: 0,
-                                  bottom: layout.padding,
-                                  left: layout.padding,
-                                  right: layout.padding,
-                                ),
-                                child: _uploadJobButton(),
-                              ),
-                      ]),
-                ),
+                        AppDesignSystem.verticalSpace(AppDesignSystem.spaceM),
+                        _jobDescFormField(),
+                        AppDesignSystem.verticalSpace(AppDesignSystem.spaceM),
+                        _positionsFormField(),
+                        AppDesignSystem.verticalSpace(AppDesignSystem.spaceM),
+                        _jobDeadlineFormField(),
+                      ],
+                    ),
+                  ),
+                  AppDesignSystem.verticalSpace(AppDesignSystem.spaceM),
+                  StandardButton(
+                    label: 'Upload Job',
+                    icon: Icons.upload_file,
+                    type: StandardButtonType.primary,
+                    fullWidth: true,
+                    isLoading: _isLoading,
+                    onPressed: _isLoading ? null : _uploadJob,
+                  ),
+                ],
               ),
             ),
           ),
@@ -144,323 +166,174 @@ class _UploadState extends State<Upload> {
   }
 
   Widget _jobCategoryFormField() {
-    return GestureDetector(
-      onTap: () {
-        _showJobCategoriesDialog();
+    return StandardInput(
+      controller: _jobCategoryController,
+      focusNode: _jobCategoryFocusNode,
+      label: 'Job category *',
+      hint: 'Select job category',
+      prefixIcon: Icons.category_outlined,
+      suffixIcon: const Icon(Icons.expand_more_rounded),
+      readOnly: true,
+      onTap: _showJobCategoriesDialog,
+      validator: (value) {
+        if (value == null || value.isEmpty) return 'Job category is required';
+        return null;
       },
-      child: TextFormField(
-        enabled: false,
-        focusNode: _jobCategoryFocusNode,
-        autofocus: false,
-        controller: _jobCategoryController,
-        style: txt.fieldDark,
-        maxLines: 1,
-        maxLength: 100,
-        keyboardType: TextInputType.text,
-        textInputAction: TextInputAction.next,
-        onEditingComplete: () => _jobTitleFocusNode.requestFocus(),
-        decoration: InputDecoration(
-          labelText: 'Select job category',
-          labelStyle: txt.labelDark,
-          floatingLabelBehavior: FloatingLabelBehavior.auto,
-          floatingLabelStyle: txt.floatingLabelDark,
-          enabledBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: clr.dark,
-            ),
-          ),
-          focusedBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: clr.dark,
-            ),
-          ),
-          errorBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: clr.error,
-            ),
-          ),
-        ),
-        validator: (value) {
-          if (value!.isEmpty) {
-            return 'Value is missing';
-          }
-          return null;
-        },
-      ),
     );
   }
 
   Widget _jobTitleFormField() {
-    return TextFormField(
-      enabled: true,
-      focusNode: _jobTitleFocusNode,
-      autofocus: false,
+    return StandardInput(
       controller: _jobTitleController,
-      style: txt.fieldDark,
-      maxLines: 1,
+      focusNode: _jobTitleFocusNode,
+      label: 'Title *',
+      hint: 'e.g. Senior Flutter Developer',
+      prefixIcon: Icons.title,
       maxLength: 100,
-      keyboardType: TextInputType.text,
-      textInputAction: TextInputAction.next,
-      onEditingComplete: () => _jobDescFocusNode.requestFocus(),
-      decoration: InputDecoration(
-        labelText: 'Title',
-        labelStyle: txt.labelDark,
-        floatingLabelBehavior: FloatingLabelBehavior.auto,
-        floatingLabelStyle: txt.floatingLabelDark,
-        // filled: true,
-        // fillColor: clr.passive,
-        enabledBorder: const UnderlineInputBorder(
-          borderSide: BorderSide(
-            color: clr.dark,
-          ),
-        ),
-        focusedBorder: const UnderlineInputBorder(
-          borderSide: BorderSide(
-            color: clr.dark,
-          ),
-        ),
-        errorBorder: UnderlineInputBorder(
-          borderSide: BorderSide(
-            color: clr.error,
-          ),
-        ),
-      ),
       validator: (value) {
-        if (value!.isEmpty) {
-          return 'Value is missing';
-        }
+        if (value == null || value.isEmpty) return 'Job title is required';
         return null;
       },
     );
   }
 
   Widget _jobDescFormField() {
-    return TextFormField(
-      enabled: true,
-      focusNode: _jobDescFocusNode,
-      autofocus: false,
+    return StandardInput(
       controller: _jobDescController,
-      style: txt.fieldDark,
-      maxLines: 3,
+      focusNode: _jobDescFocusNode,
+      label: 'Description *',
+      hint: 'Describe the role, responsibilities, and requirements',
+      prefixIcon: Icons.description_outlined,
+      maxLines: 4,
       maxLength: 300,
-      keyboardType: TextInputType.text,
-      textInputAction: TextInputAction.next,
-      onEditingComplete: () => _jobDescFocusNode.unfocus(),
-      decoration: InputDecoration(
-        labelText: 'Description',
-        labelStyle: txt.labelDark,
-        floatingLabelBehavior: FloatingLabelBehavior.auto,
-        floatingLabelStyle: txt.floatingLabelDark,
-        // filled: true,
-        // fillColor: clr.passive,
-        enabledBorder: const UnderlineInputBorder(
-          borderSide: BorderSide(
-            color: clr.dark,
-          ),
-        ),
-        focusedBorder: const UnderlineInputBorder(
-          borderSide: BorderSide(
-            color: clr.dark,
-          ),
-        ),
-        errorBorder: UnderlineInputBorder(
-          borderSide: BorderSide(
-            color: clr.error,
-          ),
-        ),
-      ),
       validator: (value) {
-        if (value!.isEmpty) {
-          return 'Value is missing';
-        }
+        if (value == null || value.isEmpty) return 'Job description is required';
         return null;
       },
     );
   }
 
   Widget _jobDeadlineFormField() {
-    return GestureDetector(
-      onTap: () {
-        _selectDeadlineDialog();
-      },
-      child: TextFormField(
-        enabled: false,
-        focusNode: _jobDeadlineFocusNode,
-        autofocus: false,
-        controller: _jobDeadlineController,
-        style: txt.fieldDark,
-        maxLines: 1,
-        maxLength: 100,
-        keyboardType: TextInputType.text,
-        textInputAction: TextInputAction.done,
-        onEditingComplete: () => _jobDeadlineFocusNode.unfocus(),
-        decoration: InputDecoration(
-          labelText: 'Select deadline date',
-          labelStyle: txt.labelDark,
-          floatingLabelBehavior: FloatingLabelBehavior.auto,
-          floatingLabelStyle: txt.floatingLabelDark,
-          // filled: true,
-          // fillColor: clr.passive,
-          enabledBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: clr.dark,
-            ),
-          ),
-          focusedBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: clr.dark,
-            ),
-          ),
-          errorBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: clr.error,
-            ),
-          ),
-        ),
-        validator: (value) {
-          if (value!.isEmpty) {
-            return 'Value is missing';
-          }
-          return null;
-        },
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    return StandardInput(
+      controller: _jobDeadlineController,
+      focusNode: _jobDeadlineFocusNode,
+      label: 'Deadline *',
+      hint: 'Tap to select deadline date (DD/MM/YYYY)',
+      prefixIcon: Icons.calendar_today_rounded,
+      suffixIcon: Icon(
+        Icons.calendar_month_rounded,
+        color: colorScheme.primary,
       ),
+      readOnly: true,
+      onTap: _selectDeadlineDialog,
+      validator: (value) {
+        if (value == null || value.isEmpty) return 'Deadline date is required';
+        return null;
+      },
     );
   }
 
-  Widget _uploadJobButton() {
-    return MaterialButton(
-      onPressed: () {
-        _uploadJob();
+  Widget _positionsFormField() {
+    return StandardInput(
+      controller: _positionsController,
+      focusNode: _positionsFocusNode,
+      label: 'Number of Positions *',
+      hint: 'e.g. 5 (number of open positions)',
+      prefixIcon: Icons.people_outline_rounded,
+      keyboardType: TextInputType.number,
+      inputFormatters: [
+        FilteringTextInputFormatter.digitsOnly,
+      ],
+      maxLength: 3,
+      validator: (value) {
+        if (value == null || value.isEmpty) return 'Number of positions is required';
+        final num = int.tryParse(value);
+        if (num == null || num < 1) return 'Must be at least 1';
+        return null;
       },
-      elevation: layout.elevation,
-      color: clr.primary,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(layout.radius),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(layout.padding * 0.75),
-        child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: const [
-              Text(
-                'Upload Job   ',
-                style: txt.button,
-              ),
-              Icon(
-                Icons.upload_file,
-                color: Colors.white,
-                size: layout.iconMedium,
-              ),
-            ]),
-      ),
     );
   }
 
-  _showJobCategoriesDialog() {
-    Size size = MediaQuery.of(context).size;
-    showDialog(
+  void _showJobCategoriesDialog() {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    showDialog<void>(
       context: context,
       builder: (context) {
         return AlertDialog(
-            backgroundColor: Colors.black54,
-            title: Padding(
-              padding: const EdgeInsets.only(
-                top: layout.padding,
-                bottom: layout.padding,
-              ),
-              child: Text(
-                'Job Categories',
-                textAlign: TextAlign.center,
-                style: txt.titleLight.copyWith(color: clr.passiveLight),
-              ),
-            ),
-            content: SizedBox(
-              width: size.width * 0.9,
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: jobCategories.length,
-                itemBuilder: ((context, index) {
-                  return InkWell(
-                    onTap: () {
-                      setState(() {
-                        _jobCategoryController.text = jobCategories[index];
-                        Navigator.pop(context);
-                      });
-                    },
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                        bottom: index != jobCategories.length - 1
-                            ? layout.padding
-                            : 0,
-                      ),
-                      child: Row(children: [
-                        Icon(
-                          Icons.business,
-                          color: clr.passiveLight,
-                          size: 25.0,
-                        ),
-                        Flexible(
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                              left: layout.padding * 1.25,
-                            ),
-                            child: Text(
-                              jobCategories[index],
-                              style: txt.body2Light
-                                  .copyWith(color: clr.passiveLight),
-                            ),
-                          ),
-                        ),
-                      ]),
-                    ),
-                  );
-                }),
-              ),
-            ),
-            actions: [
-              Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-                InkWell(
-                  onTap: () {
-                    _jobCategoryController.text = '';
-                    Navigator.canPop(context) ? Navigator.pop(context) : null;
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                      right: layout.padding,
-                      bottom: layout.padding * 2,
-                    ),
-                    child: Row(children: [
-                      Icon(
-                        Icons.cancel,
-                        color: clr.passiveLight,
-                        size: layout.iconSmall,
-                      ),
-                      const Text(
-                        ' Cancel',
-                        style: txt.button,
-                      ),
-                    ]),
+          title: const Text('Job Categories'),
+          content: SizedBox(
+            width: MediaQuery.of(context).size.width * 0.9,
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: jobCategories.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  leading: Icon(
+                    Icons.business,
+                    color: colorScheme.onSurfaceVariant,
                   ),
-                ),
-              ]),
-            ]);
+                  title: Text(jobCategories[index]),
+                  onTap: () {
+                    setState(() =>
+                        _jobCategoryController.text = jobCategories[index]);
+                    Navigator.pop(context);
+                  },
+                );
+              },
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                setState(() => _jobCategoryController.text = '');
+                Navigator.pop(context);
+              },
+              child: Text(
+                'Cancel',
+                style: theme.textTheme.labelLarge
+                    ?.copyWith(color: colorScheme.onSurfaceVariant),
+              ),
+            ),
+          ],
+        );
       },
     );
   }
 
   void _selectDeadlineDialog() async {
+    // Force minimum date to tomorrow
+    final tomorrow = DateTime.now().add(const Duration(days: 1));
     selectedDeadline = await showDatePicker(
       context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime.now(),
+      initialDate: tomorrow,
+      firstDate: tomorrow,
       lastDate: DateTime(2100),
     );
     if (selectedDeadline != null) {
+      final validationError = InputValidators.validateJobDeadline(selectedDeadline);
+      if (validationError != null) {
+        if (mounted) {
+          GlobalMethodTwo.showErrorDialog(
+            error: validationError,
+            ctx: context,
+          );
+        }
+        _jobDeadlineController.text = '';
+        deadlineDateTimeStamp = null;
+        return;
+      }
       setState(
         () {
-          _jobDeadlineController.text =
-              '${selectedDeadline!.year} - ${selectedDeadline!.month} - ${selectedDeadline!.day}';
+          // Format as DD/MM/YYYY for better readability
+          final day = selectedDeadline!.day.toString().padLeft(2, '0');
+          final month = selectedDeadline!.month.toString().padLeft(2, '0');
+          final year = selectedDeadline!.year;
+          _jobDeadlineController.text = '$day/$month/$year';
           deadlineDateTimeStamp = Timestamp.fromMicrosecondsSinceEpoch(
               selectedDeadline!.microsecondsSinceEpoch);
         },
@@ -473,6 +346,23 @@ class _UploadState extends State<Upload> {
 
   void _uploadJob() async {
     getUserData();
+    // Validate before any async work to avoid using context across async gaps.
+    if (_jobCategoryController.text == '' ||
+        _jobTitleController.text == '' ||
+        _jobDescController.text == '' ||
+        _jobDeadlineController.text == '') {
+      final colorScheme = Theme.of(context).colorScheme;
+      GlobalMethod.showErrorDialog(
+        context: context,
+        icon: Icons.error,
+        iconColor: colorScheme.error,
+        title: 'Missing Information',
+        body: 'Please enter all information about job.',
+        buttonText: 'OK',
+      );
+      return;
+    }
+
     final jobID = const Uuid().v4();
     User? user = FirebaseAuth.instance.currentUser;
     final uid = user!.uid;
@@ -480,45 +370,60 @@ class _UploadState extends State<Upload> {
         .collection('users')
         .doc(widget.userID)
         .get();
+    final userData = userDoc.data() as Map<String, dynamic>? ?? {};
     //final isValid = _uploadJobFormKey.currentState!.validate();
 
-    // if (isValid) {
-    if (_jobCategoryController.text == '' ||
-        _jobTitleController.text == '' ||
-        _jobDescController.text == '' ||
-        _jobDeadlineController.text == '') {
-      GlobalMethod.showErrorDialog(
-        context: context,
-        icon: Icons.error,
-        iconColor: clr.error,
-        title: 'Missing Information',
-        body: 'Please enter all information about job.',
-        buttonText: 'OK',
-      );
-      return;
-      // }
-    }
+    if (!mounted) return;
     setState(() {
       _isLoading = true;
     });
     setState(() {
       _isLoading = true;
-      user_image = userDoc.get('user_image');
+      userImage = (userData['user_image'] as String?) ??
+          (userData['userImage'] as String?) ??
+          userImage;
     });
     try {
-      await FirebaseFirestore.instance.collection('jobPosted').doc(jobID).set({
+      final employerName =
+          ((userData['company_name'] as String?)?.trim().isNotEmpty == true)
+              ? (userData['company_name'] as String).trim()
+              : (userData['name'] as String?)?.trim() ?? name;
+      final employerImage = (userData['user_image'] as String?) ??
+          (userData['userImage'] as String?) ??
+          userImage;
+      final employerEmail = (userData['email'] as String?) ?? user.email ?? '';
+      final employerLocation = (userData['address'] as String?) ??
+          (userData['location'] as String?) ??
+          address;
+
+      await FirebaseFirestore.instance.collection('jobs').doc(jobID).set({
         'job_id': jobID,
         'created': Timestamp.now(),
+        'createdAt': DateTime.now().toIso8601String(),
+        'userId': uid,
+        // Backwards/forwards compatibility across screens.
         'id': uid,
-        'user_image': user_image,
-        'name': name,
-        'email': user.email,
-        'address': address,
+        'name': employerName,
+        'employerName': employerName,
+        'user_image': employerImage,
+        'email': employerEmail,
+        'location': employerLocation,
+        'address': employerLocation,
         'category': _jobCategoryController.text,
+        'jobCategory': _jobCategoryController.text,
         'title': _jobTitleController.text,
+        'description': _jobDescController.text,
         'desc': _jobDescController.text,
+        'deadlineDate': selectedDeadline?.toIso8601String(),
         'deadline_date': _jobDeadlineController.text,
         'deadline_timestamp': deadlineDateTimeStamp,
+        'positionsAvailable': int.tryParse(_positionsController.text) ?? 1,
+        'positions': int.tryParse(_positionsController.text) ?? 1,
+        'positionsFilled': 0,
+        'status': 'pending',
+        'isVerified': false,
+        'isApproved': false,
+        'approvalStatus': 'pending',
         'recruiting': true,
         'applicants': 0,
         'comments': [],
@@ -527,30 +432,32 @@ class _UploadState extends State<Upload> {
       await Fluttertoast.showToast(
         msg: 'The job has been successfully uploaded.',
         toastLength: Toast.LENGTH_LONG,
-        backgroundColor: Colors.black54,
-        fontSize: txt.textSizeDefault,
       );
       setState(() {
         _jobCategoryController.clear();
         _jobTitleController.clear();
         _jobDescController.clear();
         _jobDeadlineController.clear();
+        _positionsController.clear();
       });
     } catch (error) {
+      if (!mounted) return;
       setState(() {
         _isLoading = false;
       });
       GlobalMethod.showErrorDialog(
           context: context,
           icon: Icons.error,
-          iconColor: clr.error,
+          iconColor: Theme.of(context).colorScheme.error,
           title: 'Error',
           body: error.toString(),
           buttonText: 'OK');
     } finally {
-      setState(() {
-        _isLoading = false;
-      });
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
     }
   }
 
@@ -562,7 +469,7 @@ class _UploadState extends State<Upload> {
     setState(() {
       id = userDoc.get('id');
       name = userDoc.get('name');
-      user_image = userDoc.get('user_image');
+      userImage = userDoc.get('user_image');
       address = userDoc.get('address');
     });
   }
@@ -593,18 +500,4 @@ class Persistent {
     'Design',
     'Accounting',
   ];
-}
-
-BoxDecoration boxDecorationGradient() {
-  return BoxDecoration(
-    gradient: LinearGradient(
-      colors: [
-        clr.backgroundGradient1,
-        clr.backgroundGradient2,
-      ],
-      begin: Alignment.centerLeft,
-      end: Alignment.centerRight,
-      stops: const [0.2, 1.0],
-    ),
-  );
 }

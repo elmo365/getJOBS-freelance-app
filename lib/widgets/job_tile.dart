@@ -1,13 +1,12 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:freelance_app/services/firebase/firebase_auth_service.dart';
+import 'package:freelance_app/services/firebase/firebase_database_service.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:freelance_app/screens/homescreen/components/job_details.dart';
 import 'package:freelance_app/utils/global_methods.dart';
-
-import '../utils/clr.dart';
-import '../utils/layout.dart';
-import "../utils/txt.dart";
+import 'package:freelance_app/utils/app_theme.dart';
+import 'package:freelance_app/widgets/common/app_card.dart';
+import 'package:freelance_app/widgets/cached_image_widget.dart';
 
 class JobTile extends StatefulWidget {
   final String jobID;
@@ -19,8 +18,10 @@ class JobTile extends StatefulWidget {
   final String contactEmail;
   final String jobLocation;
   final bool recruiting;
+  final VoidCallback? onTap;
 
   const JobTile({
+    super.key,
     required this.jobID,
     required this.jobTitle,
     required this.jobDesc,
@@ -30,6 +31,7 @@ class JobTile extends StatefulWidget {
     required this.contactEmail,
     required this.jobLocation,
     required this.recruiting,
+    this.onTap,
   });
 
   @override
@@ -37,161 +39,203 @@ class JobTile extends StatefulWidget {
 }
 
 class _JobTileState extends State<JobTile> {
-  final _auth = FirebaseAuth.instance;
+  final _authService = FirebaseAuthService();
+
+  Widget _buildLeading(ThemeData theme) {
+    final colorScheme = theme.colorScheme;
+    final imageUrl = widget.contactImage.trim();
+
+    if (imageUrl.isEmpty) {
+      return CircleAvatar(
+        radius: 22,
+        backgroundColor: colorScheme.surfaceContainerHighest,
+        child: Icon(Icons.business, color: colorScheme.onSurfaceVariant),
+      );
+    }
+
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(AppTheme.radiusM),
+      child: SizedBox(
+        width: 44,
+        height: 44,
+        child: CachedImageWidget(
+          imageUrl: imageUrl,
+          width: 44,
+          height: 44,
+          fit: BoxFit.cover,
+          errorWidget: Container(
+            color: colorScheme.surfaceContainerHighest,
+            child: Icon(Icons.business, color: colorScheme.onSurfaceVariant),
+          ),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return Padding(
       padding: const EdgeInsets.only(
-        top: layout.padding / 2,
-        bottom: layout.padding / 2,
+        top: AppTheme.spacingXS,
+        bottom: AppTheme.spacingXS,
         left: 0,
         right: 0,
       ),
-      child: Card(
-        elevation: layout.elevation,
-        color: clr.card,
+      child: AppCard(
+        padding: EdgeInsets.zero,
         child: ListTile(
-          onTap: () {
-            Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
+          onTap: widget.onTap ??
+              () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
                     builder: (context) => JobDetailsScreen(
-                          id: widget.uploadedBy,
-                          job_id: widget.jobID,
-                        )));
-          },
-          onLongPress: () {
-            _deleteDialog();
-          },
-          contentPadding: const EdgeInsets.all(layout.padding / 2),
+                      id: widget.uploadedBy,
+                      jobId: widget.jobID,
+                    ),
+                  ),
+                );
+              },
+          onLongPress: _deleteDialog,
+          contentPadding: const EdgeInsets.all(AppTheme.spacingXS),
           leading: Container(
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               border: Border(
-                right: BorderSide(width: 1),
+                right: BorderSide(width: 1, color: colorScheme.outlineVariant),
               ),
             ),
-            child: Image.network(
-              widget.contactImage,
-            ),
+            padding: const EdgeInsets.only(right: AppTheme.spacingXS),
+            child: _buildLeading(theme),
           ),
           title: Padding(
-            padding: const EdgeInsets.only(bottom: layout.padding / 4),
+            padding: const EdgeInsets.only(bottom: AppTheme.spacingXS / 2),
             child: Text(
               widget.jobTitle,
-              style: txt.subTitleDark,
+              style: theme.textTheme.titleMedium,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
           ),
           subtitle: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: layout.padding / 4),
-                  child: Text(
-                    widget.contactName,
-                    style: txt.body2Dark,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(bottom: AppTheme.spacingXS / 2),
+                child: Text(
+                  widget.contactName,
+                  style: theme.textTheme.bodyMedium
+                      ?.copyWith(color: colorScheme.onSurfaceVariant),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: layout.padding / 4),
-                  child: Text(
-                    widget.jobDesc,
-                    style: txt.body1Dark,
-                    maxLines: 4,
-                    overflow: TextOverflow.ellipsis,
-                  ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: AppTheme.spacingXS / 2),
+                child: Text(
+                  widget.jobDesc,
+                  style: theme.textTheme.bodySmall
+                      ?.copyWith(color: colorScheme.onSurfaceVariant),
+                  maxLines: 4,
+                  overflow: TextOverflow.ellipsis,
                 ),
-              ]),
-          trailing: const Icon(
-            Icons.keyboard_arrow_right,
-            color: clr.dark,
-            size: layout.iconMedium,
+              ),
+            ],
+          ),
+          trailing: Icon(
+            Icons.chevron_right_rounded,
+            color: colorScheme.onSurfaceVariant,
+            size: 24,
           ),
         ),
       ),
     );
   }
 
-  _deleteDialog() {
-    User? user = _auth.currentUser;
-    final uid = user!.uid;
+  Future<void> _deleteDialog() async {
+    final user = _authService.getCurrentUser();
+    if (user == null) return;
+
+    final uid = user.uid;
     showDialog(
       context: context,
       builder: (context) {
-        return AlertDialog(actions: [
-          Padding(
-            padding: const EdgeInsets.all(layout.padding),
-            child: Column(children: [
-              const Text(
-                'Are you sure you want to delete this job?',
-                style: txt.subTitleDark,
-              ),
-              Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-                _textButtonDelete(user, uid),
-                _textButtonCancel(),
-              ]),
-            ]),
+        final theme = Theme.of(context);
+        return AlertDialog(
+          title: const Text('Delete job?'),
+          content: Text(
+            'Are you sure you want to delete this job?',
+            style: theme.textTheme.bodyMedium,
           ),
-        ]);
+          actions: [
+            _textButtonCancel(),
+            _textButtonDelete(uid),
+          ],
+        );
       },
     );
   }
 
-  Widget _textButtonDelete(User? user, uid) {
+  Widget _textButtonDelete(String uid) {
+    final colorScheme = Theme.of(context).colorScheme;
     return TextButton(
       onPressed: () async {
         try {
           if (widget.uploadedBy == uid) {
-            await FirebaseFirestore.instance
-                .collection('jobPosted')
-                .doc(widget.jobID)
-                .delete();
-            Navigator.canPop(context) ? Navigator.pop(context) : null;
-            Navigator.canPop(context) ? Navigator.pop(context) : null;
-            await Fluttertoast.showToast(
-              msg: 'The job has been successfully deleted',
-              toastLength: Toast.LENGTH_LONG,
-              backgroundColor: clr.passive,
-              fontSize: txt.textSizeDefault,
-            );
+            final dbService = FirebaseDatabaseService();
+            await dbService.softDeleteJob(widget.jobID);
+            if (!mounted) return;
+            final navigator = Navigator.of(context);
+            if (context.mounted) {
+              if (navigator.canPop()) navigator.pop();
+              if (navigator.canPop()) navigator.pop();
+              await Fluttertoast.showToast(
+                msg: 'The job has been successfully deleted',
+                toastLength: Toast.LENGTH_LONG,
+                backgroundColor: Theme.of(context).colorScheme.inverseSurface,
+                fontSize: 14,
+              );
+            }
           } else {
-            Navigator.canPop(context) ? Navigator.pop(context) : null;
-            Navigator.canPop(context) ? Navigator.pop(context) : null;
+            final navigator = Navigator.of(context);
+            if (context.mounted) {
+              if (navigator.canPop()) navigator.pop();
+              if (navigator.canPop()) navigator.pop();
+              GlobalMethod.showErrorDialog(
+                context: context,
+                icon: Icons.verified_user_rounded,
+                iconColor: Theme.of(context).colorScheme.primary,
+                title: 'Unable to delete',
+                body: 'Only the user who created the job can delete it',
+                buttonText: 'OK',
+              );
+            }
+          }
+        } catch (error) {
+          if (mounted) {
             GlobalMethod.showErrorDialog(
               context: context,
-              icon: Icons.verified_user,
-              iconColor: clr.primary,
-              title: 'Unable to delete',
-              body: 'Only the user who created the job can delete it',
+              icon: Icons.error_rounded,
+              iconColor: Theme.of(context).colorScheme.error,
+              title: 'Error',
+              body: 'Unable to delete job',
               buttonText: 'OK',
             );
           }
-        } catch (error) {
-          GlobalMethod.showErrorDialog(
-            context: context,
-            icon: Icons.error,
-            iconColor: clr.error,
-            title: 'Error',
-            body: 'Unable to delete job',
-            buttonText: 'OK',
-          );
-        } finally {}
+        }
       },
-      child: Row(children: const [
-        Icon(
-          Icons.delete,
-          color: Colors.red,
-        ),
-        Text(
-          ' Yes',
-          style: txt.body2Dark,
-        ),
-      ]),
+      child: Row(
+        children: [
+          Icon(
+            Icons.delete_outline,
+            color: colorScheme.error,
+          ),
+          const Text(' Yes'),
+        ],
+      ),
     );
   }
 
@@ -202,12 +246,10 @@ class _JobTileState extends State<JobTile> {
       },
       child: Row(children: const [
         Icon(
-          Icons.cancel,
-          color: clr.primary,
+          Icons.close_rounded,
         ),
         Text(
           ' No',
-          style: txt.body2Dark,
         ),
       ]),
     );

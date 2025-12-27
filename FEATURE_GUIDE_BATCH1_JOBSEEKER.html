@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FEATURE_GUIDE_BATCH1_JOBSEEKER</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+            background: #f5f5f5;
+        }
+        h1, h2, h3, h4 {
+            color: #1f4788;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        h1 { font-size: 24px; }
+        h2 { font-size: 20px; border-bottom: 2px solid #1f4788; padding-bottom: 5px; }
+        h3 { font-size: 16px; }
+        h4 { font-size: 14px; }
+        p { text-align: justify; margin: 10px 0; }
+        ul, ol { margin: 10px 0; padding-left: 30px; }
+        li { margin: 5px 0; }
+        table { 
+            border-collapse: collapse; 
+            width: 100%; 
+            margin: 15px 0;
+            background: white;
+        }
+        th, td { 
+            border: 1px solid #ddd; 
+            padding: 10px; 
+            text-align: left;
+        }
+        th { 
+            background-color: #1f4788; 
+            color: white; 
+            font-weight: bold;
+        }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        code { 
+            background: #f4f4f4; 
+            padding: 2px 6px; 
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        blockquote {
+            border-left: 4px solid #1f4788;
+            padding-left: 15px;
+            margin: 15px 0;
+            color: #555;
+            background: #f0f0f0;
+            padding: 10px 15px;
+        }
+        .page-break { page-break-after: always; }
+        @page { margin: 20mm; }
+    </style>
+</head>
+<body>
+<h1 id="job-seeker-features-guide">📚 JOB SEEKER FEATURES GUIDE</h1>
+<h2 id="easy-to-understand-guide-for-job-seekers">Easy-to-Understand Guide for Job Seekers</h2>
+<p><strong>Based on Real Code Analysis</strong><br />
+<strong>Updated:</strong> December 25, 2025</p>
+<hr />
+<h2 id="1-your-dashboard-home-screen">🏠 1. YOUR DASHBOARD - HOME SCREEN</h2>
+<h3 id="what-it-shows">What It Shows</h3>
+<p>Your personal job-seeking headquarters showing everything at a glance.</p>
+<h3 id="what-you-see">What You See</h3>
+<pre><code>┌─────────────────────────────────────┐
+│  YOUR DASHBOARD                     │
+├─────────────────────────────────────┤
+│                                     │
+│  💰 Your Balance: $50 (if enabled) │
+│                                     │
+│  📊 Quick Stats:                    │
+│  • Jobs Applied: 12                 │
+│  • Interviews: 2                    │
+│  • Offers: 1                        │
+│                                     │
+│  🎯 AI Recommendations (Top 5)      │
+│  • Software Developer at TechCo     │
+│  • Designer at StartUp Inc          │
+│  • Manager at BigCorp               │
+│                                     │
+│  📑 Your CV Status: Complete ✓      │
+│                                     │
+├─────────────────────────────────────┤
+│  Buttons to Access Everything:      │
+│  [Build CV] [Find Jobs]             │
+│  [My Applications] [Interviews]     │
+│  [Career Tools] [Earnings] [More]   │
+└─────────────────────────────────────┘
+</code></pre>
+<h3 id="features-on-dashboard">Features on Dashboard</h3>
+<ol>
+<li><strong>Balance Display</strong> - Shows your wallet money (only if admin enabled this feature)</li>
+<li><strong>AI Job Recommendations</strong> - System suggests 5 jobs that match your skills</li>
+<li><strong>Quick Statistics</strong> - See how many jobs you've applied to</li>
+<li><strong>Navigation Hub</strong> - Access all your job-seeking tools from here</li>
+<li><strong>CV Status</strong> - Know if your resume is complete or needs updates</li>
+</ol>
+<h3 id="how-it-works">How It Works</h3>
+<ul>
+<li>Every time you open the app, dashboard loads your latest information</li>
+<li>AI recommendations update daily based on your CV and skills</li>
+<li>Statistics refresh automatically when something changes</li>
+<li>Everything is stored in the cloud and synced in real-time</li>
+</ul>
+<hr />
+<h2 id="2-build-your-cv-resume">📄 2. BUILD YOUR CV (RESUME)</h2>
+<h3 id="what-it-is">What It Is</h3>
+<p>Your digital resume - the key document employers see when considering you.</p>
+<h3 id="the-9-sections-of-your-cv">The 9 Sections of Your CV</h3>
+<h4 id="section-1-personal-information">Section 1: Personal Information</h4>
+<p><strong>What to fill in:</strong>
+- Full name (how you want employers to see you)
+- Email address (where they contact you)
+- Phone number (how they reach you)
+- Your location (city/country)</p>
+<p><strong>Why it matters:</strong> Employers need to contact you easily.</p>
+<h4 id="section-2-professional-titleheadline">Section 2: Professional Title/Headline</h4>
+<p><strong>What to fill in:</strong>
+- Your job title (e.g., "Software Developer", "Marketing Manager")
+- What you specialize in</p>
+<p><strong>Why it matters:</strong> This is like your job title badge - employers see it first.</p>
+<h4 id="section-3-linkedin-portfolio-urls">Section 3: LinkedIn &amp; Portfolio URLs</h4>
+<p><strong>What to fill in:</strong>
+- Your LinkedIn profile link (optional)
+- Your portfolio/website link (optional)</p>
+<p><strong>Why it matters:</strong> Let employers see more about you on other platforms.</p>
+<h4 id="section-4-professional-summary">Section 4: Professional Summary</h4>
+<p><strong>What to fill in:</strong>
+- A few sentences about who you are professionally
+- What makes you unique
+- What you're looking for</p>
+<p><strong>Example:</strong> "Experienced software developer with 5 years building mobile apps. Expert in Flutter and Firebase. Passionate about creating user-friendly solutions."</p>
+<p><strong>Why it matters:</strong> Employers get a quick overview of your career.</p>
+<h4 id="section-5-education">Section 5: Education</h4>
+<p><strong>What to fill in for each school:</strong>
+- University/School name
+- Your degree (Bachelor, Master, High School, etc.)
+- Field of study (Computer Science, Business, etc.)
+- Start date (when you enrolled)
+- End date (when you graduated)
+- Description (any honors, GPA, key subjects)</p>
+<p><strong>You can add multiple schools:</strong> Primary school, secondary school, university, certifications - all in one place.</p>
+<p><strong>Why it matters:</strong> Employers see your educational background.</p>
+<h4 id="section-6-work-experience">Section 6: Work Experience</h4>
+<p><strong>What to fill in for each job:</strong>
+- Company name
+- Your job title
+- Start date (when you started)
+- End date (when you left)
+- What you did there (responsibilities and achievements)</p>
+<p><strong>You can add multiple jobs:</strong> List all your previous work.</p>
+<p><strong>Why it matters:</strong> Employers see your work history and growth.</p>
+<h4 id="section-7-skills">Section 7: Skills</h4>
+<p><strong>What to do:</strong>
+- Select skills from the app's skill list
+- Add multiple skills (e.g., Python, Excel, Leadership, etc.)</p>
+<p><strong>Why it matters:</strong> Employers search for specific skills - this helps them find you.</p>
+<h4 id="section-8-languages">Section 8: Languages</h4>
+<p><strong>What to fill in for each language:</strong>
+- Language name (English, Spanish, Setswana, etc.)
+- Your level: 
+  - Beginner (basic conversations)
+  - Intermediate (can work in this language)
+  - Advanced (fluent)
+  - Native (it's your first language)</p>
+<p><strong>Why it matters:</strong> Many jobs need specific languages.</p>
+<h4 id="section-9-certifications-projects">Section 9: Certifications &amp; Projects</h4>
+<p><strong>Certifications - What to fill in:</strong>
+- Certificate name (Google Cloud Certification, etc.)
+- Organization that gave it
+- When you got it
+- When it expires (if applicable)
+- Where to verify it (credential link)</p>
+<p><strong>Projects - What to fill in:</strong>
+- Project name
+- What you built
+- Link to see it
+- When you did it
+- Skills you used</p>
+<p><strong>Why it matters:</strong> Shows extra skills and hands-on experience.</p>
+<h3 id="how-to-use-the-cv-builder">How to Use the CV Builder</h3>
+<p><strong>Step-by-Step:</strong></p>
+<pre><code>1. Open &quot;Build CV&quot; from dashboard
+   ↓
+2. Start with Personal Information
+   ↓
+3. Fill in each section one at a time
+   ↓
+4. Add multiple entries for jobs, education, projects
+   ↓
+5. Each section validates your input
+   ↓
+6. Save automatically as you go
+   ↓
+7. View your complete CV anytime
+   ↓
+8. Update whenever you have something new
+</code></pre>
+<h3 id="important-points">Important Points</h3>
+<ul>
+<li>✅ Only required fields MUST be filled (marked with *)</li>
+<li>✅ Optional fields are nice to have but not required</li>
+<li>✅ Each section saves independently</li>
+<li>✅ You can add as many jobs, education, and projects as you want</li>
+<li>✅ Your CV is automatically stored in your profile</li>
+<li>✅ AI can help with content suggestions (if enabled)</li>
+</ul>
+<hr />
+<h2 id="3-video-resume">🎥 3. VIDEO RESUME</h2>
+<h3 id="what-it-is_1">What It Is</h3>
+<p>A short video introduction of yourself for employers to watch instead of (or in addition to) reading your CV.</p>
+<h3 id="how-to-use-video-resume">How to Use Video Resume</h3>
+<p><strong>Upload Your Video:</strong></p>
+<pre><code>1. Open &quot;Video Resume&quot; section
+   ↓
+2. Click &quot;Select Video&quot;
+   ↓
+3. Choose a video file from your phone/computer
+   ↓
+4. Video must be MP4 format
+   ↓
+5. Watch preview to make sure it's right
+   ↓
+6. Click &quot;Upload&quot;
+   ↓
+7. Wait for upload to complete (shows progress)
+   ↓
+8. Done! Employers can now see your video
+</code></pre>
+<h3 id="video-tips">Video Tips</h3>
+<ul>
+<li><strong>Length:</strong> 30 seconds to 2 minutes ideal</li>
+<li><strong>Content:</strong> Introduce yourself, say what you do, why you're great</li>
+<li><strong>Quality:</strong> Good lighting, clear audio, professional look</li>
+<li><strong>Format:</strong> MUST be MP4 - other formats won't work</li>
+<li><strong>Size:</strong> Keep under 500MB for faster upload</li>
+</ul>
+<h3 id="how-employers-see-it">How Employers See It</h3>
+<ul>
+<li>Your video appears on your profile</li>
+<li>Employers can watch it before deciding to interview</li>
+<li>Shows your personality and communication skills</li>
+<li>More engaging than just reading text</li>
+</ul>
+<h3 id="common-issues-solutions">Common Issues &amp; Solutions</h3>
+<table>
+<thead>
+<tr>
+<th>Issue</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Wrong video format</td>
+<td>Convert to MP4 first, then upload</td>
+</tr>
+<tr>
+<td>Video won't upload</td>
+<td>Check your internet connection</td>
+</tr>
+<tr>
+<td>Upload too slow</td>
+<td>Use WiFi instead of mobile data</td>
+</tr>
+<tr>
+<td>Can't see preview</td>
+<td>Make sure MP4 format is correct</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-interview-coach-practice-with-ai">🤖 4. INTERVIEW COACH - PRACTICE WITH AI</h2>
+<h3 id="what-it-is_2">What It Is</h3>
+<p>An AI coach that generates interview questions specific to the job you're applying for and gives you feedback on your answers.</p>
+<h3 id="how-it-works_1">How It Works</h3>
+<p><strong>Step 1: Setup the Practice Session</strong></p>
+<pre><code>Tell the AI:
+• What job are you interviewing for?
+  (e.g., &quot;Software Developer&quot;)
+
+• What company? (optional)
+  (e.g., &quot;Google&quot; - helps personalize questions)
+
+• What's your experience level?
+  • Junior (new to field)
+  • Mid-level (some experience)
+  • Senior (lots of experience)
+
+• What skills should we focus on?
+  (e.g., Python, React, Leadership)
+</code></pre>
+<p><strong>Step 2: AI Generates Questions</strong></p>
+<pre><code>You get 5 interview questions like:
+1. &quot;Tell me about a project where you...&quot;
+2. &quot;How do you handle difficult team members?&quot;
+3. &quot;Describe a time you failed...&quot;
+4. etc.
+</code></pre>
+<p><strong>Step 3: Practice Your Answers</strong></p>
+<pre><code>For each question:
+• Read the question
+• Type your answer in the text box
+• Review what you wrote
+• Click &quot;Get Feedback&quot;
+</code></pre>
+<p><strong>Step 4: AI Evaluates Your Answer</strong></p>
+<pre><code>The AI coach gives you:
+✓ What you did well
+✓ What you could improve
+✓ How to better answer that question
+✓ Example of a better answer
+</code></pre>
+<h3 id="what-questions-does-ai-ask">What Questions Does AI Ask?</h3>
+<p>The AI creates questions based on:
+- <strong>Job Type:</strong> Software Dev questions are different from Sales questions
+- <strong>Company:</strong> If you mention Google vs. startup, questions change
+- <strong>Level:</strong> Junior gets simpler questions, Senior gets harder ones
+- <strong>Skills:</strong> If you mention Python, you get Python questions</p>
+<h3 id="how-to-get-better-at-interviews">How to Get Better at Interviews</h3>
+<ol>
+<li><strong>Practice regularly</strong> - Do 5 questions a day</li>
+<li><strong>Try different scenarios</strong> - Practice for different jobs</li>
+<li><strong>Learn from feedback</strong> - Read what the AI suggests</li>
+<li><strong>Repeat hard questions</strong> - Practice ones you struggle with</li>
+<li><strong>Review your progress</strong> - See how you improve over time</li>
+</ol>
+<h3 id="interview-categories">Interview Categories</h3>
+<p>The AI asks different types of questions:
+- <strong>Behavioral</strong> ("Tell me about a time when...")
+- <strong>Technical</strong> (Job-specific skills)
+- <strong>Problem-solving</strong> (How would you approach...)
+- <strong>Company knowledge</strong> (Why do you want to work here?)</p>
+<hr />
+<h2 id="5-ai-job-matching-find-your-perfect-job">🎯 5. AI JOB MATCHING - FIND YOUR PERFECT JOB</h2>
+<h3 id="what-it-is_3">What It Is</h3>
+<p>An intelligent system that looks through thousands of jobs and finds the ones that match YOU perfectly.</p>
+<h3 id="important-requirements">Important Requirements</h3>
+<p>✅ <strong>You MUST have:</strong>
+1. A completed CV
+2. Skills listed in your CV
+3. Experience information filled in</p>
+<p>❌ <strong>Without these, job matching won't work.</strong></p>
+<h3 id="how-ai-matching-works">How AI Matching Works</h3>
+<p><strong>Step 1: System Analyzes You</strong></p>
+<pre><code>The system looks at:
+• Your skills (Python, Excel, etc.)
+• Your experience level
+• Your education
+• Your job preferences
+• Your location
+</code></pre>
+<p><strong>Step 2: Two-Stage Matching Process</strong></p>
+<pre><code>Stage 1: Quick Filter
+─────────────────────
+• Looks at ALL available jobs
+• Quick checks: skills match, location, level
+• Keeps only the best 30 matches
+• (Faster than analyzing all jobs)
+
+Stage 2: AI Ranking
+─────────────────────
+• AI looks closely at the 30 jobs
+• Considers: skill match quality, growth opportunity,
+  company type, job type (remote/office)
+• Ranks them from best to worst
+• Shows you the top ranked jobs
+</code></pre>
+<h3 id="what-you-see_1">What You See</h3>
+<pre><code>┌─────────────────────────────────────┐
+│  TOP JOB MATCHES FOR YOU            │
+├─────────────────────────────────────┤
+│                                     │
+│  1. 🏆 95% Match                    │
+│     Software Developer at TechCo    │
+│     • Remote work                   │
+│     • Your skills: Python ✓, React✓│
+│     • Company: 4.8 ⭐ rating        │
+│                                     │
+│  2. 🥈 88% Match                    │
+│     Full Stack Dev at StartUp       │
+│     • Your skills: Match 4/5        │
+│     • Office in your city           │
+│                                     │
+│  3. 🥉 82% Match                    │
+│     Database Engineer at BigCorp    │
+│     • Your skills: Match 3/5        │
+│     • Growth opportunity            │
+│                                     │
+└─────────────────────────────────────┘
+</code></pre>
+<h3 id="match-score-explained">Match Score Explained</h3>
+<ul>
+<li><strong>95%</strong> = Excellent match, most of your skills match the job</li>
+<li><strong>75-88%</strong> = Good match, several of your skills match</li>
+<li><strong>60-74%</strong> = Okay match, some skills match, room to grow</li>
+<li><strong>Below 60%</strong> = Stretch job, you'd be learning on the job</li>
+</ul>
+<h3 id="why-two-stage-matching">Why Two-Stage Matching?</h3>
+<ol>
+<li><strong>Faster</strong> - Don't waste time analyzing jobs you're not suited for</li>
+<li><strong>Better</strong> - AI only compares similar jobs, makes smarter decisions</li>
+<li><strong>Accurate</strong> - Heuristic filter + AI ranking = best results</li>
+<li><strong>Smart</strong> - Just like how you'd search yourself</li>
+</ol>
+<h3 id="what-makes-a-good-match">What Makes a Good Match?</h3>
+<ul>
+<li>✅ Skills match (you have what they want)</li>
+<li>✅ Experience level right (not too junior, not too senior)</li>
+<li>✅ Location works (remote if you want it)</li>
+<li>✅ Job type fits (full-time if you need stability)</li>
+<li>✅ Company reputation (good ratings from other workers)</li>
+</ul>
+<hr />
+<h2 id="6-career-tracker-watch-your-progress">📊 6. CAREER TRACKER - WATCH YOUR PROGRESS</h2>
+<h3 id="what-it-is_4">What It Is</h3>
+<p>A statistics dashboard showing your job search progress and activity.</p>
+<h3 id="what-data-it-tracks">What Data It Tracks</h3>
+<p><strong>Count Statistics:</strong>
+- <strong>Total Applications Sent:</strong> How many job applications you've submitted
+- <strong>Total Interviews:</strong> How many interviews you've been invited to
+- <strong>Total Offers:</strong> How many job offers you've received
+- <strong>Acceptance Rate:</strong> % of interviews that led to offers</p>
+<p><strong>Activity Over Time:</strong>
+- <strong>Month-by-month graph:</strong> Shows how active you've been
+- <strong>Example:</strong> Jan (5 apps), Feb (8 apps), Mar (12 apps)
+- <strong>Shows trends:</strong> Are you applying more or less as time goes on?</p>
+<p><strong>Recent Activity Feed:</strong></p>
+<pre><code>Latest 5 actions:
+─────────────────────────
+• Applied to &quot;Senior Dev&quot; 2 days ago
+• Got interview call for &quot;Manager&quot; 1 day ago  
+• Received offer from &quot;StartUp&quot; today
+• Rejected from &quot;BigCorp&quot; 3 days ago
+• Completed 5 CV sections 1 week ago
+</code></pre>
+<h3 id="how-to-use-it">How to Use It</h3>
+<p><strong>View Your Progress:</strong>
+1. Open "Career Tracker"
+2. See your key statistics
+3. Look at the trend graph
+4. Review your recent actions</p>
+<p><strong>What It Tells You:</strong>
+- Are you being productive? (enough applications?)
+- How's your success rate? (interviews per application?)
+- What's working? (where are your offers coming from?)
+- When were you most active? (month with most applications?)</p>
+<h3 id="why-this-matters">Why This Matters</h3>
+<ul>
+<li><strong>Track Success:</strong> See if your job search is working</li>
+<li><strong>Stay Motivated:</strong> Visualize your progress and wins</li>
+<li><strong>Plan Better:</strong> Know when you're most active and productive</li>
+<li><strong>Improve:</strong> Adjust your strategy based on what's working</li>
+</ul>
+<hr />
+<h2 id="7-application-management-track-where-you-applied">📋 7. APPLICATION MANAGEMENT - TRACK WHERE YOU APPLIED</h2>
+<h3 id="what-it-is_5">What It Is</h3>
+<p>A complete history and status tracker of every job you've applied to.</p>
+<h3 id="status-categories">Status Categories</h3>
+<p><strong>📩 All Applications</strong>
+- See everything you've applied for</p>
+<p><strong>⏳ Pending</strong> 
+- You applied but haven't heard back yet
+- Company is still reviewing</p>
+<p><strong>✅ Accepted / Interview Scheduled</strong>
+- They want to interview you!
+- Great news - you've passed the first screen</p>
+<p><strong>❌ Rejected</strong>
+- They decided to move forward with other candidates
+- It happens to everyone - apply to more jobs</p>
+<p><strong>🎉 Offers</strong>
+- They're offering you the job!
+- Time to decide: accept or reject</p>
+<h3 id="what-you-see-for-each-application">What You See for Each Application</h3>
+<pre><code>Job Title: Senior Software Developer
+Company: TechCorp
+Applied Date: Dec 20, 2025
+Current Status: ✅ Interview Scheduled
+Time Since Applied: 5 days ago
+Contact: hiring@techcorp.com
+Next Step: Interview on Jan 5, 2025
+</code></pre>
+<h3 id="how-to-use-it_1">How to Use It</h3>
+<p><strong>Tab Through Different Statuses:</strong></p>
+<pre><code>[All] [Pending] [Accepted] [Rejected] [Offers]
+</code></pre>
+<p><strong>For Each Application, You Can:</strong>
+- View full job details
+- See application date
+- Check current status
+- View company contact info
+- See interview date (if scheduled)
+- Take notes about the position</p>
+<h3 id="why-track-applications">Why Track Applications</h3>
+<ul>
+<li>✅ Don't forget where you applied</li>
+<li>✅ Remember when to follow up</li>
+<li>✅ See your success rate</li>
+<li>✅ Identify which companies are hiring</li>
+<li>✅ Plan your next steps</li>
+</ul>
+<hr />
+<h2 id="8-completed-jobs-company-ratings">🏆 8. COMPLETED JOBS &amp; COMPANY RATINGS</h2>
+<h3 id="what-it-is_6">What It Is</h3>
+<p>Record of jobs you've completed successfully and reviews you can leave for companies.</p>
+<h3 id="what-shows-here">What Shows Here</h3>
+<p><strong>Jobs You've Successfully Completed:</strong>
+- Job title
+- Company name
+- When you completed it
+- What you accomplished
+- Rating status (have you rated them?)</p>
+<h3 id="how-ratings-work">How Ratings Work</h3>
+<p><strong>Why Rate Companies:</strong>
+- Help other job seekers know if company is good
+- Your honest feedback matters
+- Build your reputation as a reliable worker</p>
+<p><strong>What You Rate:</strong>
+- 1-5 star rating (5 stars = excellent)
+- Written review about your experience
+- What was good
+- What could be better</p>
+<p><strong>Example Review:</strong>
+"Great company to work with! Paid on time, clear expectations, supportive manager. Project management could be better organized. Would work with them again."</p>
+<h3 id="rating-process">Rating Process</h3>
+<pre><code>1. Find completed job in list
+   ↓
+2. See &quot;Rate Company&quot; button (if not rated yet)
+   ↓
+3. Click to open rating form
+   ↓
+4. Give 1-5 stars
+   ↓
+5. Write optional review
+   ↓
+6. Submit
+   ↓
+7. Rating appears on company profile
+</code></pre>
+<h3 id="how-ratings-help-everyone">How Ratings Help Everyone</h3>
+<ul>
+<li><strong>For You:</strong> Build professional reputation</li>
+<li><strong>For Others:</strong> See honest reviews before accepting jobs</li>
+<li><strong>For Companies:</strong> Improve based on feedback</li>
+<li><strong>For Platform:</strong> Maintain quality standards</li>
+</ul>
+<hr />
+<h2 id="9-wallet-earnings-if-enabled-by-admin">💰 9. WALLET &amp; EARNINGS (If Enabled by Admin)</h2>
+<h3 id="important-note">⚠️ Important Note</h3>
+<p><strong>This feature only appears if your admin has enabled it.</strong><br />
+If you don't see a wallet, ask your admin to enable it.</p>
+<h3 id="what-it-is_7">What It Is</h3>
+<p>Your account balance where money from completed jobs is stored.</p>
+<h3 id="how-it-works_2">How It Works</h3>
+<p><strong>You Receive Money When:</strong>
+1. You complete a job successfully
+2. Employer pays through the app
+3. Money automatically goes to your wallet</p>
+<p><strong>Starting Balance:</strong>
+- New users get $50 welcome bonus
+- Added automatically when wallet is created</p>
+<h3 id="transaction-types">Transaction Types</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>What It Means</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Payment</td>
+<td>Money from completed job</td>
+</tr>
+<tr>
+<td>Deposit</td>
+<td>You added money via bank transfer</td>
+</tr>
+<tr>
+<td>Withdrawal</td>
+<td>You took money out to your bank</td>
+</tr>
+<tr>
+<td>Bonus</td>
+<td>Welcome bonus or special offers</td>
+</tr>
+<tr>
+<td>Refund</td>
+<td>Money returned if job was cancelled</td>
+</tr>
+</tbody>
+</table>
+<h3 id="transaction-statuses">Transaction Statuses</h3>
+<ul>
+<li>⏳ <strong>Pending</strong> - Payment in progress</li>
+<li>✅ <strong>Completed</strong> - Money successfully added</li>
+<li>❌ <strong>Failed</strong> - Payment didn't go through</li>
+<li>🔄 <strong>Cancelled</strong> - You or company cancelled</li>
+</ul>
+<h3 id="how-to-withdraw-money">How to Withdraw Money</h3>
+<p><strong>If you want to take money out:</strong></p>
+<pre><code>1. Open Wallet
+   ↓
+2. Click &quot;Withdraw Money&quot;
+   ↓
+3. Enter amount you want
+   ↓
+4. Enter your bank account details
+   ↓
+5. Submit withdrawal request
+   ↓
+6. Admin approves (24-48 hours)
+   ↓
+7. Money sent to your bank
+</code></pre>
+<h3 id="how-to-add-money-top-up">How to Add Money (Top-up)</h3>
+<p><strong>If you want to deposit money:</strong></p>
+<pre><code>1. Open Wallet
+   ↓
+2. Click &quot;Add Money / Top Up&quot;
+   ↓
+3. Transfer money via your bank (EFT)
+   ↓
+4. Upload proof of payment
+   ↓
+5. Wait for admin approval
+   ↓
+6. Money added to wallet
+</code></pre>
+<h3 id="wallet-safety">Wallet Safety</h3>
+<ul>
+<li>✅ Your balance is secure in our system</li>
+<li>✅ All transactions are recorded</li>
+<li>✅ You can view full transaction history</li>
+<li>✅ No unauthorized withdrawals allowed</li>
+</ul>
+<hr />
+<h2 id="10-career-roadmap-ai-career-planning">🎓 10. CAREER ROADMAP - AI Career Planning</h2>
+<h3 id="what-it-is_8">What It Is</h3>
+<p>An AI-generated personalized plan to help you reach your career goals.</p>
+<h3 id="how-it-works_3">How It Works</h3>
+<p><strong>Tell the AI Your Goal:</strong></p>
+<pre><code>Example:
+&quot;I want to become a Cloud Architect&quot;
+or
+&quot;I want to become a Product Manager&quot;
+</code></pre>
+<p><strong>AI Creates Your Plan Based On:</strong>
+- Your current CV and experience
+- Your target job role
+- Required skills for that role
+- Education gaps
+- Experience gaps</p>
+<p><strong>You Get A Roadmap Like:</strong></p>
+<pre><code>YOUR ROADMAP: Junior Dev → Senior Dev → Tech Lead
+
+CURRENT STATE:
+✓ Skills: Python, JavaScript, basic React
+⚠ Experience: 2 years in junior positions
+⚠ Gap: No team leadership experience
+
+NEXT 6 MONTHS:
+1. Learn React advanced patterns (3 months)
+2. Build 2 side projects with React (3 months)
+3. Lead a small team project (1 month)
+
+NEXT 12 MONTHS:
+1. Get senior developer promotion
+2. Complete AWS certification
+3. Take leadership course
+
+SKILLS TO DEVELOP:
+- Team management
+- Architecture design
+- Code mentoring
+
+EXPECTED TIMELINE:
+3-4 years from now
+</code></pre>
+<h3 id="how-to-use-your-roadmap">How to Use Your Roadmap</h3>
+<p><strong>Step by Step:</strong></p>
+<pre><code>1. Open &quot;Career Roadmap&quot;
+   ↓
+2. Enter your target job title
+   ↓
+3. Wait for AI to generate plan
+   ↓
+4. Read your personalized roadmap
+   ↓
+5. Save it for future reference
+   ↓
+6. Use it to guide your learning
+</code></pre>
+<h3 id="why-this-helps">Why This Helps</h3>
+<ul>
+<li>✅ Clear path to your goal</li>
+<li>✅ Know what skills to develop</li>
+<li>✅ Understand timeline realistically</li>
+<li>✅ See what's missing from your CV</li>
+<li>✅ Plan your next steps</li>
+<li>✅ Stay motivated with clear goals</li>
+</ul>
+<hr />
+<h2 id="overall-workflow-from-start-to-completed-job">🔄 OVERALL WORKFLOW: From Start to Completed Job</h2>
+<h3 id="complete-job-search-journey">Complete Job Search Journey</h3>
+<pre><code>START: You Download the App
+│
+├─→ [Step 1] Create Your CV
+│   • Fill 9 sections
+│   • Add education, experience, skills
+│   • Add project examples
+│   └─→ Result: Complete CV ✓
+│
+├─→ [Step 2] Practice Interviews (Optional)
+│   • Use Interview Coach
+│   • Get 5 AI questions
+│   • Receive feedback
+│   └─→ Result: Better Interview Skills ✓
+│
+├─→ [Step 3] Get Job Recommendations
+│   • Use Job Matching
+│   • See AI-ranked opportunities
+│   • See match scores (95%, 88%, etc.)
+│   └─→ Result: Best Jobs for You ✓
+│
+├─→ [Step 4] Apply to Jobs
+│   • Click &quot;Apply&quot; on matching job
+│   • Submit application
+│   • Track in &quot;My Applications&quot;
+│   └─→ Result: Application Sent ✓
+│
+├─→ [Step 5] Get Interview Call
+│   • Company contacts you
+│   • Interview status updates
+│   • See interview date
+│   └─→ Result: Interview Scheduled ✓
+│
+├─→ [Step 6] Prepare &amp; Interview
+│   • Practice with Interview Coach
+│   • Review company info
+│   • Conduct interview
+│   └─→ Result: Interview Complete ✓
+│
+├─→ [Step 7] Receive Offer (or Rejection)
+│   • Company makes decision
+│   • Status updates in app
+│   • See offer details
+│   └─→ Result: Offer or Next Application ✓
+│
+└─→ [Step 8] Accept Job &amp; Complete Work
+    • Accept offer
+    • Complete the job
+    • Get paid to wallet
+    • Rate the company
+    └─→ Result: Completed Job ✓
+</code></pre>
+<hr />
+<h2 id="key-features-summary">📱 KEY FEATURES SUMMARY</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>What It Does</th>
+<th>Who Needs It</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Dashboard</strong></td>
+<td>Shows your stats and recommendations</td>
+<td>Everyone</td>
+</tr>
+<tr>
+<td><strong>CV Builder</strong></td>
+<td>Create your digital resume</td>
+<td>Everyone (required)</td>
+</tr>
+<tr>
+<td><strong>Video Resume</strong></td>
+<td>Record yourself for employers</td>
+<td>Nice to have</td>
+</tr>
+<tr>
+<td><strong>Interview Coach</strong></td>
+<td>Practice with AI questions</td>
+<td>Very helpful</td>
+</tr>
+<tr>
+<td><strong>Job Matching</strong></td>
+<td>Find jobs matching your skills</td>
+<td>Essential</td>
+</tr>
+<tr>
+<td><strong>Career Tracker</strong></td>
+<td>See your progress</td>
+<td>Track success</td>
+</tr>
+<tr>
+<td><strong>Applications</strong></td>
+<td>Track where you applied</td>
+<td>Essential</td>
+</tr>
+<tr>
+<td><strong>Completed Jobs</strong></td>
+<td>Rate companies you worked for</td>
+<td>When you complete work</td>
+</tr>
+<tr>
+<td><strong>Wallet</strong></td>
+<td>Manage earnings</td>
+<td>When you get paid</td>
+</tr>
+<tr>
+<td><strong>Career Roadmap</strong></td>
+<td>Plan your career growth</td>
+<td>Long-term planning</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="important-limitations-conditions">⚠️ IMPORTANT LIMITATIONS &amp; CONDITIONS</h2>
+<h3 id="what-you-need-for-features-to-work">What You Need for Features to Work</h3>
+<ul>
+<li>✅ CV with skills for: Job Matching</li>
+<li>✅ Internet for: Interview Coach, Job Matching, Career Roadmap</li>
+<li>✅ MP4 video for: Video Resume</li>
+<li>✅ Admin enabled for: Wallet features</li>
+</ul>
+<h3 id="whats-not-included">What's Not Included</h3>
+<ul>
+<li>❌ Cover letter builder (use external tools)</li>
+<li>❌ Multiple CV versions (one template for all)</li>
+<li>❌ CV templates (same design for everyone)</li>
+<li>❌ Portfolio customization (no color/font choices)</li>
+</ul>
+<h3 id="mentorship-feature">Mentorship Feature</h3>
+<p>⚠️ <strong>Currently:</strong>
+- ✅ Can see mentor profiles
+- ❌ Can't actually connect with mentors (being built)
+- This feature is not yet fully available</p>
+<hr />
+<h2 id="best-practices-for-job-seekers">🎯 BEST PRACTICES FOR JOB SEEKERS</h2>
+<ol>
+<li><strong>Complete Your CV First</strong></li>
+<li>Can't use job matching without it</li>
+<li>Add real projects and skills</li>
+<li>
+<p>Keep it up to date</p>
+</li>
+<li>
+<p><strong>Use AI Tools</strong></p>
+</li>
+<li>Interview Coach helps you practice</li>
+<li>Career Roadmap shows your path</li>
+<li>
+<p>Job Matching finds best opportunities</p>
+</li>
+<li>
+<p><strong>Apply Strategically</strong></p>
+</li>
+<li>Quality over quantity</li>
+<li>Focus on 80%+ match jobs</li>
+<li>
+<p>Customize your profile for each application</p>
+</li>
+<li>
+<p><strong>Track Everything</strong></p>
+</li>
+<li>Use Application Management</li>
+<li>Note follow-up dates</li>
+<li>
+<p>Don't miss interviews</p>
+</li>
+<li>
+<p><strong>Keep Your Wallet Safe</strong></p>
+</li>
+<li>Don't share withdrawal details</li>
+<li>Verify admin approvals</li>
+<li>
+<p>Check your transaction history</p>
+</li>
+<li>
+<p><strong>Rate Companies</strong></p>
+</li>
+<li>Help other job seekers</li>
+<li>Build your professional reputation</li>
+<li>Give honest feedback</li>
+</ol>
+<hr />
+<h2 id="common-questions">🆘 COMMON QUESTIONS</h2>
+<p><strong>Q: Why can't I see my wallet?</strong><br />
+A: Admin might have disabled this feature. Ask your admin to enable it.</p>
+<p><strong>Q: Why can't I use Job Matching?</strong><br />
+A: You need a CV with skills. Complete your CV first.</p>
+<p><strong>Q: How many questions does Interview Coach ask?</strong><br />
+A: 5 questions per practice session. You can do multiple sessions.</p>
+<p><strong>Q: Can I upload a .mov video?</strong><br />
+A: No, must be MP4 format. Convert it first.</p>
+<p><strong>Q: How long does a withdrawal take?</strong><br />
+A: Usually 24-48 hours after admin approval.</p>
+<p><strong>Q: Can I have multiple CVs?</strong><br />
+A: No, just one CV. But you can update it anytime.</p>
+<p><strong>Q: Why are mentors in the app but I can't connect?</strong><br />
+A: Feature is being built. Coming soon.</p>
+<p><strong>Q: How accurate is the job matching?</strong><br />
+A: Very accurate - uses AI to analyze 30+ jobs before ranking.</p>
+<hr />
+<p><strong>END OF JOB SEEKER FEATURES GUIDE</strong></p>
+<p><em>This guide is based on actual code analysis of the app. All features described here are real and working (or conditionally working as noted).</em></p>
+</body>
+</html>

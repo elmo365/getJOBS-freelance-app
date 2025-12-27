@@ -1,5 +1,6 @@
-import "package:flutter/material.dart";
-import 'package:freelance_app/screens/homescreen/components/posted_jobs.dart';
+import 'package:flutter/material.dart';
+import 'package:freelance_app/utils/app_design_system.dart';
+import 'package:freelance_app/screens/search/search_screen.dart';
 
 class Category extends StatefulWidget {
   //final cata = const Postedjob();
@@ -23,29 +24,42 @@ class _CategoryState extends State<Category> {
   ];
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {},
-      child: SizedBox(
-        height: 60,
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: fields.length,
-          itemBuilder: (BuildContext context, int index) {
-            return Container(
-                height: 2,
-                margin: const EdgeInsets.all(8),
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                    top: 12,
-                    left: 18,
-                    right: 5,
+    return SizedBox(
+      height: 60,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: fields.length,
+        itemBuilder: (BuildContext context, int index) {
+          final category = fields[index];
+          return InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => Search(initialCategory: category),
+                ),
+              );
+            },
+            child: Container(
+              height: 2,
+              margin: AppDesignSystem.paddingS,
+              child: Padding(
+                padding: AppDesignSystem.paddingOnly(
+                  top: AppDesignSystem.spaceM,
+                  left: AppDesignSystem.spaceL,
+                  right: 5,
+                ),
+                child: Text(
+                  category,
+                  style: const TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
                   ),
-                  child: Text(fields[index],
-                      style: const TextStyle(
-                          fontSize: 15, fontWeight: FontWeight.bold)),
-                ));
-          },
-        ),
+                ),
+              ),
+            ),
+          );
+        },
       ),
     );
   }

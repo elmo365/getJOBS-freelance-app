@@ -1,0 +1,21 @@
+{
+  "name": "appwrite-setup",
+  "version": "1.0.0",
+  "description": "One-time setup script for Appwrite collections",
+  "main": "setup_all_collections.js",
+  "scripts": {
+    "setup": "node setup_all_collections.js",
+    "setup:buckets": "node setup_storage_buckets.js",
+    "setup:buckets:all": "node setup_all_buckets.js",
+    "setup:buckets:single": "node setup_single_bucket.js",
+    "setup:all": "node setup_single_bucket.js && node setup_all_collections.js",
+    "fix:permissions": "node fix_collection_permissions.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "node-appwrite": "^13.0.0"
+  },
+  "devDependencies": {
+    "pngjs": "^7.0.0"
+  }
+}

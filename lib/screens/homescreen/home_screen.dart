@@ -1,17 +1,17 @@
-import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import "package:flutter/material.dart";
 import 'package:freelance_app/screens/activity/activity.dart';
-
-import 'package:freelance_app/screens/homescreen/components/categories.dart';
 import 'package:freelance_app/screens/profile/profile.dart';
-import 'package:freelance_app/utils/colors.dart';
-import 'package:freelance_app/screens/homescreen/components/posted_jobs.dart';
-import 'package:freelance_app/screens/homescreen/sidebar.dart';
+import 'package:freelance_app/screens/job_seekers/job_seekers_home.dart';
+import 'package:freelance_app/screens/employers/employers_home.dart';
+import 'package:freelance_app/screens/trainers/trainers_home.dart';
+import 'package:freelance_app/screens/admin/admin_panel_screen.dart';
 import 'package:freelance_app/screens/search/search_screen.dart';
-import 'package:uuid/uuid.dart';
-
-import 'components/job_post.dart';
+import 'package:freelance_app/services/firebase/firebase_auth_service.dart';
+import 'package:freelance_app/services/firebase/firebase_database_service.dart';
+import 'package:freelance_app/widgets/common/snackbar_helper.dart';
+import 'package:freelance_app/services/auth/app_user_role.dart';
+import 'package:freelance_app/services/auth/user_role_service.dart';
+import 'package:freelance_app/widgets/common/hints_wrapper.dart';
 
 class Homescreen extends StatefulWidget {
   const Homescreen({super.key});
@@ -21,33 +21,91 @@ class Homescreen extends StatefulWidget {
 }
 
 class _HomescreenState extends State<Homescreen> {
+  final _authService = FirebaseAuthService();
+  final _dbService = FirebaseDatabaseService();
+
+  bool _isLoading = true;
+  AppUserRole? _role;
+
+  @override
+  void initState() {
+    super.initState();
+    _resolveRole();
+  }
+
+  Future<void> _resolveRole() async {
+    try {
+      final user = _authService.getCurrentUser();
+      if (user == null) {
+        if (mounted) Navigator.of(context).pushReplacementNamed('/login');
+        return;
+      }
+
+      final userDoc = await _dbService.getUser(user.uid);
+      if (userDoc == null || !userDoc.exists) {
+        if (!mounted) return;
+        setState(() {
+          _role = null;
+          _isLoading = false;
+        });
+        return;
+      }
+
+      final userData = userDoc.data() as Map<String, dynamic>? ?? {};
+      final role = UserRoleService.fromUserData(userData);
+
+      if (!mounted) return;
+      setState(() {
+        _role = role;
+        _isLoading = false;
+      });
+    } catch (_) {
+      if (!mounted) return;
+      setState(() => _isLoading = false);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: BottomNavigationPage(
-        title: "getJOBS",
-      ),
-    );
+    if (_isLoading) {
+      return const Scaffold(
+        body: Center(child: CircularProgressIndicator()),
+      );
+    }
+
+    switch (_role) {
+      case AppUserRole.admin:
+        return const AdminPanelScreen();
+      case AppUserRole.employer:
+        return const EmployersHomeScreen();
+      case AppUserRole.trainer:
+        return const TrainersHomeScreen();
+      case AppUserRole.jobSeeker:
+      default:
+        return const BottomNavigationPage(title: 'Bots Jobs Connect');
+    }
   }
 }
 
 class BottomNavigationPage extends StatefulWidget {
-  const BottomNavigationPage({Key? key, required this.title}) : super(key: key);
+  const BottomNavigationPage({super.key, required this.title});
   final String title;
 
   @override
-  _BottomNavigationPageState createState() => _BottomNavigationPageState();
+  State<BottomNavigationPage> createState() => _BottomNavigationPageState();
 }
 
 class _BottomNavigationPageState extends State<BottomNavigationPage> {
   late int currentIndex;
-  User? user = FirebaseAuth.instance.currentUser;
+  final FirebaseAuthService _authService = FirebaseAuthService();
+  String? _userId;
+  bool _isLoading = true;
 
   @override
   void initState() {
     super.initState();
     currentIndex = 0;
+    _checkAuth();
   }
 
   void changePage(int? index) {
@@ -56,177 +114,80 @@ class _BottomNavigationPageState extends State<BottomNavigationPage> {
     });
   }
 
+  Future<void> _checkAuth() async {
+    try {
+      final user = _authService.getCurrentUser();
+      if (user != null) {
+        setState(() {
+          _userId = user.uid;
+          _isLoading = false;
+        });
+      } else {
+        if (mounted) {
+          Navigator.of(context).pushReplacementNamed('/login');
+        }
+      }
+    } catch (e) {
+      if (mounted) {
+        SnackbarHelper.showError(context, 'Error checking authentication');
+        Navigator.of(context).pushReplacementNamed('/login');
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final _uid = user!.uid;
-    print(_uid);
-    return Scaffold(
+    if (_isLoading) {
+      return const Scaffold(
+        body: Center(child: CircularProgressIndicator()),
+      );
+    }
+
+    if (_userId == null) {
+      return const Scaffold(
+        body: Center(child: CircularProgressIndicator()),
+      );
+    }
+
+    return HintsWrapper(
+      screenId: 'home_screen',
+      child: Scaffold(
       body: <Widget>[
-        const Homepage(),
+        const JobSeekersHomeScreen(),
         const Search(),
         const JobsActivity(),
         ProfilePage(
-          userID: _uid,
+          userID: _userId!,
         ),
       ][currentIndex],
-      floatingActionButton: currentIndex == 0 || currentIndex == 1
-          ? FloatingActionButton(
-              backgroundColor: const Color.fromARGB(255, 245, 171, 59),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (_) => Upload(
-                            userID: _uid,
-                          ) //const LoginScreen(),
-                      ),
-                );
-              },
-              child: const Icon(
-                Icons.add_rounded,
-                //size: 40,
-                color: Colors.white,
-              ),
-            )
-          : null,
-      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-      bottomNavigationBar: BubbleBottomBar(
-        backgroundColor: Colors.white,
-        hasNotch: false,
-        //fabLocation: BubbleBottomBarFabLocation.end,
-        opacity: 0.5,
-        currentIndex: currentIndex,
-        onTap: changePage,
-        borderRadius: const BorderRadius.vertical(
-          top: Radius.circular(0),
-        ), //border radius doesn't work when the notch is enabled.
-        //elevation: 10,
-        tilesPadding: const EdgeInsets.symmetric(
-          vertical: 8.0,
-        ),
-
-        items: const <BubbleBottomBarItem>[
-          BubbleBottomBarItem(
-            backgroundColor: Colors.blueGrey,
-            icon: Icon(
-              Icons.dashboard,
-              color: Colors.black,
-            ),
-            activeIcon: Icon(
-              Icons.dashboard,
-              color: Colors.white,
-            ),
-            title: Text(
-              "Home",
-              style: TextStyle(color: Color(0xFFFFFFFF)),
-            ),
+      bottomNavigationBar: NavigationBar(
+        selectedIndex: currentIndex,
+        onDestinationSelected: (index) => changePage(index),
+        destinations: const [
+          NavigationDestination(
+            icon: Icon(Icons.dashboard_outlined),
+            selectedIcon: Icon(Icons.dashboard_rounded),
+            label: 'Home',
           ),
-          BubbleBottomBarItem(
-              backgroundColor: Colors.blueGrey,
-              icon: Icon(
-                Icons.search,
-                color: Colors.black,
-              ),
-              activeIcon: Icon(
-                Icons.search,
-                color: Colors.white,
-              ),
-              title: Text(
-                "Search",
-                style: TextStyle(color: Color(0xFFFFFFFF)),
-              )),
-          BubbleBottomBarItem(
-              backgroundColor: Colors.blueGrey,
-              icon: Icon(
-                Icons.library_books,
-                color: Colors.black,
-              ),
-              activeIcon: Icon(
-                Icons.library_books,
-                color: Colors.white,
-              ),
-              title: Text(
-                "Activity",
-                style: TextStyle(color: Color(0xFFFFFFFF)),
-              )),
-          BubbleBottomBarItem(
-              backgroundColor: Colors.blueGrey,
-              icon: Icon(
-                Icons.person_outline,
-                color: Colors.black,
-              ),
-              activeIcon: Icon(
-                Icons.person_outline_rounded,
-                color: Colors.white,
-              ),
-              title: Text(
-                "Profile",
-                style: TextStyle(color: Color(0xFFFFFFFF)),
-              )),
+          NavigationDestination(
+            icon: Icon(Icons.search_outlined),
+            selectedIcon: Icon(Icons.search_rounded),
+            label: 'Browse',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.library_books_outlined),
+            selectedIcon: Icon(Icons.library_books_rounded),
+            label: 'Activity',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.person_outline_rounded),
+            selectedIcon: Icon(Icons.person_rounded),
+            label: 'Profile',
+          ),
         ],
       ),
-    );
-  }
-}
-
-class Homepage extends StatefulWidget {
-  const Homepage({super.key});
-
-  @override
-  State<Homepage> createState() => _HomepageState();
-}
-
-class _HomepageState extends State<Homepage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: SideBar(),
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: white,
-        iconTheme: const IconThemeData(
-          color: Colors.orange,
-        ),
-        title: const Padding(
-          padding: EdgeInsets.only(left: 180),
-          child: Text(
-            "getJOBS",
-            style: TextStyle(color: Colors.orange),
-          ),
-        ),
-      ),
-      body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            Padding(
-              padding: EdgeInsets.only(left: 15, top: 20),
-              child: Text(
-                "Find Your Perfect ",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: 15, bottom: 15),
-              child: Text(
-                "Job",
-                style: TextStyle(
-                  color: yellow,
-                  fontWeight: FontWeight.w900,
-                  fontSize: 30,
-                ),
-              ),
-            ),
-            // Category(),
-            SizedBox(
-              height: 10,
-            ),
-            Postedjob(),
-            //Bottomnavbar(),
-          ],
-        ),
       ),
     );
   }
 }
+
